@@ -1,8 +1,10 @@
 $ConfigCache = @{};
 
 $ConfigContainerName = 'ITG DomainUtils';
+$ConfigObjectName = 'ITG DomainUtils Printers';
 $ConfigContainerParentDN = 'CN=Optional Features,CN=Directory Service,CN=Windows NT,CN=Services,CN=Configuration';
 $ConfigContainerDN = ( ( "CN=$ConfigContainerName", $ConfigContainerParentDN | ? { $_ } ) -join ',' );
+$ConfigObjectDN = ( ( "CN=$ConfigObjectName", $ConfigContainerDN | ? { $_ } ) -join ',' );
 
 Function Initialize-DomainUtilsPrintersConfiguration {
 <#
@@ -102,13 +104,26 @@ Function Initialize-DomainUtilsPrintersConfiguration {
 			Write-Verbose `
 				-Message ( [String]::Format( $loc.ConfigInitialization, $ADDomain.DNSRoot ) ) `
 			;
+            if ( -not ( Test-Path `
+                -LiteralPath "AD:$( ( $ConfigContainerDN, $ADDomain.DistinguishedName | ? { $_ } ) -join ',' )" `
+            ) ) {
+				$null = New-ADObject `
+					-Type 'container' `
+					-Path ( ( $ConfigContainerParentDN, $ADDomain.DistinguishedName | ? { $_ } ) -join ',' ) `
+					-Name $ConfigContainerName `
+					-ProtectedFromAccidentalDeletion $false `
+					-PassThru `
+					-Verbose:$VerbosePreference `
+					-Server $Server `
+				;
+            };
 			if ( 
 				Test-DomainUtilsPrintersConfiguration `
 					-Domain $Domain `
 					-Server $Server `
 			) {
 				$ConfigADObject = Get-ADObject `
-					-Identity ( ( $ConfigContainerDN, $ADDomain.DistinguishedName | ? { $_ } ) -join ',' ) `
+					-Identity ( ( $ConfigObjectDN, $ADDomain.DistinguishedName | ? { $_ } ) -join ',' ) `
 					-Server $Server `
 					-Properties 'msDS-ObjectReference', 'msDS-Settings' `
 				;
@@ -116,8 +131,8 @@ Function Initialize-DomainUtilsPrintersConfiguration {
 			if ( -not $ConfigADObject ) {
 				$ConfigADObject = New-ADObject `
 					-Type 'msDS-App-Configuration' `
-					-Path ( ( $ConfigContainerParentDN, $ADDomain.DistinguishedName | ? { $_ } ) -join ',' ) `
-					-Name $ConfigContainerName `
+					-Path ( ( $ConfigContainerDN, $ADDomain.DistinguishedName | ? { $_ } ) -join ',' ) `
+					-Name $ConfigObjectName `
 					-ProtectedFromAccidentalDeletion $false `
 					-PassThru `
 					-Verbose:$VerbosePreference `
@@ -200,7 +215,7 @@ Function Test-DomainUtilsPrintersConfiguration {
 			@Params `
 		;
 		if ( $ConfigCache.ContainsKey( $ADDomain.DNSRoot ) ) { return $true; };
-		return ( Test-Path -Path "AD:$( ( $ConfigContainerDN, $ADDomain.DistinguishedName | ? { $_ } ) -join ',' )" );
+		return ( Test-Path -Path "AD:$( ( $ConfigObjectDN, $ADDomain.DistinguishedName | ? { $_ } ) -join ',' )" );
 	} catch {
 		Write-Error `
 			-ErrorRecord $_ `
@@ -269,7 +284,7 @@ Function Get-DomainUtilsPrintersConfiguration {
 				;
 			} else {
 				$ConfigADObject = Get-ADObject `
-					-Identity ( ( $ConfigContainerDN, $ADDomain.DistinguishedName | ? { $_ } ) -join ',' ) `
+					-Identity ( ( $ConfigObjectDN, $ADDomain.DistinguishedName | ? { $_ } ) -join ',' ) `
 					-Server $Server `
 					-Properties 'msDS-ObjectReference', 'msDS-Settings' `
 				;
