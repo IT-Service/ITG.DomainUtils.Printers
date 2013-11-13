@@ -1,23 +1,23 @@
 ﻿#
-# Манифест модуля для модуля "ITG.DomainUtils".
+# Манифест модуля для модуля "ITG.DomainUtils.Printers".
 #
 # Создано: Sergey S. Betke
 #
 # Дата создания: 13.10.2013
 #
-# Архив проекта: https://github.com/IT-Service/ITG.DomainUtils
+# Архив проекта: https://github.com/IT-Service/ITG.DomainUtils.Printers
 #
 
 @{
 
 # Файл модуля скрипта или двоичного модуля, связанный с данным манифестом
-RootModule = 'ITG.DomainUtils.psm1'
+RootModule = 'ITG.DomainUtils.Printers.psm1'
 
 # Номер версии данного модуля.
 ModuleVersion = '0.1.0'
 
 # Уникальный идентификатор данного модуля
-GUID = 'C9841C9C-BB43-4D00-8CFA-6815496C72C9'
+GUID = 'D8CF9F68-3B96-498A-BD04-33EA2B072BD0'
 
 # Автор данного модуля
 Author = 'Sergey S. Betke'
@@ -30,7 +30,7 @@ Copyright = '(c) 2013 Sergey S. Betke. All rights reserved.'
 
 # Описание функций данного модуля
 Description = @'
-Данный модуль предоставляет набор командлет для автоматизации ряда операций в домене Windows.
+Данный модуль предоставляет набор командлет для автоматизации ряда операций с публикацией принтеров в домене Windows.
 
 Тестирование модуля и подготовка к публикации
 ---------------------------------------------
@@ -96,15 +96,15 @@ ModuleList = @()
 
 # Список всех файлов, входящих в пакет данного модуля
 FileList = `
-	'ITG.DomainUtils.psm1' `
-,   'ITG.DomainUtils.psd1' `
-,	'ITG.DomainUtils.Configuration.psm1' `
-,	'ITG.DomainUtils.Printers.psm1' `
+	'ITG.DomainUtils.Printers.psm1' `
+,   'ITG.DomainUtils.Printers.psd1' `
+,	'ITG.DomainUtils.Printers.Configuration.psm1' `
+,	'ITG.DomainUtils.Printers.ps1' `
 ;
 
 # Личные данные, передаваемые в модуль, указанный в параметре ModuleToProcess
 PrivateData = @{
-	ReadmeURL = 'https://github.com/IT-Service/ITG.DomainUtils';
+	ReadmeURL = 'https://github.com/IT-Service/ITG.DomainUtils.Printers';
 }
 
 }

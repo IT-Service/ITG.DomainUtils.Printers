@@ -58,21 +58,6 @@ Function Import-LocalizedData {
 			, [System.Management.Automation.CommandTypes]::Cmdlet
 		);
 		$loc = & $wrappedCmd @PSBoundParameters;
-<#
-		$PSLocRM = New-Object `
-			-Type 'System.Resources.ResourceManager' `
-			-ArgumentList `
-				'HelpDisplayStrings' `
-				, ( [System.Reflection.Assembly]::Load('System.Management.Automation') ) `
-		;
-		$PSloc = $PSLocRM.GetResourceSet( $UICulture, $true, $true );
-		$PSloc `
-		| % {
-			if ( -not $loc.ContainsKey( $_.Name ) ) {
-				$loc.Add( $_.Name, $_.Value.Trim() );
-			};
-		};
-#>
 	} catch {
 		throw;
 	};
@@ -81,7 +66,7 @@ Function Import-LocalizedData {
 
 $loc = Import-LocalizedData;
 
-. (	Join-Path -Path $CurrentDir -ChildPath 'ITG.DomainUtils.Configuration.ps1' );
+. (	Join-Path -Path $CurrentDir -ChildPath 'ITG.DomainUtils.Printers.Configuration.ps1' );
 . (	Join-Path -Path $CurrentDir -ChildPath 'ITG.DomainUtils.Printers.ps1' );
 
 Export-ModuleMember `

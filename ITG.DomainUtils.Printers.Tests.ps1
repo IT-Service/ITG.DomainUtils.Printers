@@ -15,7 +15,7 @@ Describe 'ITG.DomainUtils module' {
 
 };
 
-. "$ModuleDir\$ModuleName.Printers.ps1";
+. "$ModuleDir\$ModuleName.ps1";
 
 Describe 'Get-ADPrintQueue' {
 
