@@ -71,9 +71,9 @@ $loc = Import-LocalizedData;
 
 Export-ModuleMember `
 	-Function `
-		Initialize-DomainUtilsConfiguration `
-		, Test-DomainUtilsConfiguration `
-		, Get-DomainUtilsConfiguration `
+		Initialize-DomainUtilsPrintersConfiguration `
+		, Test-DomainUtilsPrintersConfiguration `
+		, Get-DomainUtilsPrintersConfiguration `
 		, Get-ADPrintQueue `
 		, Test-ADPrintQueue `
 		, Initialize-ADPrintQueuesEnvironment `

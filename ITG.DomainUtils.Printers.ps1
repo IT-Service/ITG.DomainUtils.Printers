@@ -349,7 +349,7 @@ Function Initialize-ADPrintQueuesEnvironment {
 				$Params.Add( $param,  $PSBoundParameters.$param );
 			};
 		};
-		$Config = Get-DomainUtilsConfiguration `
+		$Config = Get-DomainUtilsPrintersConfiguration `
 			-Domain $Domain `
 			@Params `
 		;
@@ -460,7 +460,7 @@ Function New-ADPrintQueueGroup {
 					$Params.Add( $param,  $PSBoundParameters.$param );
 				};
 			};
-			$Config = Get-DomainUtilsConfiguration `
+			$Config = Get-DomainUtilsPrintersConfiguration `
 				-Domain $Domain `
 				@Params `
 			;
@@ -593,7 +593,7 @@ Function Get-ADPrintQueueGroup {
 					$Params.Add( $param,  $PSBoundParameters.$param );
 				};
 			};
-			$Config = Get-DomainUtilsConfiguration `
+			$Config = Get-DomainUtilsPrintersConfiguration `
 				-Domain $Domain `
 				@Params `
 			;
@@ -727,7 +727,7 @@ Function New-ADPrintQueueGPO {
 				-Identity $Domain `
 				-Server $Server `
 			;
-			$Config = Get-DomainUtilsConfiguration `
+			$Config = Get-DomainUtilsPrintersConfiguration `
 				-Domain $Domain `
 				-Server $Server `
 			;
@@ -964,7 +964,7 @@ Function Get-ADPrintQueueGPO {
 				-Identity $Domain `
 				-Server $Server `
 			;
-			$Config = Get-DomainUtilsConfiguration `
+			$Config = Get-DomainUtilsPrintersConfiguration `
 				-Domain $Domain `
 				-Server $Server `
 			;
@@ -1166,7 +1166,7 @@ Function Update-ADPrintQueueEnvironment {
 				-Identity $Domain `
 				-Server $Server `
 			;
-			$Config = Get-DomainUtilsConfiguration `
+			$Config = Get-DomainUtilsPrintersConfiguration `
 				-Domain $Domain `
 				-Server $Server `
 			;

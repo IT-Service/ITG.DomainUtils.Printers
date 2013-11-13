@@ -517,9 +517,9 @@
 	</command>
 	<command xmlns:msh="http://msh" xmlns="http://schemas.microsoft.com/maml/dev/command/2004/10">
 		<details>
-			<name>Get-DomainUtilsConfiguration</name>
+			<name>Get-DomainUtilsPrintersConfiguration</name>
 			<verb>Get</verb>
-			<noun>DomainUtilsConfiguration</noun>
+			<noun>DomainUtilsPrintersConfiguration</noun>
 			<maml:description>
 				<maml:para>Получаем объект, содержащий конфигурацию модуля для указанного домена.</maml:para>
 			</maml:description>
@@ -533,7 +533,7 @@
 		</maml:description>
 		<syntax>
 			<syntaxItem>
-				<maml:name>Get-DomainUtilsConfiguration</maml:name>
+				<maml:name>Get-DomainUtilsPrintersConfiguration</maml:name>
 				<parameter required="false" position="1" pipelineInput="false" globbing="false">
 					<maml:name>Domain</maml:name>
 					<parameterValue required="false">String</parameterValue>
@@ -567,7 +567,7 @@
 				<maml:introduction>
 					<maml:paragraph>C:\PS&gt;</maml:paragraph>
 				</maml:introduction>
-				<dev:code>( Get-DomainUtilsConfiguration -Domain 'csm.nov.ru' ).ContainerClass</dev:code>
+				<dev:code>( Get-DomainUtilsPrintersConfiguration -Domain 'csm.nov.ru' ).ContainerClass</dev:code>
 				<maml:remarks>
 					<maml:para>Определяем класс контейнеров, используемых модулем для домена csm.nov.ru.</maml:para>
 				</maml:remarks>
@@ -575,7 +575,7 @@
 		</examples>
 		<maml:relatedLinks>
 			<maml:navigationLink>
-				<maml:uri>https://github.com/IT-Service/ITG.DomainUtils#Get-DomainUtilsConfiguration</maml:uri>
+				<maml:uri>https://github.com/IT-Service/ITG.DomainUtils#Get-DomainUtilsPrintersConfiguration</maml:uri>
 			</maml:navigationLink>
 		</maml:relatedLinks>
 	</command>
@@ -691,9 +691,9 @@
 	</command>
 	<command xmlns:msh="http://msh" xmlns="http://schemas.microsoft.com/maml/dev/command/2004/10">
 		<details>
-			<name>Initialize-DomainUtilsConfiguration</name>
+			<name>Initialize-DomainUtilsPrintersConfiguration</name>
 			<verb>Initialize</verb>
-			<noun>DomainUtilsConfiguration</noun>
+			<noun>DomainUtilsPrintersConfiguration</noun>
 			<maml:description>
 				<maml:para>Инициализация конфигурации модуля.</maml:para>
 			</maml:description>
@@ -709,7 +709,7 @@
 		</maml:description>
 		<syntax>
 			<syntaxItem>
-				<maml:name>Initialize-DomainUtilsConfiguration</maml:name>
+				<maml:name>Initialize-DomainUtilsPrintersConfiguration</maml:name>
 				<parameter required="false" position="1" pipelineInput="false" globbing="false">
 					<maml:name>Domain</maml:name>
 					<parameterValue required="false">String</parameterValue>
@@ -792,7 +792,7 @@
 				<maml:introduction>
 					<maml:paragraph>C:\PS&gt;</maml:paragraph>
 				</maml:introduction>
-				<dev:code>Initialize-DomainUtilsConfiguration</dev:code>
+				<dev:code>Initialize-DomainUtilsPrintersConfiguration</dev:code>
 				<maml:remarks>
 					<maml:para>Инициализируем конфигурацию модуля для домена пользователя, от имени которого выполнен командлет.</maml:para>
 				</maml:remarks>
@@ -800,7 +800,7 @@
 		</examples>
 		<maml:relatedLinks>
 			<maml:navigationLink>
-				<maml:uri>https://github.com/IT-Service/ITG.DomainUtils#Initialize-DomainUtilsConfiguration</maml:uri>
+				<maml:uri>https://github.com/IT-Service/ITG.DomainUtils#Initialize-DomainUtilsPrintersConfiguration</maml:uri>
 			</maml:navigationLink>
 		</maml:relatedLinks>
 	</command>
@@ -1566,9 +1566,9 @@
 	</command>
 	<command xmlns:msh="http://msh" xmlns="http://schemas.microsoft.com/maml/dev/command/2004/10">
 		<details>
-			<name>Test-DomainUtilsConfiguration</name>
+			<name>Test-DomainUtilsPrintersConfiguration</name>
 			<verb>Test</verb>
-			<noun>DomainUtilsConfiguration</noun>
+			<noun>DomainUtilsPrintersConfiguration</noun>
 			<maml:description>
 				<maml:para>Проверяем наличие конфигурации модуля для указанного домена.</maml:para>
 			</maml:description>
@@ -1582,7 +1582,7 @@
 		</maml:description>
 		<syntax>
 			<syntaxItem>
-				<maml:name>Test-DomainUtilsConfiguration</maml:name>
+				<maml:name>Test-DomainUtilsPrintersConfiguration</maml:name>
 				<parameter required="false" position="1" pipelineInput="false" globbing="false">
 					<maml:name>Domain</maml:name>
 					<parameterValue required="false">String</parameterValue>
@@ -1616,7 +1616,7 @@
 				<maml:introduction>
 					<maml:paragraph>C:\PS&gt;</maml:paragraph>
 				</maml:introduction>
-				<dev:code>Test-DomainUtilsConfiguration -Domain 'csm.nov.ru'</dev:code>
+				<dev:code>Test-DomainUtilsPrintersConfiguration -Domain 'csm.nov.ru'</dev:code>
 				<maml:remarks>
 					<maml:para>Проверяем существование конфигурации для домена csm.nov.ru.</maml:para>
 				</maml:remarks>
@@ -1624,7 +1624,7 @@
 		</examples>
 		<maml:relatedLinks>
 			<maml:navigationLink>
-				<maml:uri>https://github.com/IT-Service/ITG.DomainUtils#Test-DomainUtilsConfiguration</maml:uri>
+				<maml:uri>https://github.com/IT-Service/ITG.DomainUtils#Test-DomainUtilsPrintersConfiguration</maml:uri>
 			</maml:navigationLink>
 		</maml:relatedLinks>
 	</command>

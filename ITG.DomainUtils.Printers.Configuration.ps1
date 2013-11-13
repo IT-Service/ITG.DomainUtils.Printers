@@ -4,7 +4,7 @@ $ConfigContainerName = 'ITG DomainUtils';
 $ConfigContainerParentDN = 'CN=Optional Features,CN=Directory Service,CN=Windows NT,CN=Services,CN=Configuration';
 $ConfigContainerDN = ( ( "CN=$ConfigContainerName", $ConfigContainerParentDN | ? { $_ } ) -join ',' );
 
-Function Initialize-DomainUtilsConfiguration {
+Function Initialize-DomainUtilsPrintersConfiguration {
 <#
 .Synopsis
 	Инициализация конфигурации модуля. 
@@ -22,15 +22,15 @@ Function Initialize-DomainUtilsConfiguration {
 	однако этот шаг не приведёт к фактическому изменению типов контейнеров, их местоположения,
 	аттрибутов созданных групп. Поэтому пользоваться этой возможностью следует с особой осторожностью.
 .Link
-	https://github.com/IT-Service/ITG.DomainUtils#Initialize-DomainUtilsConfiguration
+	https://github.com/IT-Service/ITG.DomainUtils#Initialize-DomainUtilsPrintersConfiguration
 .Example
-	Initialize-DomainUtilsConfiguration
+	Initialize-DomainUtilsPrintersConfiguration
 	Инициализируем конфигурацию модуля для домена пользователя, от имени которого выполнен командлет.
 #>
 	[CmdletBinding(
 		SupportsShouldProcess = $true
 		, ConfirmImpact = 'High'
-		, HelpUri = 'https://github.com/IT-Service/ITG.DomainUtils#Initialize-DomainUtilsConfiguration'
+		, HelpUri = 'https://github.com/IT-Service/ITG.DomainUtils#Initialize-DomainUtilsPrintersConfiguration'
 	)]
 
 	param (
@@ -85,7 +85,7 @@ Function Initialize-DomainUtilsConfiguration {
 		;
 		if ( 
 			(
-				Test-DomainUtilsConfiguration `
+				Test-DomainUtilsPrintersConfiguration `
 					-Domain $Domain `
 					-Server $Server `
 			) `
@@ -103,7 +103,7 @@ Function Initialize-DomainUtilsConfiguration {
 				-Message ( [String]::Format( $loc.ConfigInitialization, $ADDomain.DNSRoot ) ) `
 			;
 			if ( 
-				Test-DomainUtilsConfiguration `
+				Test-DomainUtilsPrintersConfiguration `
 					-Domain $Domain `
 					-Server $Server `
 			) {
@@ -143,7 +143,7 @@ Function Initialize-DomainUtilsConfiguration {
 					-Verbose:$VerbosePreference `
 					-Server $Server `
 				;
-				$null = Get-DomainUtilsConfiguration `
+				$null = Get-DomainUtilsPrintersConfiguration `
 					-Domain $Domain `
 					-Server $Server `
 				;
@@ -156,20 +156,20 @@ Function Initialize-DomainUtilsConfiguration {
 	};
 }
 
-Function Test-DomainUtilsConfiguration {
+Function Test-DomainUtilsPrintersConfiguration {
 <#
 .Synopsis
 	Проверяем наличие конфигурации модуля для указанного домена. 
 .Description
 	Проверяем наличие конфигурации модуля для указанного домена. 
 .Link
-	https://github.com/IT-Service/ITG.DomainUtils#Test-DomainUtilsConfiguration
+	https://github.com/IT-Service/ITG.DomainUtils#Test-DomainUtilsPrintersConfiguration
 .Example
-	Test-DomainUtilsConfiguration -Domain 'csm.nov.ru'
+	Test-DomainUtilsPrintersConfiguration -Domain 'csm.nov.ru'
 	Проверяем существование конфигурации для домена csm.nov.ru.
 #>
 	[CmdletBinding(
-		HelpUri = 'https://github.com/IT-Service/ITG.DomainUtils#Test-DomainUtilsConfiguration'
+		HelpUri = 'https://github.com/IT-Service/ITG.DomainUtils#Test-DomainUtilsPrintersConfiguration'
 	)]
 
 	param (
@@ -208,22 +208,22 @@ Function Test-DomainUtilsConfiguration {
 	};
 }
 
-New-Alias -Name Test-Config -Value Test-DomainUtilsConfiguration -Force;
+New-Alias -Name Test-Config -Value Test-DomainUtilsPrintersConfiguration -Force;
 
-Function Get-DomainUtilsConfiguration {
+Function Get-DomainUtilsPrintersConfiguration {
 <#
 .Synopsis
 	Получаем объект, содержащий конфигурацию модуля для указанного домена. 
 .Description
 	Получаем объект, содержащий конфигурацию модуля для указанного домена. 
 .Link
-	https://github.com/IT-Service/ITG.DomainUtils#Get-DomainUtilsConfiguration
+	https://github.com/IT-Service/ITG.DomainUtils#Get-DomainUtilsPrintersConfiguration
 .Example
-	( Get-DomainUtilsConfiguration -Domain 'csm.nov.ru' ).ContainerClass
+	( Get-DomainUtilsPrintersConfiguration -Domain 'csm.nov.ru' ).ContainerClass
 	Определяем класс контейнеров, используемых модулем для домена csm.nov.ru.
 #>
 	[CmdletBinding(
-		HelpUri = 'https://github.com/IT-Service/ITG.DomainUtils#Get-DomainUtilsConfiguration'
+		HelpUri = 'https://github.com/IT-Service/ITG.DomainUtils#Get-DomainUtilsPrintersConfiguration'
 	)]
 
 	param (
@@ -255,7 +255,7 @@ Function Get-DomainUtilsConfiguration {
 		} else {
 			if ( 
 				-not (
-					Test-DomainUtilsConfiguration `
+					Test-DomainUtilsPrintersConfiguration `
 						-Domain $Domain `
 						-Server $Server `
 				) `
@@ -304,4 +304,4 @@ Function Get-DomainUtilsConfiguration {
 	};
 }
 
-New-Alias -Name Get-Config -Value Get-DomainUtilsConfiguration -Force;
+New-Alias -Name Get-Config -Value Get-DomainUtilsPrintersConfiguration -Force;
