@@ -255,6 +255,10 @@ Function Get-DomainUtilsPrintersConfiguration {
 		)]
 		[String]
 		$Server = ''
+	,
+		# Игнорировать кеш и принудительно перечитать конфигурацию из AD
+		[Switch]
+		$NoCache
 	)
 
 	try {
@@ -265,7 +269,10 @@ Function Get-DomainUtilsPrintersConfiguration {
 			-Identity $Domain `
 			-Server $Server `
 		;
-		if ( $ConfigCache.ContainsKey( $ADDomain.DNSRoot ) ) {
+		if (
+			( -not $NoCache ) `
+			-and ( $ConfigCache.ContainsKey( $ADDomain.DNSRoot ) )
+		) {
 			return $ConfigCache.Item( $ADDomain.DNSRoot );
 		} else {
 			if ( 

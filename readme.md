@@ -10,7 +10,7 @@
 Для модульных тестов использую проект [pester](https://github.com/pester/pester).
 
 
-Версия модуля: **0.1.0**
+Версия модуля: **0.2.0**
 
 ПОДДЕРЖИВАЮТСЯ КОМАНДЛЕТЫ
 -------------------------
@@ -99,7 +99,7 @@
 
 Получаем объект, содержащий конфигурацию модуля для указанного домена.
 
-	Get-DomainUtilsPrintersConfiguration [[-Domain] <String>] [[-Server] <String>] <CommonParameters>
+	Get-DomainUtilsPrintersConfiguration [[-Domain] <String>] [[-Server] <String>] [-NoCache] <CommonParameters>
 
 #### КРАТКОЕ ОПИСАНИЕ [Initialize-DomainUtilsPrintersConfiguration][]
 
@@ -1109,7 +1109,7 @@ ADObject класса printQueue, возвращаемый [Get-ADPrintQueue][].
 
 ##### СИНТАКСИС
 
-	Get-DomainUtilsPrintersConfiguration [[-Domain] <String>] [[-Server] <String>] <CommonParameters>
+	Get-DomainUtilsPrintersConfiguration [[-Domain] <String>] [[-Server] <String>] [-NoCache] <CommonParameters>
 
 ##### ПАРАМЕТРЫ
 
@@ -1129,6 +1129,10 @@ ADObject класса printQueue, возвращаемый [Get-ADPrintQueue][].
 	* Позиция? 2
 	* Принимать входные данные конвейера? false
 	* Принимать подстановочные знаки? нет
+
+- `[SwitchParameter] NoCache`
+	Игнорировать кеш и принудительно перечитать конфигурацию из AD
+	
 
 - `<CommonParameters>`
 	Этот командлет поддерживает общие параметры: Verbose, Debug,

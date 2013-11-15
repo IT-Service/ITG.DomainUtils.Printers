@@ -12,7 +12,7 @@
 			<maml:copyright>
 				<maml:para>(c) 2013 Sergey S. Betke. All rights reserved.</maml:para>
 			</maml:copyright>
-			<dev:version>0.1.0</dev:version>
+			<dev:version>0.2.0</dev:version>
 		</details>
 		<maml:description>
 			<maml:para>Get-ADPrintQueue возвращает объект printQueue или выполняет поиск для выявления множества объектов ADObject класса printQueue.</maml:para>
@@ -277,7 +277,7 @@
 			<maml:copyright>
 				<maml:para>(c) 2013 Sergey S. Betke. All rights reserved.</maml:para>
 			</maml:copyright>
-			<dev:version>0.1.0</dev:version>
+			<dev:version>0.2.0</dev:version>
 		</details>
 		<maml:description>
 			<maml:para>Возвращает объект групповой политики, созданный для "подключения" членам группы Пользователи принтера указанной через InputObject очереди печати.</maml:para>
@@ -399,7 +399,7 @@
 			<maml:copyright>
 				<maml:para>(c) 2013 Sergey S. Betke. All rights reserved.</maml:para>
 			</maml:copyright>
-			<dev:version>0.1.0</dev:version>
+			<dev:version>0.2.0</dev:version>
 		</details>
 		<maml:description>
 			<maml:para>Get-ADPrintQueueGroup возвращает группы безопасности (Пользователи принтера, Операторы принтера) для указанного через InputObject объекта printQueue.</maml:para>
@@ -526,7 +526,7 @@
 			<maml:copyright>
 				<maml:para>(c) 2013 Sergey S. Betke. All rights reserved.</maml:para>
 			</maml:copyright>
-			<dev:version>0.1.0</dev:version>
+			<dev:version>0.2.0</dev:version>
 		</details>
 		<maml:description>
 			<maml:para>Получаем объект, содержащий конфигурацию модуля для указанного домена.</maml:para>
@@ -541,6 +541,9 @@
 				<parameter required="false" position="2" pipelineInput="false" globbing="false">
 					<maml:name>Server</maml:name>
 					<parameterValue required="false">String</parameterValue>
+				</parameter>
+				<parameter required="false" position="named" pipelineInput="false" globbing="false">
+					<maml:name>NoCache</maml:name>
 				</parameter>
 			</syntaxItem>
 		</syntax>
@@ -559,6 +562,14 @@
 					<maml:para>Контроллер домена Active Directory</maml:para>
 				</maml:description>
 				<parameterValue required="True">String</parameterValue>
+			</parameter>
+			<parameter required="false" position="named" pipelineInput="false" globbing="false">
+				<maml:name>NoCache</maml:name>
+				<maml:description>
+					<maml:para>Игнорировать кеш и принудительно перечитать конфигурацию из AD</maml:para>
+				</maml:description>
+				<parameterValue required="True">SwitchParameter</parameterValue>
+				<defaultValue>False</defaultValue>
 			</parameter>
 		</parameters>
 		<examples>
@@ -590,7 +601,7 @@
 			<maml:copyright>
 				<maml:para>(c) 2013 Sergey S. Betke. All rights reserved.</maml:para>
 			</maml:copyright>
-			<dev:version>0.1.0</dev:version>
+			<dev:version>0.2.0</dev:version>
 		</details>
 		<maml:description>
 			<maml:para>Создаёт корневой контейнер для контейнеров объектов printQueue. Данную функцию следует вызывать однократно для создания необходимых контейнеров и объектов.</maml:para>
@@ -700,7 +711,7 @@
 			<maml:copyright>
 				<maml:para>(c) 2013 Sergey S. Betke. All rights reserved.</maml:para>
 			</maml:copyright>
-			<dev:version>0.1.0</dev:version>
+			<dev:version>0.2.0</dev:version>
 		</details>
 		<maml:description>
 			<maml:para>Инициализирует конфигурацию модуля. Конфигурация модуля сохраняется в Active Directory, полный путь для домена csm.nov.ru будет `CN=ITG DomainUtils,CN=Optional Features,CN=Directory Service,CN=Windows NT,CN=Services,CN=Configuration,DC=csm,DC=nov,DC=ru`.</maml:para>
@@ -815,7 +826,7 @@
 			<maml:copyright>
 				<maml:para>(c) 2013 Sergey S. Betke. All rights reserved.</maml:para>
 			</maml:copyright>
-			<dev:version>0.1.0</dev:version>
+			<dev:version>0.2.0</dev:version>
 		</details>
 		<maml:description>
 			<maml:para>New-ADPrintQueueGPO создаёт объект групповой политики для "подключения" членам группы Пользователи принтера указанной через InputObject очереди печати.</maml:para>
@@ -1007,7 +1018,7 @@
 			<maml:copyright>
 				<maml:para>(c) 2013 Sergey S. Betke. All rights reserved.</maml:para>
 			</maml:copyright>
-			<dev:version>0.1.0</dev:version>
+			<dev:version>0.2.0</dev:version>
 		</details>
 		<maml:description>
 			<maml:para>New-ADPrintQueueGroup создаёт группы безопасности (Пользователи принтера, Операторы принтера) для указанного через InputObject объекта printQueue.</maml:para>
@@ -1169,7 +1180,7 @@
 			<maml:copyright>
 				<maml:para>(c) 2013 Sergey S. Betke. All rights reserved.</maml:para>
 			</maml:copyright>
-			<dev:version>0.1.0</dev:version>
+			<dev:version>0.2.0</dev:version>
 		</details>
 		<maml:description>
 			<maml:para>Удаляет группы безопасности и объект GPO для указанной через InputObject очереди печати.</maml:para>
@@ -1282,7 +1293,7 @@
 			<maml:copyright>
 				<maml:para>(c) 2013 Sergey S. Betke. All rights reserved.</maml:para>
 			</maml:copyright>
-			<dev:version>0.1.0</dev:version>
+			<dev:version>0.2.0</dev:version>
 		</details>
 		<maml:description>
 			<maml:para>Test-ADPrintQueue выполняет поиск для выявления множества объектов ADObject класса printQueue с указанными характеристиками, и возвращает `$true` если такие объекты есть, и `$false` в противном случае.</maml:para>
@@ -1450,7 +1461,7 @@
 			<maml:copyright>
 				<maml:para>(c) 2013 Sergey S. Betke. All rights reserved.</maml:para>
 			</maml:copyright>
-			<dev:version>0.1.0</dev:version>
+			<dev:version>0.2.0</dev:version>
 		</details>
 		<maml:description>
 			<maml:para>Возвращает `$true` или `$false`, указывая наличие либо отсутствие объекта групповой политики для указанной через InputObject очереди печати.</maml:para>
@@ -1575,7 +1586,7 @@
 			<maml:copyright>
 				<maml:para>(c) 2013 Sergey S. Betke. All rights reserved.</maml:para>
 			</maml:copyright>
-			<dev:version>0.1.0</dev:version>
+			<dev:version>0.2.0</dev:version>
 		</details>
 		<maml:description>
 			<maml:para>Проверяем наличие конфигурации модуля для указанного домена.</maml:para>
@@ -1639,7 +1650,7 @@
 			<maml:copyright>
 				<maml:para>(c) 2013 Sergey S. Betke. All rights reserved.</maml:para>
 			</maml:copyright>
-			<dev:version>0.1.0</dev:version>
+			<dev:version>0.2.0</dev:version>
 		</details>
 		<maml:description>
 			<maml:para>Создаёт (при отсутствии) группы безопасности и объект GPO для указанной через InputObject очереди печати.</maml:para>
