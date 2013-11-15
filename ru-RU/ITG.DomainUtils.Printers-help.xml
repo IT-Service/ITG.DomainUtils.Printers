@@ -259,7 +259,7 @@
 		</examples>
 		<maml:relatedLinks>
 			<maml:navigationLink>
-				<maml:uri>https://github.com/IT-Service/ITG.DomainUtils#Get-ADPrintQueue</maml:uri>
+				<maml:uri>https://github.com/IT-Service/ITG.DomainUtils.Printers#Get-ADPrintQueue</maml:uri>
 			</maml:navigationLink>
 			<maml:navigationLink>
 				<maml:linkText>Get-ADObject</maml:linkText>
@@ -378,7 +378,7 @@
 		</examples>
 		<maml:relatedLinks>
 			<maml:navigationLink>
-				<maml:uri>https://github.com/IT-Service/ITG.DomainUtils#Get-ADPrintQueueGPO</maml:uri>
+				<maml:uri>https://github.com/IT-Service/ITG.DomainUtils.Printers#Get-ADPrintQueueGPO</maml:uri>
 			</maml:navigationLink>
 			<maml:navigationLink>
 				<maml:linkText>Get-ADPrintQueueGPO</maml:linkText>
@@ -502,7 +502,7 @@
 		</examples>
 		<maml:relatedLinks>
 			<maml:navigationLink>
-				<maml:uri>https://github.com/IT-Service/ITG.DomainUtils#Get-ADPrintQueueGroup</maml:uri>
+				<maml:uri>https://github.com/IT-Service/ITG.DomainUtils.Printers#Get-ADPrintQueueGroup</maml:uri>
 			</maml:navigationLink>
 			<maml:navigationLink>
 				<maml:linkText>Get-ADObject</maml:linkText>
@@ -586,7 +586,7 @@
 		</examples>
 		<maml:relatedLinks>
 			<maml:navigationLink>
-				<maml:uri>https://github.com/IT-Service/ITG.DomainUtils#Get-DomainUtilsPrintersConfiguration</maml:uri>
+				<maml:uri>https://github.com/IT-Service/ITG.DomainUtils.Printers#Get-DomainUtilsPrintersConfiguration</maml:uri>
 			</maml:navigationLink>
 		</maml:relatedLinks>
 	</command>
@@ -693,7 +693,7 @@
 		</examples>
 		<maml:relatedLinks>
 			<maml:navigationLink>
-				<maml:uri>https://github.com/IT-Service/ITG.DomainUtils#Initialize-ADPrintQueuesEnvironment</maml:uri>
+				<maml:uri>https://github.com/IT-Service/ITG.DomainUtils.Printers#Initialize-ADPrintQueuesEnvironment</maml:uri>
 			</maml:navigationLink>
 			<maml:navigationLink>
 				<maml:linkText>Get-ADObject</maml:linkText>
@@ -811,7 +811,7 @@
 		</examples>
 		<maml:relatedLinks>
 			<maml:navigationLink>
-				<maml:uri>https://github.com/IT-Service/ITG.DomainUtils#Initialize-DomainUtilsPrintersConfiguration</maml:uri>
+				<maml:uri>https://github.com/IT-Service/ITG.DomainUtils.Printers#Initialize-DomainUtilsPrintersConfiguration</maml:uri>
 			</maml:navigationLink>
 		</maml:relatedLinks>
 	</command>
@@ -997,7 +997,7 @@
 		</examples>
 		<maml:relatedLinks>
 			<maml:navigationLink>
-				<maml:uri>https://github.com/IT-Service/ITG.DomainUtils#New-ADPrintQueueGPO</maml:uri>
+				<maml:uri>https://github.com/IT-Service/ITG.DomainUtils.Printers#New-ADPrintQueueGPO</maml:uri>
 			</maml:navigationLink>
 			<maml:navigationLink>
 				<maml:linkText>New-GPO</maml:linkText>
@@ -1156,7 +1156,7 @@
 		</examples>
 		<maml:relatedLinks>
 			<maml:navigationLink>
-				<maml:uri>https://github.com/IT-Service/ITG.DomainUtils#New-ADPrintQueueGroup</maml:uri>
+				<maml:uri>https://github.com/IT-Service/ITG.DomainUtils.Printers#New-ADPrintQueueGroup</maml:uri>
 			</maml:navigationLink>
 			<maml:navigationLink>
 				<maml:linkText>New-ADObject</maml:linkText>
@@ -1272,7 +1272,7 @@
 		</examples>
 		<maml:relatedLinks>
 			<maml:navigationLink>
-				<maml:uri>https://github.com/IT-Service/ITG.DomainUtils#Remove-ADPrintQueueEnvironment</maml:uri>
+				<maml:uri>https://github.com/IT-Service/ITG.DomainUtils.Printers#Remove-ADPrintQueueEnvironment</maml:uri>
 			</maml:navigationLink>
 			<maml:navigationLink>
 				<maml:linkText>Update-ADPrintQueueEnvironment</maml:linkText>
@@ -1443,7 +1443,7 @@
 		</examples>
 		<maml:relatedLinks>
 			<maml:navigationLink>
-				<maml:uri>https://github.com/IT-Service/ITG.DomainUtils#Test-ADPrintQueue</maml:uri>
+				<maml:uri>https://github.com/IT-Service/ITG.DomainUtils.Printers#Test-ADPrintQueue</maml:uri>
 			</maml:navigationLink>
 			<maml:navigationLink>
 				<maml:linkText>Get-ADPrintQueue</maml:linkText>
@@ -1562,7 +1562,7 @@
 		</examples>
 		<maml:relatedLinks>
 			<maml:navigationLink>
-				<maml:uri>https://github.com/IT-Service/ITG.DomainUtils#Test-ADPrintQueueGPO</maml:uri>
+				<maml:uri>https://github.com/IT-Service/ITG.DomainUtils.Printers#Test-ADPrintQueueGPO</maml:uri>
 			</maml:navigationLink>
 			<maml:navigationLink>
 				<maml:linkText>Test-ADPrintQueueGPO</maml:linkText>
@@ -1635,7 +1635,7 @@
 		</examples>
 		<maml:relatedLinks>
 			<maml:navigationLink>
-				<maml:uri>https://github.com/IT-Service/ITG.DomainUtils#Test-DomainUtilsPrintersConfiguration</maml:uri>
+				<maml:uri>https://github.com/IT-Service/ITG.DomainUtils.Printers#Test-DomainUtilsPrintersConfiguration</maml:uri>
 			</maml:navigationLink>
 		</maml:relatedLinks>
 	</command>
@@ -1776,7 +1776,7 @@
 		</examples>
 		<maml:relatedLinks>
 			<maml:navigationLink>
-				<maml:uri>https://github.com/IT-Service/ITG.DomainUtils#Update-ADPrintQueueEnvironment</maml:uri>
+				<maml:uri>https://github.com/IT-Service/ITG.DomainUtils.Printers#Update-ADPrintQueueEnvironment</maml:uri>
 			</maml:navigationLink>
 			<maml:navigationLink>
 				<maml:linkText>New-ADPrintQueueGPO</maml:linkText>

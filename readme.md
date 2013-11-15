@@ -284,7 +284,7 @@ ADObject принимаемый параметром `Identity`.
 
 ##### ССЫЛКИ ПО ТЕМЕ
 
-- [Интернет версия](https://github.com/IT-Service/ITG.DomainUtils#Get-ADPrintQueue)
+- [Интернет версия](https://github.com/IT-Service/ITG.DomainUtils.Printers#Get-ADPrintQueue)
 - [Get-ADObject][]
 
 #### Test-ADPrintQueue
@@ -395,7 +395,7 @@ ADObject принимаемый параметром `Identity`.
 
 ##### ССЫЛКИ ПО ТЕМЕ
 
-- [Интернет версия](https://github.com/IT-Service/ITG.DomainUtils#Test-ADPrintQueue)
+- [Интернет версия](https://github.com/IT-Service/ITG.DomainUtils.Printers#Test-ADPrintQueue)
 - [Get-ADPrintQueue][]
 
 #### Remove-ADPrintQueueEnvironment
@@ -469,7 +469,7 @@ ADObject класса printQueue, возвращаемый [Get-ADPrintQueue][].
 
 ##### ССЫЛКИ ПО ТЕМЕ
 
-- [Интернет версия](https://github.com/IT-Service/ITG.DomainUtils#Remove-ADPrintQueueEnvironment)
+- [Интернет версия](https://github.com/IT-Service/ITG.DomainUtils.Printers#Remove-ADPrintQueueEnvironment)
 - [Update-ADPrintQueueEnvironment][]
 - [Get-ADPrintQueue][]
 
@@ -568,7 +568,7 @@ ADObject класса printQueue, возвращаемый [Get-ADPrintQueue][].
 
 ##### ССЫЛКИ ПО ТЕМЕ
 
-- [Интернет версия](https://github.com/IT-Service/ITG.DomainUtils#Update-ADPrintQueueEnvironment)
+- [Интернет версия](https://github.com/IT-Service/ITG.DomainUtils.Printers#Update-ADPrintQueueEnvironment)
 - [New-ADPrintQueueGPO][]
 - [New-ADPrintQueueGroup][]
 - [Get-ADPrintQueue][]
@@ -649,7 +649,7 @@ ADObject класса printQueue, возвращаемый [Get-ADPrintQueue][].
 
 ##### ССЫЛКИ ПО ТЕМЕ
 
-- [Интернет версия](https://github.com/IT-Service/ITG.DomainUtils#Get-ADPrintQueueGPO)
+- [Интернет версия](https://github.com/IT-Service/ITG.DomainUtils.Printers#Get-ADPrintQueueGPO)
 - [Get-ADPrintQueueGPO][]
 - [Get-ADPrintQueue][]
 
@@ -766,7 +766,7 @@ ADObject класса printQueue, возвращаемый [Get-ADPrintQueue][].
 
 ##### ССЫЛКИ ПО ТЕМЕ
 
-- [Интернет версия](https://github.com/IT-Service/ITG.DomainUtils#New-ADPrintQueueGPO)
+- [Интернет версия](https://github.com/IT-Service/ITG.DomainUtils.Printers#New-ADPrintQueueGPO)
 - [New-GPO][]
 - [Get-ADPrintQueue][]
 
@@ -843,7 +843,7 @@ ADObject класса printQueue, возвращаемый [Get-ADPrintQueue][].
 
 ##### ССЫЛКИ ПО ТЕМЕ
 
-- [Интернет версия](https://github.com/IT-Service/ITG.DomainUtils#Test-ADPrintQueueGPO)
+- [Интернет версия](https://github.com/IT-Service/ITG.DomainUtils.Printers#Test-ADPrintQueueGPO)
 - [Test-ADPrintQueueGPO][]
 - [Get-ADPrintQueueGPO][]
 - [Get-ADPrintQueue][]
@@ -930,7 +930,7 @@ ADObject класса printQueue, возвращаемый [Get-ADPrintQueue][].
 
 ##### ССЫЛКИ ПО ТЕМЕ
 
-- [Интернет версия](https://github.com/IT-Service/ITG.DomainUtils#Get-ADPrintQueueGroup)
+- [Интернет версия](https://github.com/IT-Service/ITG.DomainUtils.Printers#Get-ADPrintQueueGroup)
 - [Get-ADObject][]
 - [Get-ADGroup][]
 - [Get-ADPrintQueue][]
@@ -1032,7 +1032,7 @@ ADObject класса printQueue, возвращаемый [Get-ADPrintQueue][].
 
 ##### ССЫЛКИ ПО ТЕМЕ
 
-- [Интернет версия](https://github.com/IT-Service/ITG.DomainUtils#New-ADPrintQueueGroup)
+- [Интернет версия](https://github.com/IT-Service/ITG.DomainUtils.Printers#New-ADPrintQueueGroup)
 - [New-ADObject][]
 - [New-ADGroup][]
 - [Get-ADPrintQueue][]
@@ -1100,7 +1100,7 @@ ADObject класса printQueue, возвращаемый [Get-ADPrintQueue][].
 
 ##### ССЫЛКИ ПО ТЕМЕ
 
-- [Интернет версия](https://github.com/IT-Service/ITG.DomainUtils#Initialize-ADPrintQueuesEnvironment)
+- [Интернет версия](https://github.com/IT-Service/ITG.DomainUtils.Printers#Initialize-ADPrintQueuesEnvironment)
 - [Get-ADObject][]
 
 #### Get-DomainUtilsPrintersConfiguration
@@ -1149,7 +1149,7 @@ ADObject класса printQueue, возвращаемый [Get-ADPrintQueue][].
 
 ##### ССЫЛКИ ПО ТЕМЕ
 
-- [Интернет версия](https://github.com/IT-Service/ITG.DomainUtils#Get-DomainUtilsPrintersConfiguration)
+- [Интернет версия](https://github.com/IT-Service/ITG.DomainUtils.Printers#Get-DomainUtilsPrintersConfiguration)
 
 #### Initialize-DomainUtilsPrintersConfiguration
 
@@ -1234,7 +1234,7 @@ ADObject класса printQueue, возвращаемый [Get-ADPrintQueue][].
 
 ##### ССЫЛКИ ПО ТЕМЕ
 
-- [Интернет версия](https://github.com/IT-Service/ITG.DomainUtils#Initialize-DomainUtilsPrintersConfiguration)
+- [Интернет версия](https://github.com/IT-Service/ITG.DomainUtils.Printers#Initialize-DomainUtilsPrintersConfiguration)
 
 #### Test-DomainUtilsPrintersConfiguration
 
@@ -1278,7 +1278,7 @@ ADObject класса printQueue, возвращаемый [Get-ADPrintQueue][].
 
 ##### ССЫЛКИ ПО ТЕМЕ
 
-- [Интернет версия](https://github.com/IT-Service/ITG.DomainUtils#Test-DomainUtilsPrintersConfiguration)
+- [Интернет версия](https://github.com/IT-Service/ITG.DomainUtils.Printers#Test-DomainUtilsPrintersConfiguration)
 
 
 [about_ActiveDirectory_Filter]: http://technet.microsoft.com/library/hh531527.aspx 
@@ -1286,27 +1286,27 @@ ADObject класса printQueue, возвращаемый [Get-ADPrintQueue][].
 [about_CommonParameters]: http://go.microsoft.com/fwlink/?LinkID=113216 "Describes the parameters that can be used with any cmdlet."
 [Get-ADGroup]: <http://go.microsoft.com/fwlink/?linkid=219302> "Gets one or more Active Directory groups."
 [Get-ADObject]: <http://go.microsoft.com/fwlink/?linkid=219298> "Gets one or more Active Directory objects."
-[Get-ADPrintQueue]: <itg.domainutils#get-adprintqueue> "Возвращает один или несколько объектов AD с классом printQueue."
-[Get-ADPrintQueueGPO]: <itg.domainutils#get-adprintqueuegpo> "Возвращает объект групповой политики, применяемой к пользователям указанного объекта printQueue."
-[Get-ADPrintQueueGroup]: <itg.domainutils#get-adprintqueuegroup> "Возвращает затребованные группы безопасности для указанного объекта printQueue."
-[Get-DomainUtilsPrintersConfiguration]: <itg.domainutils#get-domainutilsprintersconfiguration> "Получаем объект, содержащий конфигурацию модуля для указанного домена."
-[Initialize-ADPrintQueuesEnvironment]: <itg.domainutils#initialize-adprintqueuesenvironment> "Создаёт корневой контейнер для контейнеров объектов printQueue."
-[Initialize-DomainUtilsPrintersConfiguration]: <itg.domainutils#initialize-domainutilsprintersconfiguration> "Инициализация конфигурации модуля."
+[Get-ADPrintQueue]: <#get-adprintqueue> "Возвращает один или несколько объектов AD с классом printQueue."
+[Get-ADPrintQueueGPO]: <#get-adprintqueuegpo> "Возвращает объект групповой политики, применяемой к пользователям указанного объекта printQueue."
+[Get-ADPrintQueueGroup]: <#get-adprintqueuegroup> "Возвращает затребованные группы безопасности для указанного объекта printQueue."
+[Get-DomainUtilsPrintersConfiguration]: <#get-domainutilsprintersconfiguration> "Получаем объект, содержащий конфигурацию модуля для указанного домена."
+[Initialize-ADPrintQueuesEnvironment]: <#initialize-adprintqueuesenvironment> "Создаёт корневой контейнер для контейнеров объектов printQueue."
+[Initialize-DomainUtilsPrintersConfiguration]: <#initialize-domainutilsprintersconfiguration> "Инициализация конфигурации модуля."
 [Microsoft.ActiveDirectory.Management.ADGroup]: <http://msdn.microsoft.com/ru-ru/library/microsoft.activedirectory.management.adgroup.aspx> "ADGroup Class (Microsoft.ActiveDirectory.Management)"
 [Microsoft.ActiveDirectory.Management.ADObject]: <http://msdn.microsoft.com/ru-ru/library/microsoft.activedirectory.management.adobject.aspx> "ADObject Class (Microsoft.ActiveDirectory.Management)"
 [Microsoft.ActiveDirectory.Management.ADSearchScope]: <http://msdn.microsoft.com/ru-ru/library/microsoft.activedirectory.management.adsearchscope.aspx> "ADSearchScope Class (Microsoft.ActiveDirectory.Management)"
 [New-ADGroup]: <http://go.microsoft.com/fwlink/?linkid=219326> "Creates an Active Directory group."
 [New-ADObject]: <http://go.microsoft.com/fwlink/?linkid=219323> "Creates an Active Directory object."
-[New-ADPrintQueueGPO]: <itg.domainutils#new-adprintqueuegpo> "Создаёт групповую политику, применяемую к пользователям указанного объекта printQueue."
-[New-ADPrintQueueGroup]: <itg.domainutils#new-adprintqueuegroup> "Создаёт группы безопасности для указанного объекта printQueue."
+[New-ADPrintQueueGPO]: <#new-adprintqueuegpo> "Создаёт групповую политику, применяемую к пользователям указанного объекта printQueue."
+[New-ADPrintQueueGroup]: <#new-adprintqueuegroup> "Создаёт группы безопасности для указанного объекта printQueue."
 [New-GPO]: <http://go.microsoft.com/fwlink/?linkid=216711> "Creates a new GPO."
-[Remove-ADPrintQueueEnvironment]: <itg.domainutils#remove-adprintqueueenvironment> "Удаляет группы безопасности и объект GPO для указанной очереди печати."
+[Remove-ADPrintQueueEnvironment]: <#remove-adprintqueueenvironment> "Удаляет группы безопасности и объект GPO для указанной очереди печати."
 [System.Int32]: <http://msdn.microsoft.com/ru-ru/library/system.int32.aspx> "Int32 Class (System)"
 [System.String]: <http://msdn.microsoft.com/ru-ru/library/system.string.aspx> "String Class (System)"
-[Test-ADPrintQueue]: <itg.domainutils#test-adprintqueue> "Определяет существует ли объект AD с классом printQueue с указанными фильтрами."
-[Test-ADPrintQueueGPO]: <itg.domainutils#test-adprintqueuegpo> "Проверяет наличие объекта групповой политики, применяемой к пользователям указанного объекта printQueue."
-[Test-DomainUtilsPrintersConfiguration]: <itg.domainutils#test-domainutilsprintersconfiguration> "Проверяем наличие конфигурации модуля для указанного домена."
-[Update-ADPrintQueueEnvironment]: <itg.domainutils#update-adprintqueueenvironment> "Создаёт (при отсутствии) группы безопасности и объект GPO."
+[Test-ADPrintQueue]: <#test-adprintqueue> "Определяет существует ли объект AD с классом printQueue с указанными фильтрами."
+[Test-ADPrintQueueGPO]: <#test-adprintqueuegpo> "Проверяет наличие объекта групповой политики, применяемой к пользователям указанного объекта printQueue."
+[Test-DomainUtilsPrintersConfiguration]: <#test-domainutilsprintersconfiguration> "Проверяем наличие конфигурации модуля для указанного домена."
+[Update-ADPrintQueueEnvironment]: <#update-adprintqueueenvironment> "Создаёт (при отсутствии) группы безопасности и объект GPO."
 
 ---------------------------------------
 

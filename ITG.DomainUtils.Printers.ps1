@@ -23,7 +23,7 @@ Function Get-ADPrintQueue {
 	Microsoft.ActiveDirectory.Management.ADObject
 	Возвращает один или несколько объектов класса printQueue.
 .Link
-	https://github.com/IT-Service/ITG.DomainUtils#Get-ADPrintQueue
+	https://github.com/IT-Service/ITG.DomainUtils.Printers#Get-ADPrintQueue
 .Link
 	Get-ADObject
 .Example
@@ -32,7 +32,7 @@ Function Get-ADPrintQueue {
 #>
 	[CmdletBinding(
 		DefaultParametersetName = 'Filter'
-		, HelpUri = 'https://github.com/IT-Service/ITG.DomainUtils#Get-ADPrintQueue'
+		, HelpUri = 'https://github.com/IT-Service/ITG.DomainUtils.Printers#Get-ADPrintQueue'
 	)]
 
 	param (
@@ -228,7 +228,7 @@ Function Test-ADPrintQueue {
 	истина - объекты, соответствующие указанным ограничениям, существуют;
 	ложь - не существуют
 .Link
-	https://github.com/IT-Service/ITG.DomainUtils#Test-ADPrintQueue
+	https://github.com/IT-Service/ITG.DomainUtils.Printers#Test-ADPrintQueue
 .Link
 	Get-ADPrintQueue
 .Example
@@ -236,7 +236,7 @@ Function Test-ADPrintQueue {
 #>
 	[CmdletBinding(
 		DefaultParametersetName = 'Filter'
-		, HelpUri = 'https://github.com/IT-Service/ITG.DomainUtils#Test-ADPrintQueue'
+		, HelpUri = 'https://github.com/IT-Service/ITG.DomainUtils.Printers#Test-ADPrintQueue'
 	)]
 
 	param (
@@ -309,7 +309,7 @@ Function Initialize-ADPrintQueuesEnvironment {
 	Microsoft.ActiveDirectory.Management.ADObject
 	Возвращает корневой контейнер при ключе -PassThru.
 .Link
-	https://github.com/IT-Service/ITG.DomainUtils#Initialize-ADPrintQueuesEnvironment
+	https://github.com/IT-Service/ITG.DomainUtils.Printers#Initialize-ADPrintQueuesEnvironment
 .Link
 	Get-ADObject
 .Example
@@ -319,7 +319,7 @@ Function Initialize-ADPrintQueuesEnvironment {
 	[CmdletBinding(
 		SupportsShouldProcess = $true
 		, ConfirmImpact = 'Medium'
-		, HelpUri = 'https://github.com/IT-Service/ITG.DomainUtils#Initialize-ADPrintQueuesEnvironment'
+		, HelpUri = 'https://github.com/IT-Service/ITG.DomainUtils.Printers#Initialize-ADPrintQueuesEnvironment'
 	)]
 
 	param (
@@ -387,7 +387,7 @@ Function New-ADPrintQueueGroup {
 	Microsoft.ActiveDirectory.Management.ADGroup[]
 	Возвращает созданные группы безопасности при выполнении с ключом PassThru.
 .Link
-	https://github.com/IT-Service/ITG.DomainUtils#New-ADPrintQueueGroup
+	https://github.com/IT-Service/ITG.DomainUtils.Printers#New-ADPrintQueueGroup
 .Link
 	New-ADObject
 .Link
@@ -405,7 +405,7 @@ Function New-ADPrintQueueGroup {
 	[CmdletBinding(
 		SupportsShouldProcess = $true
 		, ConfirmImpact = 'Medium'
-		, HelpUri = 'https://github.com/IT-Service/ITG.DomainUtils#New-ADPrintQueueGroup'
+		, HelpUri = 'https://github.com/IT-Service/ITG.DomainUtils.Printers#New-ADPrintQueueGroup'
 	)]
 
 	param (
@@ -530,7 +530,7 @@ Function Get-ADPrintQueueGroup {
 	Microsoft.ActiveDirectory.Management.ADGroup[]
 	Возвращает затребованные группы безопасности.
 .Link
-	https://github.com/IT-Service/ITG.DomainUtils#Get-ADPrintQueueGroup
+	https://github.com/IT-Service/ITG.DomainUtils.Printers#Get-ADPrintQueueGroup
 .Link
 	Get-ADObject
 .Link
@@ -542,7 +542,7 @@ Function Get-ADPrintQueueGroup {
 	Возвращает группу безопасности Пользователи принтера для очереди печати 'prn001'.
 #>
 	[CmdletBinding(
-		HelpUri = 'https://github.com/IT-Service/ITG.DomainUtils#Get-ADPrintQueueGroup'
+		HelpUri = 'https://github.com/IT-Service/ITG.DomainUtils.Printers#Get-ADPrintQueueGroup'
 	)]
 
 	param (
@@ -636,7 +636,7 @@ Function New-ADPrintQueueGPO {
 	Microsoft.GroupPolicy.Gpo
 	Возвращает созданную групповую политику при выполнении с ключом PassThru.
 .Link
-	https://github.com/IT-Service/ITG.DomainUtils#New-ADPrintQueueGPO
+	https://github.com/IT-Service/ITG.DomainUtils.Printers#New-ADPrintQueueGPO
 .Link
 	New-GPO
 .Link
@@ -652,7 +652,7 @@ Function New-ADPrintQueueGPO {
 	[CmdletBinding(
 		SupportsShouldProcess = $true
 		, ConfirmImpact = 'Medium'
-		, HelpUri = 'https://github.com/IT-Service/ITG.DomainUtils#New-ADPrintQueueGPO'
+		, HelpUri = 'https://github.com/IT-Service/ITG.DomainUtils.Printers#New-ADPrintQueueGPO'
 	)]
 
 	param (
@@ -908,7 +908,7 @@ Function Get-ADPrintQueueGPO {
 	Возвращает объект групповой политики для указанной очереди печати
 	либо генерирует ошибку.
 .Link
-	https://github.com/IT-Service/ITG.DomainUtils#Get-ADPrintQueueGPO
+	https://github.com/IT-Service/ITG.DomainUtils.Printers#Get-ADPrintQueueGPO
 .Link
 	Get-ADPrintQueueGPO
 .Link
@@ -923,7 +923,7 @@ Function Get-ADPrintQueueGPO {
 #>
 	[CmdletBinding(
 		SupportsShouldProcess = $false
-		, HelpUri = 'https://github.com/IT-Service/ITG.DomainUtils#Get-ADPrintQueueGPO'
+		, HelpUri = 'https://github.com/IT-Service/ITG.DomainUtils.Printers#Get-ADPrintQueueGPO'
 	)]
 
 	param (
@@ -1004,7 +1004,7 @@ Function Test-ADPrintQueueGPO {
 	Bool
 	Подтверждает или опровергает факт наличия объекта групповой политики для указанной очереди печати.
 .Link
-	https://github.com/IT-Service/ITG.DomainUtils#Test-ADPrintQueueGPO
+	https://github.com/IT-Service/ITG.DomainUtils.Printers#Test-ADPrintQueueGPO
 .Link
 	Test-ADPrintQueueGPO
 .Link
@@ -1020,7 +1020,7 @@ Function Test-ADPrintQueueGPO {
 #>
 	[CmdletBinding(
 		SupportsShouldProcess = $false
-		, HelpUri = 'https://github.com/IT-Service/ITG.DomainUtils#Test-ADPrintQueueGPO'
+		, HelpUri = 'https://github.com/IT-Service/ITG.DomainUtils.Printers#Test-ADPrintQueueGPO'
 	)]
 
 	param (
@@ -1084,7 +1084,7 @@ Function Update-ADPrintQueueEnvironment {
 	Microsoft.ActiveDirectory.Management.ADObject
 	ADObject класса printQueue, возвращаемый Get-ADPrintQueue.
 .Link
-	https://github.com/IT-Service/ITG.DomainUtils#Update-ADPrintQueueEnvironment
+	https://github.com/IT-Service/ITG.DomainUtils.Printers#Update-ADPrintQueueEnvironment
 .Link
 	New-ADPrintQueueGPO
 .Link
@@ -1099,7 +1099,7 @@ Function Update-ADPrintQueueEnvironment {
 	[CmdletBinding(
 		SupportsShouldProcess = $true
 		, ConfirmImpact = 'Medium'
-		, HelpUri = 'https://github.com/IT-Service/ITG.DomainUtils#Update-ADPrintQueueEnvironment'
+		, HelpUri = 'https://github.com/IT-Service/ITG.DomainUtils.Printers#Update-ADPrintQueueEnvironment'
 	)]
 
 	param (
@@ -1242,7 +1242,7 @@ Function Remove-ADPrintQueueEnvironment {
 	Microsoft.ActiveDirectory.Management.ADObject
 	ADObject класса printQueue, возвращаемый Get-ADPrintQueue.
 .Link
-	https://github.com/IT-Service/ITG.DomainUtils#Remove-ADPrintQueueEnvironment
+	https://github.com/IT-Service/ITG.DomainUtils.Printers#Remove-ADPrintQueueEnvironment
 .Link
 	Update-ADPrintQueueEnvironment
 .Link
@@ -1255,7 +1255,7 @@ Function Remove-ADPrintQueueEnvironment {
 	[CmdletBinding(
 		SupportsShouldProcess = $true
 		, ConfirmImpact = 'High'
-		, HelpUri = 'https://github.com/IT-Service/ITG.DomainUtils#Remove-ADPrintQueueEnvironment'
+		, HelpUri = 'https://github.com/IT-Service/ITG.DomainUtils.Printers#Remove-ADPrintQueueEnvironment'
 	)]
 
 	param (

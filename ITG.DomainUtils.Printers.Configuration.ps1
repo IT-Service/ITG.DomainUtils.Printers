@@ -24,7 +24,7 @@ Function Initialize-DomainUtilsPrintersConfiguration {
 	однако этот шаг не приведёт к фактическому изменению типов контейнеров, их местоположения,
 	аттрибутов созданных групп. Поэтому пользоваться этой возможностью следует с особой осторожностью.
 .Link
-	https://github.com/IT-Service/ITG.DomainUtils#Initialize-DomainUtilsPrintersConfiguration
+	https://github.com/IT-Service/ITG.DomainUtils.Printers#Initialize-DomainUtilsPrintersConfiguration
 .Example
 	Initialize-DomainUtilsPrintersConfiguration
 	Инициализируем конфигурацию модуля для домена пользователя, от имени которого выполнен командлет.
@@ -32,7 +32,7 @@ Function Initialize-DomainUtilsPrintersConfiguration {
 	[CmdletBinding(
 		SupportsShouldProcess = $true
 		, ConfirmImpact = 'High'
-		, HelpUri = 'https://github.com/IT-Service/ITG.DomainUtils#Initialize-DomainUtilsPrintersConfiguration'
+		, HelpUri = 'https://github.com/IT-Service/ITG.DomainUtils.Printers#Initialize-DomainUtilsPrintersConfiguration'
 	)]
 
 	param (
@@ -178,13 +178,13 @@ Function Test-DomainUtilsPrintersConfiguration {
 .Description
 	Проверяем наличие конфигурации модуля для указанного домена. 
 .Link
-	https://github.com/IT-Service/ITG.DomainUtils#Test-DomainUtilsPrintersConfiguration
+	https://github.com/IT-Service/ITG.DomainUtils.Printers#Test-DomainUtilsPrintersConfiguration
 .Example
 	Test-DomainUtilsPrintersConfiguration -Domain 'csm.nov.ru'
 	Проверяем существование конфигурации для домена csm.nov.ru.
 #>
 	[CmdletBinding(
-		HelpUri = 'https://github.com/IT-Service/ITG.DomainUtils#Test-DomainUtilsPrintersConfiguration'
+		HelpUri = 'https://github.com/IT-Service/ITG.DomainUtils.Printers#Test-DomainUtilsPrintersConfiguration'
 	)]
 
 	param (
@@ -232,13 +232,13 @@ Function Get-DomainUtilsPrintersConfiguration {
 .Description
 	Получаем объект, содержащий конфигурацию модуля для указанного домена. 
 .Link
-	https://github.com/IT-Service/ITG.DomainUtils#Get-DomainUtilsPrintersConfiguration
+	https://github.com/IT-Service/ITG.DomainUtils.Printers#Get-DomainUtilsPrintersConfiguration
 .Example
 	( Get-DomainUtilsPrintersConfiguration -Domain 'csm.nov.ru' ).ContainerClass
 	Определяем класс контейнеров, используемых модулем для домена csm.nov.ru.
 #>
 	[CmdletBinding(
-		HelpUri = 'https://github.com/IT-Service/ITG.DomainUtils#Get-DomainUtilsPrintersConfiguration'
+		HelpUri = 'https://github.com/IT-Service/ITG.DomainUtils.Printers#Get-DomainUtilsPrintersConfiguration'
 	)]
 
 	param (
