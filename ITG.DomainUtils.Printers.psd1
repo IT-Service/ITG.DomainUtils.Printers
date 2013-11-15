@@ -14,7 +14,7 @@
 RootModule = 'ITG.DomainUtils.Printers.psm1'
 
 # Номер версии данного модуля.
-ModuleVersion = '0.1.0'
+ModuleVersion = '0.2.0'
 
 # Уникальный идентификатор данного модуля
 GUID = 'D8CF9F68-3B96-498A-BD04-33EA2B072BD0'
