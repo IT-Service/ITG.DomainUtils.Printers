@@ -113,6 +113,16 @@
 
 	Test-DomainUtilsPrintersConfiguration [[-Domain] <String>] [[-Server] <String>] <CommonParameters>
 
+### PrintQueue
+
+#### КРАТКОЕ ОПИСАНИЕ [Get-PrintQueue][]
+
+Возвращает одну или несколько локальных очередей печати.
+
+	Get-PrintQueue [-PrintQueueTypes <EnumeratedPrintQueueTypes[]>] [-Properties <PrintQueueIndexedProperty[]>] <CommonParameters>
+
+	Get-PrintQueue [-Name] <String> [-Properties <PrintQueueIndexedProperty[]>] <CommonParameters>
+
 ОПИСАНИЕ
 --------
 
@@ -1280,6 +1290,95 @@ ADObject класса printQueue, возвращаемый [Get-ADPrintQueue][].
 
 - [Интернет версия](https://github.com/IT-Service/ITG.DomainUtils.Printers#Test-DomainUtilsPrintersConfiguration)
 
+#### Get-PrintQueue
+
+[Get-PrintQueue][] возвращает объект PrintQueue или выполняет поиск для выявления множества
+объектов PrintQueue на локальном сервере печати.
+
+##### ПСЕВДОНИМЫ
+
+Get-Printer
+
+##### СИНТАКСИС
+
+	Get-PrintQueue [-PrintQueueTypes <EnumeratedPrintQueueTypes[]>] [-Properties <PrintQueueIndexedProperty[]>] <CommonParameters>
+
+	Get-PrintQueue [-Name] <String> [-Properties <PrintQueueIndexedProperty[]>] <CommonParameters>
+
+##### ВХОДНЫЕ ДАННЫЕ
+
+- System.Printing.PrintQueue
+Очередь печати.
+- [System.String][]
+Имя (Name) очереди печати.
+
+##### ВЫХОДНЫЕ ДАННЫЕ
+
+- System.Printing.PrintQueue
+Возвращает один или несколько объектов "принтеров" PrintQueue.
+
+##### ПАРАМЕТРЫ
+
+- `[String] Name`
+	идентификация объекта PrintQueue - имя "принтера"
+	* Тип: [System.String][]
+	* Псевдонимы: Identity
+	* Требуется? да
+	* Позиция? 2
+	* Принимать входные данные конвейера? true (ByValue, ByPropertyName)
+	* Принимать подстановочные знаки? нет
+
+- `[EnumeratedPrintQueueTypes[]] PrintQueueTypes`
+	типы запрашиваемых очередей печати
+	* Тип: System.Printing.EnumeratedPrintQueueTypes[]
+	* Псевдонимы: Types
+	* Требуется? нет
+	* Позиция? named
+	* Значение по умолчанию `@(
+	[System.Printing.EnumeratedPrintQueueTypes]::Local `
+	)`
+	* Принимать входные данные конвейера? false
+	* Принимать подстановочные знаки? нет
+
+- `[PrintQueueIndexedProperty[]] Properties`
+	Перечень свойств объекта printQueue, значения которых необходимо запросить
+	* Тип: System.Printing.PrintQueueIndexedProperty[]
+	* Требуется? нет
+	* Позиция? named
+	* Значение по умолчанию `@(
+	[System.Printing.PrintQueueIndexedProperty]::Name `
+	, [System.Printing.PrintQueueIndexedProperty]::Comment `
+	, [System.Printing.PrintQueueIndexedProperty]::Description `
+	, [System.Printing.PrintQueueIndexedProperty]::Location `
+	, [System.Printing.PrintQueueIndexedProperty]::HostingPrintServer `
+	, [System.Printing.PrintQueueIndexedProperty]::ShareName `
+	)`
+	* Принимать входные данные конвейера? false
+	* Принимать подстановочные знаки? нет
+
+- `<CommonParameters>`
+	Этот командлет поддерживает общие параметры: Verbose, Debug,
+	ErrorAction, ErrorVariable, WarningAction, WarningVariable,
+	OutBuffer и OutVariable. Для получения дополнительных сведений см. раздел
+	[about_CommonParameters][].
+
+
+##### ПРИМЕРЫ
+
+1. Возвращает все **локальные** очереди печати.
+
+		Get-PrintQueue -PrintQueueTypes Local
+
+##### ПРИМЕЧАНИЯ
+
+При указании параметра `-Name` (в том числе - и путём передачи по конвейеру) могут быть
+возвращены **только локальные** принтеры.
+
+##### ССЫЛКИ ПО ТЕМЕ
+
+- [Интернет версия](https://github.com/IT-Service/ITG.DomainUtils.Printers#Get-PrintQueue)
+- System.Printing.LocalPrintServer
+
 
 [about_ActiveDirectory_Filter]: http://technet.microsoft.com/library/hh531527.aspx 
 [about_ActiveDirectory_Identity]: http://technet.microsoft.com/library/hh531526.aspx 
@@ -1290,6 +1389,7 @@ ADObject класса printQueue, возвращаемый [Get-ADPrintQueue][].
 [Get-ADPrintQueueGPO]: <#get-adprintqueuegpo> "Возвращает объект групповой политики, применяемой к пользователям указанного объекта printQueue."
 [Get-ADPrintQueueGroup]: <#get-adprintqueuegroup> "Возвращает затребованные группы безопасности для указанного объекта printQueue."
 [Get-DomainUtilsPrintersConfiguration]: <#get-domainutilsprintersconfiguration> "Получаем объект, содержащий конфигурацию модуля для указанного домена."
+[Get-PrintQueue]: <#get-printqueue> "Возвращает одну или несколько локальных очередей печати."
 [Initialize-ADPrintQueuesEnvironment]: <#initialize-adprintqueuesenvironment> "Создаёт корневой контейнер для контейнеров объектов printQueue."
 [Initialize-DomainUtilsPrintersConfiguration]: <#initialize-domainutilsprintersconfiguration> "Инициализация конфигурации модуля."
 [Microsoft.ActiveDirectory.Management.ADGroup]: <http://msdn.microsoft.com/ru-ru/library/microsoft.activedirectory.management.adgroup.aspx> "ADGroup Class (Microsoft.ActiveDirectory.Management)"

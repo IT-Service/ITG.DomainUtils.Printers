@@ -113,11 +113,22 @@
 
 	Test-DomainUtilsPrintersConfiguration [[-Domain] <String>] [[-Server] <String>] <CommonParameters>
 
+### PrintQueue
+
+#### КРАТКОЕ ОПИСАНИЕ [Get-PrintQueue][]
+
+Возвращает одну или несколько локальных очередей печати.
+
+	Get-PrintQueue [-PrintQueueTypes <EnumeratedPrintQueueTypes[]>] [-Properties <PrintQueueIndexedProperty[]>] <CommonParameters>
+
+	Get-PrintQueue [-Name] <String> [-Properties <PrintQueueIndexedProperty[]>] <CommonParameters>
+
 
 [Get-ADPrintQueue]: <#get-adprintqueue> "Возвращает один или несколько объектов AD с классом printQueue."
 [Get-ADPrintQueueGPO]: <#get-adprintqueuegpo> "Возвращает объект групповой политики, применяемой к пользователям указанного объекта printQueue."
 [Get-ADPrintQueueGroup]: <#get-adprintqueuegroup> "Возвращает затребованные группы безопасности для указанного объекта printQueue."
 [Get-DomainUtilsPrintersConfiguration]: <#get-domainutilsprintersconfiguration> "Получаем объект, содержащий конфигурацию модуля для указанного домена."
+[Get-PrintQueue]: <#get-printqueue> "Возвращает одну или несколько локальных очередей печати."
 [Initialize-ADPrintQueuesEnvironment]: <#initialize-adprintqueuesenvironment> "Создаёт корневой контейнер для контейнеров объектов printQueue."
 [Initialize-DomainUtilsPrintersConfiguration]: <#initialize-domainutilsprintersconfiguration> "Инициализация конфигурации модуля."
 [New-ADPrintQueueGPO]: <#new-adprintqueuegpo> "Создаёт групповую политику, применяемую к пользователям указанного объекта printQueue."

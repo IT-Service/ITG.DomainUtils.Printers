@@ -68,6 +68,7 @@ $loc = Import-LocalizedData;
 
 . (	Join-Path -Path $CurrentDir -ChildPath 'ITG.DomainUtils.Printers.Configuration.ps1' );
 . (	Join-Path -Path $CurrentDir -ChildPath 'ITG.DomainUtils.Printers.ps1' );
+. (	Join-Path -Path $CurrentDir -ChildPath 'ITG.DomainUtils.LocalPrinters.ps1' );
 
 Export-ModuleMember `
 	-Function `
@@ -84,6 +85,7 @@ Export-ModuleMember `
 		, Test-ADPrintQueueGPO `
 		, Update-ADPrintQueueEnvironment `
 		, Remove-ADPrintQueueEnvironment `
+		, Get-PrintQueue `
 	-Alias `
 		Get-ADPrinter `
 		, Test-ADPrinter `
@@ -94,4 +96,5 @@ Export-ModuleMember `
 		, Test-ADPrinterGPO `
 		, Update-ADPrinterEnvironment `
 		, Remove-ADPrinterEnvironment `
+		, Get-Printer `
 ;

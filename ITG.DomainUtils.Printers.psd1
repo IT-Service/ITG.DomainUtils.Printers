@@ -50,10 +50,10 @@ PowerShellHostName = ''
 PowerShellHostVersion = ''
 
 # Минимальный номер версии компонента .NET Framework, необходимой для данного модуля
-DotNetFrameworkVersion = '2.0'
+DotNetFrameworkVersion = '4.0'
 
 # Минимальный номер версии среды CLR (общеязыковой среды выполнения), необходимой для работы данного модуля
-CLRVersion = '2.0'
+CLRVersion = '4.0'
 
 # Архитектура процессора (нет, X86, AMD64, IA64), необходимая для работы модуля
 ProcessorArchitecture = ''
