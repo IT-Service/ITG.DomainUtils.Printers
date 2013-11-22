@@ -48,7 +48,6 @@ Function Get-PrintQueue {
 		# типы запрашиваемых очередей печати
 		[Parameter(
 			Mandatory = $false
-			, ParameterSetName = 'Filter'
 		)]
 		[Alias( 'Types' )]
 		[System.Printing.EnumeratedPrintQueueTypes[]]
@@ -84,7 +83,10 @@ Function Get-PrintQueue {
 		try {
 			switch ( $PsCmdlet.ParameterSetName ) {
 				'Identity' {
-					return $PrintServer.GetPrintQueue( $Name, $Properties );
+					return `
+						$PrintServer.GetPrintQueues( $Properties, $PrintQueueTypes ) `
+						| ? { $_.Name -eq $Name } `
+					;
 				}
 				'Filter' {
 					return $PrintServer.GetPrintQueues( $Properties, $PrintQueueTypes );
