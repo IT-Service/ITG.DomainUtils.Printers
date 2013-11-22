@@ -223,53 +223,16 @@ Function New-PrintQueueGroup {
 			$Config = Get-DomainUtilsPrintersConfiguration;
 			foreach ( $SingleGroupType in $GroupType ) {
 				try {
-<#
- $Computer = [ADSI]"WinNT://$Env:COMPUTERNAME,Computer"
-
-
-$objOu = [ADSI]"WinNT://$computer"
-
-$objUser = $objOU.Create("Group", $group)
-
-$objUser.SetInfo()
-
-$objUser.description = "Test Group"
-
-$objUser.SetInfo()
-
-
-					New-ADGroup `
-						-Path ( $Config.PrintQueuesContainer ) `
-						-Name ( [String]::Format( $Config."printQueue$( $SingleGroupType )Group", $InputObject.PrinterName ) ) `
-						-SamAccountName ( [String]::Format(
-							$Config."printQueue$( $SingleGroupType )GroupAccountName"
-							, $InputObject.PrinterName
-							, $InputObject.ServerName
-							, $InputObject.Name
-						) ) `
-						-GroupCategory Security `
-						-GroupScope DomainLocal `
+					New-LocalGroup `
+						-Name ( [String]::Format( $Config."printQueue$( $SingleGroupType )Group", $InputObject.Name ) ) `
 						-Description ( [String]::Format(
 							$loc."printQueue$( $SingleGroupType )GroupDescription"
-							, $InputObject.PrinterName
-							, $InputObject.ServerName
 							, $InputObject.Name
-							, $InputObject.PrintShareName
+							, $InputObject.ShareName
 						) ) `
-						-OtherAttributes @{
-							info = ( [String]::Format(
-								$loc."printQueue$( $SingleGroupType )GroupInfo"
-								, $InputObject.PrinterName
-								, $InputObject.ServerName
-								, $InputObject.Name
-								, $InputObject.PrintShareName
-							) );
-						} `
-						@Params `
 						-Verbose:$VerbosePreference `
 						-PassThru:$PassThru `
 					;
-#>
 				} catch {
 					Write-Error `
 						-ErrorRecord $_ `
