@@ -171,7 +171,7 @@ Function New-PrintQueueGroup {
 	System.Printing.PrintQueue
 	ADObject класса printQueue, возвращаемый Get-PrintQueue.
 .Outputs
-	Microsoft.ActiveDirectory.Management.ADGroup[]
+	System.DirectoryServices.DirectoryEntry[]
 	Возвращает созданные группы безопасности при выполнении с ключом PassThru.
 .Link
 	https://github.com/IT-Service/ITG.DomainUtils.Printers#New-PrintQueueGroup
@@ -230,6 +230,7 @@ Function New-PrintQueueGroup {
 							, $InputObject.Name
 							, $InputObject.ShareName
 						) ) `
+						@Params `
 						-Verbose:$VerbosePreference `
 						-PassThru:$PassThru `
 					;
@@ -248,3 +249,77 @@ Function New-PrintQueueGroup {
 }
 
 New-Alias -Name New-PrinterGroup -Value New-PrintQueueGroup -Force;
+
+Function Get-PrintQueueGroup {
+<#
+.Synopsis
+	Возвращает затребованные группы безопасности для указанной локальной очереди печати. 
+.Description
+	Get-PrintQueueGroup возвращает группы безопасности
+	(Пользователи принтера, Операторы принтера) для указанного
+	(по конвейеру) объекта локальной очереди печати.
+.Inputs
+	System.Printing.PrintQueue
+	Объект очереди печати, возвращаемый Get-PrintQueue.
+.Outputs
+	System.DirectoryServices.DirectoryEntry[]
+	Возвращает затребованные группы безопасности.
+.Link
+	https://github.com/IT-Service/ITG.DomainUtils.Printers#Get-PrintQueueGroup
+.Link
+	Get-PrintQueue
+.Example
+	Get-PrintQueue -Name 'P00001' | Get-PrintQueueGroup -GroupType Users
+	Возвращает группу безопасности Пользователи принтера для очереди печати 'P00001'.
+#>
+	[CmdletBinding(
+		HelpUri = 'https://github.com/IT-Service/ITG.DomainUtils.Printers#Get-PrintQueueGroup'
+	)]
+
+	param (
+		# Объект очереди печати
+		[Parameter(
+			Mandatory = $true
+			, Position = 0
+			, ValueFromPipeline = $true
+		)]
+		[System.Printing.PrintQueue]
+		[Alias( 'PrintQueue' )]
+		[Alias( 'Printer' )]
+		$InputObject
+	,
+		# тип группы: Users (группа пользователей), Administrators (группа администраторов).
+		# Группа пользователей получит право применения групповой политики для этой очереди печати, и право печати.
+		# Группа администраторов не получит право применения GPO, но получит право печати и право управления всеми документами
+		# в указанной очереди печати.
+		[Parameter(
+			Mandatory = $false
+		)]
+		[String[]]
+		[ValidateSet( 'Users', 'Administrators' )]
+		$GroupType = 'Users'
+	)
+
+	process {
+		try {
+			$Config = Get-DomainUtilsPrintersConfiguration;
+			foreach ( $SingleGroupType in $GroupType ) {
+				try {
+					Get-LocalGroup `
+						-Name ( [String]::Format( $Config."printQueue$( $SingleGroupType )Group", $InputObject.Name ) ) `
+					;
+				} catch {
+					Write-Error `
+						-ErrorRecord $_ `
+					;
+				};
+			};
+		} catch {
+			Write-Error `
+				-ErrorRecord $_ `
+			;
+		};
+	}
+}
+
+New-Alias -Name Get-PrinterGroup -Value Get-PrintQueueGroup -Force;
