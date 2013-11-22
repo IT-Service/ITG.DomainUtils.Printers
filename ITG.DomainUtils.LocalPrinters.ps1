@@ -156,3 +156,132 @@ Function Test-PrintQueue {
 
 New-Alias -Name Test-Printer -Value Test-PrintQueue -Force;
 
+Function New-PrintQueueGroup {
+<#
+.Synopsis
+	Создаёт локальные группы безопасности для указанного объекта printQueue. 
+.Description
+	New-PrintQueueGroup создаёт группы безопасности
+	(Пользователи принтера, Операторы принтера) для указанного
+	через InputObject объекта printQueue на локальном сервере печати.
+.Notes
+	Командлет разработан исключительно для работы с локальными очередями печати.
+    Следует избегать использовать его для подключенных сетевых принтеров.
+.Inputs
+	System.Printing.PrintQueue
+	ADObject класса printQueue, возвращаемый Get-PrintQueue.
+.Outputs
+	Microsoft.ActiveDirectory.Management.ADGroup[]
+	Возвращает созданные группы безопасности при выполнении с ключом PassThru.
+.Link
+	https://github.com/IT-Service/ITG.DomainUtils.Printers#New-PrintQueueGroup
+.Link
+	Get-PrintQueue
+.Example
+	Get-PrintQueue 'P00001' | New-PrintQueueGroup
+	Создаёт группы безопасности для очереди печати 'p00001' на локальном сервере печати.
+.Example
+	Get-PrintQueue | New-PrintQueueGroup -GroupType Users
+	Создаёт локальные группы безопасности "Пользователи принтера" для всех обнаруженных
+	локальных принтеров.
+#>
+	[CmdletBinding(
+		SupportsShouldProcess = $true
+		, ConfirmImpact = 'Medium'
+		, HelpUri = 'https://github.com/IT-Service/ITG.DomainUtils.Printers#New-PrintQueueGroup'
+	)]
+
+	param (
+		# Объект очереди печати
+		[Parameter(
+			Mandatory = $true
+			, Position = 0
+			, ValueFromPipeline = $true
+		)]
+		[System.Printing.PrintQueue]
+        [Alias( 'PrintQueue' )]
+        [Alias( 'Printer' )]
+		$InputObject
+	,
+		# тип группы: Users (группа пользователей), Administrators (группа администраторов).
+		# Группа пользователей получит только права печати и управления собственными документами.
+		# Группа администраторов получит и право печати, и права на управление всеми документами в очереди.
+		[Parameter(
+			Mandatory = $false
+		)]
+		[String[]]
+		[ValidateSet( 'Users', 'Administrators' )]
+		$GroupType = ( 'Users', 'Administrators' )
+	,
+		# Передавать ли созданные группы далее по конвейеру
+		[Switch]
+		$PassThru
+	)
+
+	process {
+		try {
+			$Config = Get-DomainUtilsPrintersConfiguration;
+			foreach ( $SingleGroupType in $GroupType ) {
+				try {
+<#
+ $Computer = [ADSI]"WinNT://$Env:COMPUTERNAME,Computer"
+
+
+$objOu = [ADSI]"WinNT://$computer"
+
+$objUser = $objOU.Create("Group", $group)
+
+$objUser.SetInfo()
+
+$objUser.description = "Test Group"
+
+$objUser.SetInfo()
+
+
+					New-ADGroup `
+						-Path ( $Config.PrintQueuesContainer ) `
+						-Name ( [String]::Format( $Config."printQueue$( $SingleGroupType )Group", $InputObject.PrinterName ) ) `
+						-SamAccountName ( [String]::Format(
+							$Config."printQueue$( $SingleGroupType )GroupAccountName"
+							, $InputObject.PrinterName
+							, $InputObject.ServerName
+							, $InputObject.Name
+						) ) `
+						-GroupCategory Security `
+						-GroupScope DomainLocal `
+						-Description ( [String]::Format(
+							$loc."printQueue$( $SingleGroupType )GroupDescription"
+							, $InputObject.PrinterName
+							, $InputObject.ServerName
+							, $InputObject.Name
+							, $InputObject.PrintShareName
+						) ) `
+						-OtherAttributes @{
+							info = ( [String]::Format(
+								$loc."printQueue$( $SingleGroupType )GroupInfo"
+								, $InputObject.PrinterName
+								, $InputObject.ServerName
+								, $InputObject.Name
+								, $InputObject.PrintShareName
+							) );
+						} `
+						@Params `
+						-Verbose:$VerbosePreference `
+						-PassThru:$PassThru `
+					;
+#>
+				} catch {
+					Write-Error `
+						-ErrorRecord $_ `
+					;
+				};
+			};
+		} catch {
+			Write-Error `
+				-ErrorRecord $_ `
+			;
+		};
+	}
+}
+
+New-Alias -Name New-PrinterGroup -Value New-PrintQueueGroup -Force;
