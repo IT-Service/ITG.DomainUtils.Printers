@@ -71,6 +71,7 @@ $loc = Import-LocalizedData;
 Export-ModuleMember -Function New-LocalGroup;
 Export-ModuleMember -Function Get-LocalGroup;
 Export-ModuleMember -Function Test-LocalGroup;
+Export-ModuleMember -Function Remove-LocalGroup;
 
 . (	Join-Path -Path $CurrentDir -ChildPath 'ITG.DomainUtils.Printers.Configuration.ps1' );
 . (	Join-Path -Path $CurrentDir -ChildPath 'ITG.DomainUtils.Printers.ps1' );

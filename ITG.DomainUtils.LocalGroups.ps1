@@ -87,7 +87,7 @@ Function Get-LocalGroup {
 	Возвращает все локальные группы безопасности.
 .Example
 	Get-LocalGroup -Name 'Пользователи';
-	Возвращает все локальные группы безопасности.
+	Возвращает группу безопасности Пользователи.
 #>
 	[CmdletBinding(
 		DefaultParametersetName = 'Filter'
@@ -122,14 +122,14 @@ Function Get-LocalGroup {
 			switch ( $PsCmdlet.ParameterSetName ) {
 				'Identity' {
 					$Group = [System.DirectoryServices.DirectoryEntry] $Group = [ADSI]"WinNT://$Env:COMPUTERNAME/$Name,Group";
-                    if ( $Group.Path ) {
-                        return $Group;
-                    } else {
-			            Write-Error `
-				            -Message ( [String]::Format( $loc.LocalGroupNotFound, $Name ) ) `
-				            -Category ObjectNotFound `
-			            ;
-                    };
+					if ( $Group.Path ) {
+						return $Group;
+					} else {
+						Write-Error `
+							-Message ( [String]::Format( $loc.LocalGroupNotFound, $Name ) ) `
+							-Category ObjectNotFound `
+						;
+					};
 				}
 				'Filter' {
 					$Computer.Children `
@@ -174,6 +174,63 @@ Function Test-LocalGroup {
 	process {
 		try {
 			return [Bool] ( Get-LocalGroup -Name $Name -ErrorAction SilentlyContinue );
+		} catch {
+			Write-Error `
+				-ErrorRecord $_ `
+			;
+		};
+	}
+}
+
+Function Remove-LocalGroup {
+<#
+.Synopsis
+	Удаляет локальную группу безопасности. 
+.Description
+	Remove-LocalGroup удаляет локальную группу (или группы) безопасности, переданные по конвейеру.
+.Inputs
+	System.DirectoryServices.DirectoryEntry
+	Группа безопасности.
+.Link
+	https://github.com/IT-Service/ITG.DomainUtils.Printers#Remove-LocalGroup
+.Example
+	Get-LocalGroup -Name 'Пользователи' | Remove-LocalGroup;
+	Удаляет группу безопасности 'Пользователи'.
+#>
+	[CmdletBinding(
+		SupportsShouldProcess = $true
+		, ConfirmImpact = 'High'
+		, HelpUri = 'https://github.com/IT-Service/ITG.DomainUtils.Printers#Remove-LocalGroup'
+	)]
+
+	param (
+		# Группа безопасности к удалению
+		# Идентификатор группы безопасности
+		[Parameter(
+			Mandatory = $true
+			, Position = 1
+			, ValueFromPipelineByPropertyName = $true
+			, ParameterSetName = 'Identity'
+		)]
+		[String]
+		[Alias( 'Identity' )]
+		$Name
+	)
+
+	begin {
+		try {
+			[System.DirectoryServices.DirectoryEntry] $Computer = [ADSI]"WinNT://$Env:COMPUTERNAME,Computer";
+		} catch {
+			Write-Error `
+				-ErrorRecord $_ `
+			;
+		};
+	}
+	process {
+		try {
+			if ( $PSCmdlet.ShouldProcess( "$Name" ) ) {
+				$Computer.Delete( 'Group', $Name );
+			};
 		} catch {
 			Write-Error `
 				-ErrorRecord $_ `
