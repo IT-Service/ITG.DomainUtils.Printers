@@ -86,6 +86,7 @@ Export-ModuleMember `
 		, Update-ADPrintQueueEnvironment `
 		, Remove-ADPrintQueueEnvironment `
 		, Get-PrintQueue `
+		, Test-PrintQueue `
 	-Alias `
 		Get-ADPrinter `
 		, Test-ADPrinter `
@@ -97,4 +98,5 @@ Export-ModuleMember `
 		, Update-ADPrinterEnvironment `
 		, Remove-ADPrinterEnvironment `
 		, Get-Printer `
+		, Test-Printer `
 ;

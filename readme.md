@@ -121,7 +121,13 @@
 
 	Get-PrintQueue [-PrintQueueTypes <EnumeratedPrintQueueTypes[]>] [-Properties <PrintQueueIndexedProperty[]>] <CommonParameters>
 
-	Get-PrintQueue [-Name] <String> [-Properties <PrintQueueIndexedProperty[]>] <CommonParameters>
+	Get-PrintQueue [-Name] <String> [-PrintQueueTypes <EnumeratedPrintQueueTypes[]>] [-Properties <PrintQueueIndexedProperty[]>] <CommonParameters>
+
+#### КРАТКОЕ ОПИСАНИЕ [Test-PrintQueue][]
+
+Проверяет наличие одной или нескольких локальных очередей печати.
+
+	Test-PrintQueue [-Name] <String> <CommonParameters>
 
 ОПИСАНИЕ
 --------
@@ -1303,7 +1309,7 @@ Get-Printer
 
 	Get-PrintQueue [-PrintQueueTypes <EnumeratedPrintQueueTypes[]>] [-Properties <PrintQueueIndexedProperty[]>] <CommonParameters>
 
-	Get-PrintQueue [-Name] <String> [-Properties <PrintQueueIndexedProperty[]>] <CommonParameters>
+	Get-PrintQueue [-Name] <String> [-PrintQueueTypes <EnumeratedPrintQueueTypes[]>] [-Properties <PrintQueueIndexedProperty[]>] <CommonParameters>
 
 ##### ВХОДНЫЕ ДАННЫЕ
 
@@ -1369,14 +1375,63 @@ Get-Printer
 
 		Get-PrintQueue -PrintQueueTypes Local
 
-##### ПРИМЕЧАНИЯ
-
-При указании параметра `-Name` (в том числе - и путём передачи по конвейеру) могут быть
-возвращены **только локальные** принтеры.
-
 ##### ССЫЛКИ ПО ТЕМЕ
 
 - [Интернет версия](https://github.com/IT-Service/ITG.DomainUtils.Printers#Get-PrintQueue)
+- System.Printing.LocalPrintServer
+
+#### Test-PrintQueue
+
+[Get-PrintQueue][] возвращает объект PrintQueue или выполняет поиск для выявления множества
+объектов PrintQueue на локальном сервере печати.
+
+##### ПСЕВДОНИМЫ
+
+Test-Printer
+
+##### СИНТАКСИС
+
+	Test-PrintQueue [-Name] <String> <CommonParameters>
+
+##### ВХОДНЫЕ ДАННЫЕ
+
+- System.Printing.PrintQueue
+Очередь печати.
+- [System.String][]
+Имя (Name) очереди печати.
+
+##### ВЫХОДНЫЕ ДАННЫЕ
+
+- System.Bool
+Подтверждает наличие либо отсутствие указанной очереди печати на локальном сервере печати.
+
+##### ПАРАМЕТРЫ
+
+- `[String] Name`
+	идентификация объекта PrintQueue - имя "принтера"
+	* Тип: [System.String][]
+	* Псевдонимы: Identity
+	* Требуется? да
+	* Позиция? 2
+	* Принимать входные данные конвейера? true (ByValue, ByPropertyName)
+	* Принимать подстановочные знаки? нет
+
+- `<CommonParameters>`
+	Этот командлет поддерживает общие параметры: Verbose, Debug,
+	ErrorAction, ErrorVariable, WarningAction, WarningVariable,
+	OutBuffer и OutVariable. Для получения дополнительных сведений см. раздел
+	[about_CommonParameters][].
+
+
+##### ПРИМЕРЫ
+
+1. Проверяет наличие на локальном сервере печати очереди печати с именем P00001.
+
+		Test-PrintQueue -Name 'P00001'
+
+##### ССЫЛКИ ПО ТЕМЕ
+
+- [Интернет версия](https://github.com/IT-Service/ITG.DomainUtils.Printers#Test-PrintQueue)
 - System.Printing.LocalPrintServer
 
 
@@ -1406,6 +1461,7 @@ Get-Printer
 [Test-ADPrintQueue]: <#test-adprintqueue> "Определяет существует ли объект AD с классом printQueue с указанными фильтрами."
 [Test-ADPrintQueueGPO]: <#test-adprintqueuegpo> "Проверяет наличие объекта групповой политики, применяемой к пользователям указанного объекта printQueue."
 [Test-DomainUtilsPrintersConfiguration]: <#test-domainutilsprintersconfiguration> "Проверяем наличие конфигурации модуля для указанного домена."
+[Test-PrintQueue]: <#test-printqueue> "Проверяет наличие одной или нескольких локальных очередей печати."
 [Update-ADPrintQueueEnvironment]: <#update-adprintqueueenvironment> "Создаёт (при отсутствии) группы безопасности и объект GPO."
 
 ---------------------------------------
