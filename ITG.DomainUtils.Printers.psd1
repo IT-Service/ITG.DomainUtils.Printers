@@ -65,7 +65,9 @@ RequiredModules = @(
 )
 
 # Сборки, которые должны быть загружены перед импортированием данного модуля
-RequiredAssemblies = @()
+RequiredAssemblies = @(
+	'System.Printing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35' `
+)
 
 # Файлы скрипта (.ps1), которые запускаются в среде вызывающей стороны перед импортированием данного модуля
 ScriptsToProcess = @()
