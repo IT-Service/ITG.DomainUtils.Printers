@@ -166,7 +166,7 @@ Function New-PrintQueueGroup {
 	через InputObject объекта printQueue на локальном сервере печати.
 .Notes
 	Командлет разработан исключительно для работы с локальными очередями печати.
-    Следует избегать использовать его для подключенных сетевых принтеров.
+	Следует избегать использовать его для подключенных сетевых принтеров.
 .Inputs
 	System.Printing.PrintQueue
 	ADObject класса printQueue, возвращаемый Get-PrintQueue.
@@ -199,8 +199,8 @@ Function New-PrintQueueGroup {
 			, ValueFromPipeline = $true
 		)]
 		[System.Printing.PrintQueue]
-        [Alias( 'PrintQueue' )]
-        [Alias( 'Printer' )]
+		[Alias( 'PrintQueue' )]
+		[Alias( 'Printer' )]
 		$InputObject
 	,
 		# тип группы: Users (группа пользователей), Administrators (группа администраторов).
