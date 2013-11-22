@@ -70,33 +70,21 @@ $loc = Import-LocalizedData;
 . (	Join-Path -Path $CurrentDir -ChildPath 'ITG.DomainUtils.Printers.ps1' );
 . (	Join-Path -Path $CurrentDir -ChildPath 'ITG.DomainUtils.LocalPrinters.ps1' );
 
-Export-ModuleMember `
-	-Function `
-		Initialize-DomainUtilsPrintersConfiguration `
-		, Test-DomainUtilsPrintersConfiguration `
-		, Get-DomainUtilsPrintersConfiguration `
-		, Get-ADPrintQueue `
-		, Test-ADPrintQueue `
-		, Initialize-ADPrintQueuesEnvironment `
-		, New-ADPrintQueueGroup `
-		, Get-ADPrintQueueGroup `
-		, New-ADPrintQueueGPO `
-		, Get-ADPrintQueueGPO `
-		, Test-ADPrintQueueGPO `
-		, Update-ADPrintQueueEnvironment `
-		, Remove-ADPrintQueueEnvironment `
-		, Get-PrintQueue `
-		, Test-PrintQueue `
-	-Alias `
-		Get-ADPrinter `
-		, Test-ADPrinter `
-		, New-ADPrinterGroup `
-		, Get-ADPrinterGroup `
-		, New-ADPrinterGPO `
-		, Get-ADPrinterGPO `
-		, Test-ADPrinterGPO `
-		, Update-ADPrinterEnvironment `
-		, Remove-ADPrinterEnvironment `
-		, Get-Printer `
-		, Test-Printer `
-;
+Export-ModuleMember -Function Initialize-DomainUtilsPrintersConfiguration;
+Export-ModuleMember -Function Test-DomainUtilsPrintersConfiguration;
+Export-ModuleMember -Function Get-DomainUtilsPrintersConfiguration;
+
+Export-ModuleMember -Function Get-ADPrintQueue -Alias Get-ADPrinter;
+Export-ModuleMember -Function Test-ADPrintQueue -Alias Test-ADPrinter;
+
+Export-ModuleMember -Function Initialize-ADPrintQueuesEnvironment;
+Export-ModuleMember -Function New-ADPrintQueueGroup -Alias New-ADPrinterGroup;
+Export-ModuleMember -Function Get-ADPrintQueueGroup -Alias Get-ADPrinterGroup;
+Export-ModuleMember -Function New-ADPrintQueueGPO -Alias New-ADPrinterGPO;
+Export-ModuleMember -Function Get-ADPrintQueueGPO -Alias Get-ADPrinterGPO;
+Export-ModuleMember -Function Test-ADPrintQueueGPO -Alias Test-ADPrinterGPO;
+Export-ModuleMember -Function Update-ADPrintQueueEnvironment -Alias Update-ADPrinterEnvironment;
+Export-ModuleMember -Function Remove-ADPrintQueueEnvironment -Alias Remove-ADPrinterEnvironment;
+
+Export-ModuleMember -Function Get-PrintQueue -Alias Get-Printer;
+Export-ModuleMember -Function Test-PrintQueue -Alias Test-Printer;
