@@ -286,7 +286,7 @@ Function Get-LocalGroupMember {
 
 	process {
 		try {
-			$Members = (
+			$Members = @(
 				$Identity.PSBase.Invoke( 'Members' ) `
 				| % { 
 					$Member = [ADSI]( $_.GetType().InvokeMember( 'ADsPath', 'GetProperty', $null, $_, $null ) );
@@ -306,7 +306,12 @@ Function Get-LocalGroupMember {
 				} `
 			);
 			if ( -not $Recursive ) {
-				return $Members;
+				return (
+					$Members `
+					| Sort-Object `
+						-Property 'Path' `
+						-Unique `
+				);
 			} else {
 				$Members `
 				| % {
@@ -398,5 +403,73 @@ Function Test-LocalGroupMember {
 		| % {
 			$Members -contains $_;
 		};
+	}
+}
+
+Function Add-LocalGroupMember {
+<#
+.Synopsis
+	Добавляет учётные записи и/или группы в указанную локальную группу безопасности. 
+.Description
+	Добавляет учётные записи и/или группы в указанную локальную группу безопасности. 
+	В качестве добавляемых учётных записей и групп могут быть использованы как локальные
+	учётные записи / группы, так и доменные учётные записи / группы (`Get-ADUser`,
+	`Get-ADGroup`).
+.Inputs
+	System.DirectoryServices.DirectoryEntry
+	Учётные записи и группы, которые необходимо включить в локальную группу безопасности.
+.Inputs
+	Microsoft.ActiveDirectory.Management.ADUser
+	Учётные записи AD, которые необходимо включить в локальную группу безопасности.
+.Inputs
+	Microsoft.ActiveDirectory.Management.ADGroup
+	Группы AD, которые необходимо включить в локальную группу безопасности.
+.Link
+	https://github.com/IT-Service/ITG.DomainUtils.Printers#Add-LocalGroupMember
+.Example
+	Get-ADUser 'admin-sergey.s.betke' | Add-LocalGroupMember -Group ( Get-LocalGroup -Name Пользователи );
+	Добавляем указанного пользователя домена в локальную группы безопасности
+	"Пользователи".
+#>
+	[CmdletBinding(
+		SupportsShouldProcess = $true
+		, ConfirmImpact = 'Medium'
+		, HelpUri = 'https://github.com/IT-Service/ITG.DomainUtils.Printers#Add-LocalGroupMember'
+	)]
+
+	param (
+		# Группа безопасности
+		[Parameter(
+			Mandatory = $true
+			, Position = 1
+			, ValueFromPipeline = $false
+		)]
+		[System.DirectoryServices.DirectoryEntry]
+		$Group
+	,
+		# Объект безопасности для проверки членства в указанной группе
+		[Parameter(
+			Mandatory = $true
+			, Position = 2
+			, ValueFromPipeline = $true
+		)]
+		[Alias( 'Member' )]
+		[Alias( 'User' )]
+		$Identity
+	,
+		# Передавать ли учётную запись далее по конвейеру
+		[Switch]
+		$PassThru
+	)
+
+	process {
+		$Identity `
+		| ConvertTo-ADSIPath `
+		| % {
+			if ( $PSCmdlet.ShouldProcess( "$_ => $( $Group.Path )" ) ) {
+				$Group.PSBase.Invoke( 'Add', $_ );
+			};
+		};
+		if ( $PassThru ) { return $Identity; };
 	}
 }

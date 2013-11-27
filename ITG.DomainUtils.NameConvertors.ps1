@@ -15,6 +15,8 @@ Function ConvertTo-ADSIPath {
 	ADSI путь к указанным объектам безопасности.
 .Link
 	https://github.com/IT-Service/ITG.DomainUtils.Printers#ConvertTo-ADSIPath
+.Link
+    [ADS_NAME_TYPE_ENUM]: <http://msdn.microsoft.com/en-us/library/windows/desktop/aa772267.aspx>
 .Example
 	Get-ADUser 'admin-sergey.s.betke' | ConvertTo-ADSIPath;
 	В результате получим `WinNT://CSM/admin-sergey.s.betke`.
