@@ -14,7 +14,7 @@
 RootModule = 'ITG.DomainUtils.Printers.psm1'
 
 # Номер версии данного модуля.
-ModuleVersion = '0.2.0'
+ModuleVersion = '0.3.0'
 
 # Уникальный идентификатор данного модуля
 GUID = 'D8CF9F68-3B96-498A-BD04-33EA2B072BD0'
@@ -62,6 +62,7 @@ ProcessorArchitecture = ''
 RequiredModules = @(
 	@{ ModuleName = 'ActiveDirectory'; ModuleVersion = '1.0'; } `
 	, @{ ModuleName = 'GroupPolicy'; ModuleVersion = '1.0'; } `
+	, @{ ModuleName = 'ITG.DomainUtils.LocalGroups'; ModuleVersion = '1.0'; } `
 )
 
 # Сборки, которые должны быть загружены перед импортированием данного модуля

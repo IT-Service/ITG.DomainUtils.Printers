@@ -10,7 +10,7 @@
 Для модульных тестов использую проект [pester](https://github.com/pester/pester).
 
 
-Версия модуля: **0.2.0**
+Версия модуля: **0.3.0**
 
 ПОДДЕРЖИВАЮТСЯ КОМАНДЛЕТЫ
 -------------------------
@@ -112,34 +112,6 @@
 Проверяем наличие конфигурации модуля для указанного домена.
 
 	Test-DomainUtilsPrintersConfiguration [[-Domain] <String>] [[-Server] <String>] <CommonParameters>
-
-### LocalGroup
-
-#### КРАТКОЕ ОПИСАНИЕ [Get-LocalGroup][]
-
-Возвращает локальную группу безопасности.
-
-	Get-LocalGroup [[-]] <CommonParameters>
-
-	Get-LocalGroup [-Name] <String> <CommonParameters>
-
-#### КРАТКОЕ ОПИСАНИЕ [New-LocalGroup][]
-
-Создаёт локальную группу безопасности.
-
-	New-LocalGroup [-Name] <String> [-Description <String>] [-PassThru] [-WhatIf] [-Confirm] <CommonParameters>
-
-#### КРАТКОЕ ОПИСАНИЕ [Remove-LocalGroup][]
-
-Удаляет локальную группу безопасности.
-
-	Remove-LocalGroup [-Name] <String> [-WhatIf] [-Confirm] <CommonParameters>
-
-#### КРАТКОЕ ОПИСАНИЕ [Test-LocalGroup][]
-
-Проверяет наличие локальной группы безопасности.
-
-	Test-LocalGroup [-Name] <String> <CommonParameters>
 
 ### PrintQueue
 
@@ -1338,194 +1310,6 @@ ADObject класса printQueue, возвращаемый [Get-ADPrintQueue][].
 
 - [Интернет версия](https://github.com/IT-Service/ITG.DomainUtils.Printers#Test-DomainUtilsPrintersConfiguration)
 
-#### Get-LocalGroup
-
-[Get-LocalGroup][] возвращает локальную группу (или группы) безопасности с указанными параметрами.
-
-##### СИНТАКСИС
-
-	Get-LocalGroup [[-]] <CommonParameters>
-
-	Get-LocalGroup [-Name] <String> <CommonParameters>
-
-##### ВЫХОДНЫЕ ДАННЫЕ
-
-- System.DirectoryServices.DirectoryEntry
-Группа безопасности.
-
-##### ПАРАМЕТРЫ
-
-- `[String] Name`
-	Идентификатор группы безопасности
-	* Тип: [System.String][]
-	* Псевдонимы: Identity
-	* Требуется? да
-	* Позиция? 2
-	* Принимать входные данные конвейера? true (ByValue, ByPropertyName)
-	* Принимать подстановочные знаки? нет
-
-- `<CommonParameters>`
-	Этот командлет поддерживает общие параметры: Verbose, Debug,
-	ErrorAction, ErrorVariable, WarningAction, WarningVariable,
-	OutBuffer и OutVariable. Для получения дополнительных сведений см. раздел
-	[about_CommonParameters][].
-
-
-##### ПРИМЕРЫ
-
-1. Возвращает все локальные группы безопасности.
-
-		Get-LocalGroup;
-
-2. Возвращает группу безопасности Пользователи.
-
-		Get-LocalGroup -Name 'Пользователи';
-
-##### ССЫЛКИ ПО ТЕМЕ
-
-- [Интернет версия](https://github.com/IT-Service/ITG.DomainUtils.Printers#Get-LocalGroup)
-
-#### New-LocalGroup
-
-[New-LocalGroup][] создаёт локальную группу безопасности с указанными аттрибутами.
-
-##### СИНТАКСИС
-
-	New-LocalGroup [-Name] <String> [-Description <String>] [-PassThru] [-WhatIf] [-Confirm] <CommonParameters>
-
-##### ВЫХОДНЫЕ ДАННЫЕ
-
-- System.DirectoryServices.DirectoryEntry
-Созданная группа безопасности.
-
-##### ПАРАМЕТРЫ
-
-- `[String] Name`
-	Идентификатор группы безопасности
-	* Тип: [System.String][]
-	* Псевдонимы: Identity
-	* Требуется? да
-	* Позиция? 2
-	* Принимать входные данные конвейера? true (ByValue, ByPropertyName)
-	* Принимать подстановочные знаки? нет
-
-- `[String] Description`
-	Описание группы безопасности
-	* Тип: [System.String][]
-	* Требуется? нет
-	* Позиция? named
-	* Принимать входные данные конвейера? true (ByPropertyName)
-	* Принимать подстановочные знаки? нет
-
-- `[SwitchParameter] PassThru`
-	Передавать ли созданные группы далее по конвейеру
-	
-
-- `[SwitchParameter] WhatIf`
-	* Псевдонимы: wi
-
-- `[SwitchParameter] Confirm`
-	* Псевдонимы: cf
-
-- `<CommonParameters>`
-	Этот командлет поддерживает общие параметры: Verbose, Debug,
-	ErrorAction, ErrorVariable, WarningAction, WarningVariable,
-	OutBuffer и OutVariable. Для получения дополнительных сведений см. раздел
-	[about_CommonParameters][].
-
-
-##### ПРИМЕРЫ
-
-1. Создаёт локальную группу безопасности.
-
-		New-LocalGroup -Name 'MyUsers' -Description 'Users of my application';
-
-##### ССЫЛКИ ПО ТЕМЕ
-
-- [Интернет версия](https://github.com/IT-Service/ITG.DomainUtils.Printers#New-LocalGroup)
-
-#### Remove-LocalGroup
-
-[Remove-LocalGroup][] удаляет локальную группу (или группы) безопасности, переданные по конвейеру.
-
-##### СИНТАКСИС
-
-	Remove-LocalGroup [-Name] <String> [-WhatIf] [-Confirm] <CommonParameters>
-
-##### ВХОДНЫЕ ДАННЫЕ
-
-- System.DirectoryServices.DirectoryEntry
-Группа безопасности.
-
-##### ПАРАМЕТРЫ
-
-- `[String] Name`
-	Группа безопасности к удалению
-	Идентификатор группы безопасности
-	* Тип: [System.String][]
-	* Псевдонимы: Identity
-	* Требуется? да
-	* Позиция? 2
-	* Принимать входные данные конвейера? true (ByPropertyName)
-	* Принимать подстановочные знаки? нет
-
-- `[SwitchParameter] WhatIf`
-	* Псевдонимы: wi
-
-- `[SwitchParameter] Confirm`
-	* Псевдонимы: cf
-
-- `<CommonParameters>`
-	Этот командлет поддерживает общие параметры: Verbose, Debug,
-	ErrorAction, ErrorVariable, WarningAction, WarningVariable,
-	OutBuffer и OutVariable. Для получения дополнительных сведений см. раздел
-	[about_CommonParameters][].
-
-
-##### ПРИМЕРЫ
-
-1. Удаляет группу безопасности 'Пользователи'.
-
-		Get-LocalGroup -Name 'Пользователи' | Remove-LocalGroup;
-
-##### ССЫЛКИ ПО ТЕМЕ
-
-- [Интернет версия](https://github.com/IT-Service/ITG.DomainUtils.Printers#Remove-LocalGroup)
-
-#### Test-LocalGroup
-
-Проверяет наличие локальной группы безопасности.
-
-##### СИНТАКСИС
-
-	Test-LocalGroup [-Name] <String> <CommonParameters>
-
-##### ВЫХОДНЫЕ ДАННЫЕ
-
-- System.Bool
-
-##### ПАРАМЕТРЫ
-
-- `[String] Name`
-	Идентификатор группы безопасности
-	* Тип: [System.String][]
-	* Псевдонимы: Identity
-	* Требуется? да
-	* Позиция? 2
-	* Принимать входные данные конвейера? true (ByValue, ByPropertyName)
-	* Принимать подстановочные знаки? нет
-
-- `<CommonParameters>`
-	Этот командлет поддерживает общие параметры: Verbose, Debug,
-	ErrorAction, ErrorVariable, WarningAction, WarningVariable,
-	OutBuffer и OutVariable. Для получения дополнительных сведений см. раздел
-	[about_CommonParameters][].
-
-
-##### ССЫЛКИ ПО ТЕМЕ
-
-- [Интернет версия](https://github.com/IT-Service/ITG.DomainUtils.Printers#Test-LocalGroup)
-
 #### Get-PrintQueue
 
 [Get-PrintQueue][] возвращает объект PrintQueue или выполняет поиск для выявления множества
@@ -1814,16 +1598,15 @@ ADObject класса printQueue, возвращаемый [Get-PrintQueue][].
 - [Get-PrintQueue][]
 
 
-[about_ActiveDirectory_Filter]: http://technet.microsoft.com/library/hh531527.aspx 
-[about_ActiveDirectory_Identity]: http://technet.microsoft.com/library/hh531526.aspx 
-[about_CommonParameters]: http://go.microsoft.com/fwlink/?LinkID=113216 "Describes the parameters that can be used with any cmdlet."
+[about_ActiveDirectory_Filter]: <http://technet.microsoft.com/library/hh531527.aspx> 
+[about_ActiveDirectory_Identity]: <http://technet.microsoft.com/library/hh531526.aspx> 
+[about_CommonParameters]: <http://go.microsoft.com/fwlink/?LinkID=113216> "Describes the parameters that can be used with any cmdlet."
 [Get-ADGroup]: <http://go.microsoft.com/fwlink/?linkid=219302> "Gets one or more Active Directory groups."
 [Get-ADObject]: <http://go.microsoft.com/fwlink/?linkid=219298> "Gets one or more Active Directory objects."
 [Get-ADPrintQueue]: <#get-adprintqueue> "Возвращает один или несколько объектов AD с классом printQueue."
 [Get-ADPrintQueueGPO]: <#get-adprintqueuegpo> "Возвращает объект групповой политики, применяемой к пользователям указанного объекта printQueue."
 [Get-ADPrintQueueGroup]: <#get-adprintqueuegroup> "Возвращает затребованные группы безопасности для указанного объекта printQueue."
 [Get-DomainUtilsPrintersConfiguration]: <#get-domainutilsprintersconfiguration> "Получаем объект, содержащий конфигурацию модуля для указанного домена."
-[Get-LocalGroup]: <#get-localgroup> "Возвращает локальную группу безопасности."
 [Get-PrintQueue]: <#get-printqueue> "Возвращает одну или несколько локальных очередей печати."
 [Get-PrintQueueGroup]: <#get-printqueuegroup> "Возвращает затребованные группы безопасности для указанной локальной очереди печати."
 [Initialize-ADPrintQueuesEnvironment]: <#initialize-adprintqueuesenvironment> "Создаёт корневой контейнер для контейнеров объектов printQueue."
@@ -1836,16 +1619,13 @@ ADObject класса printQueue, возвращаемый [Get-PrintQueue][].
 [New-ADPrintQueueGPO]: <#new-adprintqueuegpo> "Создаёт групповую политику, применяемую к пользователям указанного объекта printQueue."
 [New-ADPrintQueueGroup]: <#new-adprintqueuegroup> "Создаёт группы безопасности для указанного объекта printQueue."
 [New-GPO]: <http://go.microsoft.com/fwlink/?linkid=216711> "Creates a new GPO."
-[New-LocalGroup]: <#new-localgroup> "Создаёт локальную группу безопасности."
 [New-PrintQueueGroup]: <#new-printqueuegroup> "Создаёт локальные группы безопасности для указанного объекта printQueue."
 [Remove-ADPrintQueueEnvironment]: <#remove-adprintqueueenvironment> "Удаляет группы безопасности и объект GPO для указанной очереди печати."
-[Remove-LocalGroup]: <#remove-localgroup> "Удаляет локальную группу безопасности."
 [System.Int32]: <http://msdn.microsoft.com/ru-ru/library/system.int32.aspx> "Int32 Class (System)"
 [System.String]: <http://msdn.microsoft.com/ru-ru/library/system.string.aspx> "String Class (System)"
 [Test-ADPrintQueue]: <#test-adprintqueue> "Определяет существует ли объект AD с классом printQueue с указанными фильтрами."
 [Test-ADPrintQueueGPO]: <#test-adprintqueuegpo> "Проверяет наличие объекта групповой политики, применяемой к пользователям указанного объекта printQueue."
 [Test-DomainUtilsPrintersConfiguration]: <#test-domainutilsprintersconfiguration> "Проверяем наличие конфигурации модуля для указанного домена."
-[Test-LocalGroup]: <#test-localgroup> "Проверяет наличие локальной группы безопасности."
 [Test-PrintQueue]: <#test-printqueue> "Проверяет наличие одной или нескольких локальных очередей печати."
 [Update-ADPrintQueueEnvironment]: <#update-adprintqueueenvironment> "Создаёт (при отсутствии) группы безопасности и объект GPO."
 

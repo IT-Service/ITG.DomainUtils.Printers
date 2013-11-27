@@ -12,7 +12,7 @@
 			<maml:copyright>
 				<maml:para>(c) 2013 Sergey S. Betke. All rights reserved.</maml:para>
 			</maml:copyright>
-			<dev:version>0.2.0</dev:version>
+			<dev:version>0.3.0</dev:version>
 		</details>
 		<maml:description>
 			<maml:para>Get-ADPrintQueue возвращает объект printQueue или выполняет поиск для выявления множества объектов ADObject класса printQueue.</maml:para>
@@ -277,7 +277,7 @@
 			<maml:copyright>
 				<maml:para>(c) 2013 Sergey S. Betke. All rights reserved.</maml:para>
 			</maml:copyright>
-			<dev:version>0.2.0</dev:version>
+			<dev:version>0.3.0</dev:version>
 		</details>
 		<maml:description>
 			<maml:para>Возвращает объект групповой политики, созданный для "подключения" членам группы Пользователи принтера указанной через InputObject очереди печати.</maml:para>
@@ -399,7 +399,7 @@
 			<maml:copyright>
 				<maml:para>(c) 2013 Sergey S. Betke. All rights reserved.</maml:para>
 			</maml:copyright>
-			<dev:version>0.2.0</dev:version>
+			<dev:version>0.3.0</dev:version>
 		</details>
 		<maml:description>
 			<maml:para>Get-ADPrintQueueGroup возвращает группы безопасности (Пользователи принтера, Операторы принтера) для указанного через InputObject объекта printQueue.</maml:para>
@@ -526,7 +526,7 @@
 			<maml:copyright>
 				<maml:para>(c) 2013 Sergey S. Betke. All rights reserved.</maml:para>
 			</maml:copyright>
-			<dev:version>0.2.0</dev:version>
+			<dev:version>0.3.0</dev:version>
 		</details>
 		<maml:description>
 			<maml:para>Получаем объект, содержащий конфигурацию модуля для указанного домена.</maml:para>
@@ -592,85 +592,6 @@
 	</command>
 	<command xmlns:msh="http://msh" xmlns="http://schemas.microsoft.com/maml/dev/command/2004/10">
 		<details>
-			<name>Get-LocalGroup</name>
-			<verb>Get</verb>
-			<noun>LocalGroup</noun>
-			<maml:description>
-				<maml:para>Возвращает локальную группу безопасности.</maml:para>
-			</maml:description>
-			<maml:copyright>
-				<maml:para>(c) 2013 Sergey S. Betke. All rights reserved.</maml:para>
-			</maml:copyright>
-			<dev:version>0.2.0</dev:version>
-		</details>
-		<maml:description>
-			<maml:para>Get-LocalGroup возвращает локальную группу (или группы) безопасности с указанными параметрами.</maml:para>
-		</maml:description>
-		<syntax>
-			<syntaxItem>
-				<maml:name>Get-LocalGroup</maml:name>
-				<parameter required="" position="" pipelineInput="" />
-			</syntaxItem>
-			<syntaxItem>
-				<maml:name>Get-LocalGroup</maml:name>
-				<parameter required="true" position="2" pipelineInput="true (ByValue, ByPropertyName)" globbing="false">
-					<maml:name>Name</maml:name>
-					<parameterValue required="true">String</parameterValue>
-				</parameter>
-			</syntaxItem>
-		</syntax>
-		<parameters>
-			<parameter required="true" position="2" pipelineInput="true (ByValue, ByPropertyName)" globbing="false">
-				<maml:name>Name</maml:name>
-				<maml:description>
-					<maml:para>Идентификатор группы безопасности</maml:para>
-				</maml:description>
-				<parameterValue required="True">String</parameterValue>
-			</parameter>
-		</parameters>
-		<returnValues>
-			<returnValue>
-				<dev:type>
-					<maml:name>System.DirectoryServices.DirectoryEntry</maml:name>
-					<maml:description>
-						<maml:para>Группа безопасности.</maml:para>
-					</maml:description>
-				</dev:type>
-				<maml:description>
-					<maml:para>Группа безопасности.</maml:para>
-				</maml:description>
-			</returnValue>
-		</returnValues>
-		<examples>
-			<example>
-				<maml:title>-------------------------- ПРИМЕР 1 --------------------------</maml:title>
-				<maml:introduction>
-					<maml:paragraph>C:\PS&gt;</maml:paragraph>
-				</maml:introduction>
-				<dev:code>Get-LocalGroup;</dev:code>
-				<maml:remarks>
-					<maml:para>Возвращает все локальные группы безопасности.</maml:para>
-				</maml:remarks>
-			</example>
-			<example>
-				<maml:title>-------------------------- ПРИМЕР 2 --------------------------</maml:title>
-				<maml:introduction>
-					<maml:paragraph>C:\PS&gt;</maml:paragraph>
-				</maml:introduction>
-				<dev:code>Get-LocalGroup -Name 'Пользователи';</dev:code>
-				<maml:remarks>
-					<maml:para>Возвращает группу безопасности Пользователи.</maml:para>
-				</maml:remarks>
-			</example>
-		</examples>
-		<maml:relatedLinks>
-			<maml:navigationLink>
-				<maml:uri>https://github.com/IT-Service/ITG.DomainUtils.Printers#Get-LocalGroup</maml:uri>
-			</maml:navigationLink>
-		</maml:relatedLinks>
-	</command>
-	<command xmlns:msh="http://msh" xmlns="http://schemas.microsoft.com/maml/dev/command/2004/10">
-		<details>
 			<name>Get-PrintQueue</name>
 			<verb>Get</verb>
 			<noun>PrintQueue</noun>
@@ -680,7 +601,7 @@
 			<maml:copyright>
 				<maml:para>(c) 2013 Sergey S. Betke. All rights reserved.</maml:para>
 			</maml:copyright>
-			<dev:version>0.2.0</dev:version>
+			<dev:version>0.3.0</dev:version>
 		</details>
 		<maml:description>
 			<maml:para>Get-PrintQueue возвращает объект PrintQueue или выполняет поиск для выявления множества объектов PrintQueue на локальном сервере печати.</maml:para>
@@ -816,7 +737,7 @@
 			<maml:copyright>
 				<maml:para>(c) 2013 Sergey S. Betke. All rights reserved.</maml:para>
 			</maml:copyright>
-			<dev:version>0.2.0</dev:version>
+			<dev:version>0.3.0</dev:version>
 		</details>
 		<maml:description>
 			<maml:para>Get-PrintQueueGroup возвращает группы безопасности (Пользователи принтера, Операторы принтера) для указанного (по конвейеру) объекта локальной очереди печати.</maml:para>
@@ -909,7 +830,7 @@
 			<maml:copyright>
 				<maml:para>(c) 2013 Sergey S. Betke. All rights reserved.</maml:para>
 			</maml:copyright>
-			<dev:version>0.2.0</dev:version>
+			<dev:version>0.3.0</dev:version>
 		</details>
 		<maml:description>
 			<maml:para>Создаёт корневой контейнер для контейнеров объектов printQueue. Данную функцию следует вызывать однократно для создания необходимых контейнеров и объектов.</maml:para>
@@ -1019,7 +940,7 @@
 			<maml:copyright>
 				<maml:para>(c) 2013 Sergey S. Betke. All rights reserved.</maml:para>
 			</maml:copyright>
-			<dev:version>0.2.0</dev:version>
+			<dev:version>0.3.0</dev:version>
 		</details>
 		<maml:description>
 			<maml:para>Инициализирует конфигурацию модуля. Конфигурация модуля сохраняется в Active Directory, полный путь для домена csm.nov.ru будет `CN=ITG DomainUtils,CN=Optional Features,CN=Directory Service,CN=Windows NT,CN=Services,CN=Configuration,DC=csm,DC=nov,DC=ru`.</maml:para>
@@ -1134,7 +1055,7 @@
 			<maml:copyright>
 				<maml:para>(c) 2013 Sergey S. Betke. All rights reserved.</maml:para>
 			</maml:copyright>
-			<dev:version>0.2.0</dev:version>
+			<dev:version>0.3.0</dev:version>
 		</details>
 		<maml:description>
 			<maml:para>New-ADPrintQueueGPO создаёт объект групповой политики для "подключения" членам группы Пользователи принтера указанной через InputObject очереди печати.</maml:para>
@@ -1326,7 +1247,7 @@
 			<maml:copyright>
 				<maml:para>(c) 2013 Sergey S. Betke. All rights reserved.</maml:para>
 			</maml:copyright>
-			<dev:version>0.2.0</dev:version>
+			<dev:version>0.3.0</dev:version>
 		</details>
 		<maml:description>
 			<maml:para>New-ADPrintQueueGroup создаёт группы безопасности (Пользователи принтера, Операторы принтера) для указанного через InputObject объекта printQueue.</maml:para>
@@ -1479,107 +1400,6 @@
 	</command>
 	<command xmlns:msh="http://msh" xmlns="http://schemas.microsoft.com/maml/dev/command/2004/10">
 		<details>
-			<name>New-LocalGroup</name>
-			<verb>New</verb>
-			<noun>LocalGroup</noun>
-			<maml:description>
-				<maml:para>Создаёт локальную группу безопасности.</maml:para>
-			</maml:description>
-			<maml:copyright>
-				<maml:para>(c) 2013 Sergey S. Betke. All rights reserved.</maml:para>
-			</maml:copyright>
-			<dev:version>0.2.0</dev:version>
-		</details>
-		<maml:description>
-			<maml:para>New-LocalGroup создаёт локальную группу безопасности с указанными аттрибутами.</maml:para>
-		</maml:description>
-		<syntax>
-			<syntaxItem>
-				<maml:name>New-LocalGroup</maml:name>
-				<parameter required="true" position="2" pipelineInput="true (ByValue, ByPropertyName)" globbing="false">
-					<maml:name>Name</maml:name>
-					<parameterValue required="true">String</parameterValue>
-				</parameter>
-				<parameter required="false" position="named" pipelineInput="true (ByPropertyName)" globbing="false">
-					<maml:name>Description</maml:name>
-					<parameterValue required="false">String</parameterValue>
-				</parameter>
-				<parameter required="false" position="named" pipelineInput="false" globbing="false">
-					<maml:name>PassThru</maml:name>
-				</parameter>
-				<parameter required="false" position="named" pipelineInput="false" globbing="false">
-					<maml:name>WhatIf</maml:name>
-				</parameter>
-				<parameter required="false" position="named" pipelineInput="false" globbing="false">
-					<maml:name>Confirm</maml:name>
-				</parameter>
-			</syntaxItem>
-		</syntax>
-		<parameters>
-			<parameter required="true" position="2" pipelineInput="true (ByValue, ByPropertyName)" globbing="false">
-				<maml:name>Name</maml:name>
-				<maml:description>
-					<maml:para>Идентификатор группы безопасности</maml:para>
-				</maml:description>
-				<parameterValue required="True">String</parameterValue>
-			</parameter>
-			<parameter required="false" position="named" pipelineInput="true (ByPropertyName)" globbing="false">
-				<maml:name>Description</maml:name>
-				<maml:description>
-					<maml:para>Описание группы безопасности</maml:para>
-				</maml:description>
-				<parameterValue required="True">String</parameterValue>
-			</parameter>
-			<parameter required="false" position="named" pipelineInput="false" globbing="false">
-				<maml:name>PassThru</maml:name>
-				<maml:description>
-					<maml:para>Передавать ли созданные группы далее по конвейеру</maml:para>
-				</maml:description>
-				<parameterValue required="True">SwitchParameter</parameterValue>
-				<defaultValue>False</defaultValue>
-			</parameter>
-			<parameter required="false" position="named" pipelineInput="false" globbing="false">
-				<maml:name>WhatIf</maml:name>
-				<parameterValue required="True">SwitchParameter</parameterValue>
-			</parameter>
-			<parameter required="false" position="named" pipelineInput="false" globbing="false">
-				<maml:name>Confirm</maml:name>
-				<parameterValue required="True">SwitchParameter</parameterValue>
-			</parameter>
-		</parameters>
-		<returnValues>
-			<returnValue>
-				<dev:type>
-					<maml:name>System.DirectoryServices.DirectoryEntry</maml:name>
-					<maml:description>
-						<maml:para>Созданная группа безопасности.</maml:para>
-					</maml:description>
-				</dev:type>
-				<maml:description>
-					<maml:para>Созданная группа безопасности.</maml:para>
-				</maml:description>
-			</returnValue>
-		</returnValues>
-		<examples>
-			<example>
-				<maml:title>-------------------------- ПРИМЕР 1 --------------------------</maml:title>
-				<maml:introduction>
-					<maml:paragraph>C:\PS&gt;</maml:paragraph>
-				</maml:introduction>
-				<dev:code>New-LocalGroup -Name 'MyUsers' -Description 'Users of my application';</dev:code>
-				<maml:remarks>
-					<maml:para>Создаёт локальную группу безопасности.</maml:para>
-				</maml:remarks>
-			</example>
-		</examples>
-		<maml:relatedLinks>
-			<maml:navigationLink>
-				<maml:uri>https://github.com/IT-Service/ITG.DomainUtils.Printers#New-LocalGroup</maml:uri>
-			</maml:navigationLink>
-		</maml:relatedLinks>
-	</command>
-	<command xmlns:msh="http://msh" xmlns="http://schemas.microsoft.com/maml/dev/command/2004/10">
-		<details>
 			<name>New-PrintQueueGroup</name>
 			<verb>New</verb>
 			<noun>PrintQueueGroup</noun>
@@ -1589,7 +1409,7 @@
 			<maml:copyright>
 				<maml:para>(c) 2013 Sergey S. Betke. All rights reserved.</maml:para>
 			</maml:copyright>
-			<dev:version>0.2.0</dev:version>
+			<dev:version>0.3.0</dev:version>
 		</details>
 		<maml:description>
 			<maml:para>New-PrintQueueGroup создаёт группы безопасности (Пользователи принтера, Операторы принтера) для указанного через InputObject объекта printQueue на локальном сервере печати.</maml:para>
@@ -1722,7 +1542,7 @@
 			<maml:copyright>
 				<maml:para>(c) 2013 Sergey S. Betke. All rights reserved.</maml:para>
 			</maml:copyright>
-			<dev:version>0.2.0</dev:version>
+			<dev:version>0.3.0</dev:version>
 		</details>
 		<maml:description>
 			<maml:para>Удаляет группы безопасности и объект GPO для указанной через InputObject очереди печати.</maml:para>
@@ -1826,85 +1646,6 @@
 	</command>
 	<command xmlns:msh="http://msh" xmlns="http://schemas.microsoft.com/maml/dev/command/2004/10">
 		<details>
-			<name>Remove-LocalGroup</name>
-			<verb>Remove</verb>
-			<noun>LocalGroup</noun>
-			<maml:description>
-				<maml:para>Удаляет локальную группу безопасности.</maml:para>
-			</maml:description>
-			<maml:copyright>
-				<maml:para>(c) 2013 Sergey S. Betke. All rights reserved.</maml:para>
-			</maml:copyright>
-			<dev:version>0.2.0</dev:version>
-		</details>
-		<maml:description>
-			<maml:para>Remove-LocalGroup удаляет локальную группу (или группы) безопасности, переданные по конвейеру.</maml:para>
-		</maml:description>
-		<syntax>
-			<syntaxItem>
-				<maml:name>Remove-LocalGroup</maml:name>
-				<parameter required="true" position="2" pipelineInput="true (ByPropertyName)" globbing="false">
-					<maml:name>Name</maml:name>
-					<parameterValue required="true">String</parameterValue>
-				</parameter>
-				<parameter required="false" position="named" pipelineInput="false" globbing="false">
-					<maml:name>WhatIf</maml:name>
-				</parameter>
-				<parameter required="false" position="named" pipelineInput="false" globbing="false">
-					<maml:name>Confirm</maml:name>
-				</parameter>
-			</syntaxItem>
-		</syntax>
-		<parameters>
-			<parameter required="true" position="2" pipelineInput="true (ByPropertyName)" globbing="false">
-				<maml:name>Name</maml:name>
-				<maml:description>
-					<maml:para>Группа безопасности к удалению Идентификатор группы безопасности</maml:para>
-				</maml:description>
-				<parameterValue required="True">String</parameterValue>
-			</parameter>
-			<parameter required="false" position="named" pipelineInput="false" globbing="false">
-				<maml:name>WhatIf</maml:name>
-				<parameterValue required="True">SwitchParameter</parameterValue>
-			</parameter>
-			<parameter required="false" position="named" pipelineInput="false" globbing="false">
-				<maml:name>Confirm</maml:name>
-				<parameterValue required="True">SwitchParameter</parameterValue>
-			</parameter>
-		</parameters>
-		<inputTypes>
-			<inputType>
-				<dev:type>
-					<maml:name>System.DirectoryServices.DirectoryEntry</maml:name>
-					<maml:description>
-						<maml:para>Группа безопасности.</maml:para>
-					</maml:description>
-				</dev:type>
-				<maml:description>
-					<maml:para>Группа безопасности.</maml:para>
-				</maml:description>
-			</inputType>
-		</inputTypes>
-		<examples>
-			<example>
-				<maml:title>-------------------------- ПРИМЕР 1 --------------------------</maml:title>
-				<maml:introduction>
-					<maml:paragraph>C:\PS&gt;</maml:paragraph>
-				</maml:introduction>
-				<dev:code>Get-LocalGroup -Name 'Пользователи' | Remove-LocalGroup;</dev:code>
-				<maml:remarks>
-					<maml:para>Удаляет группу безопасности 'Пользователи'.</maml:para>
-				</maml:remarks>
-			</example>
-		</examples>
-		<maml:relatedLinks>
-			<maml:navigationLink>
-				<maml:uri>https://github.com/IT-Service/ITG.DomainUtils.Printers#Remove-LocalGroup</maml:uri>
-			</maml:navigationLink>
-		</maml:relatedLinks>
-	</command>
-	<command xmlns:msh="http://msh" xmlns="http://schemas.microsoft.com/maml/dev/command/2004/10">
-		<details>
 			<name>Test-ADPrintQueue</name>
 			<verb>Test</verb>
 			<noun>ADPrintQueue</noun>
@@ -1914,7 +1655,7 @@
 			<maml:copyright>
 				<maml:para>(c) 2013 Sergey S. Betke. All rights reserved.</maml:para>
 			</maml:copyright>
-			<dev:version>0.2.0</dev:version>
+			<dev:version>0.3.0</dev:version>
 		</details>
 		<maml:description>
 			<maml:para>Test-ADPrintQueue выполняет поиск для выявления множества объектов ADObject класса printQueue с указанными характеристиками, и возвращает `$true` если такие объекты есть, и `$false` в противном случае.</maml:para>
@@ -2082,7 +1823,7 @@
 			<maml:copyright>
 				<maml:para>(c) 2013 Sergey S. Betke. All rights reserved.</maml:para>
 			</maml:copyright>
-			<dev:version>0.2.0</dev:version>
+			<dev:version>0.3.0</dev:version>
 		</details>
 		<maml:description>
 			<maml:para>Возвращает `$true` или `$false`, указывая наличие либо отсутствие объекта групповой политики для указанной через InputObject очереди печати.</maml:para>
@@ -2207,7 +1948,7 @@
 			<maml:copyright>
 				<maml:para>(c) 2013 Sergey S. Betke. All rights reserved.</maml:para>
 			</maml:copyright>
-			<dev:version>0.2.0</dev:version>
+			<dev:version>0.3.0</dev:version>
 		</details>
 		<maml:description>
 			<maml:para>Проверяем наличие конфигурации модуля для указанного домена.</maml:para>
@@ -2262,50 +2003,6 @@
 	</command>
 	<command xmlns:msh="http://msh" xmlns="http://schemas.microsoft.com/maml/dev/command/2004/10">
 		<details>
-			<name>Test-LocalGroup</name>
-			<verb>Test</verb>
-			<noun>LocalGroup</noun>
-			<maml:description>
-				<maml:para>Проверяет наличие локальной группы безопасности.</maml:para>
-			</maml:description>
-			<maml:copyright>
-				<maml:para>(c) 2013 Sergey S. Betke. All rights reserved.</maml:para>
-			</maml:copyright>
-			<dev:version>0.2.0</dev:version>
-		</details>
-		<syntax>
-			<syntaxItem>
-				<maml:name>Test-LocalGroup</maml:name>
-				<parameter required="true" position="2" pipelineInput="true (ByValue, ByPropertyName)" globbing="false">
-					<maml:name>Name</maml:name>
-					<parameterValue required="true">String</parameterValue>
-				</parameter>
-			</syntaxItem>
-		</syntax>
-		<parameters>
-			<parameter required="true" position="2" pipelineInput="true (ByValue, ByPropertyName)" globbing="false">
-				<maml:name>Name</maml:name>
-				<maml:description>
-					<maml:para>Идентификатор группы безопасности</maml:para>
-				</maml:description>
-				<parameterValue required="True">String</parameterValue>
-			</parameter>
-		</parameters>
-		<returnValues>
-			<returnValue>
-				<dev:type>
-					<maml:name>System.Bool</maml:name>
-				</dev:type>
-			</returnValue>
-		</returnValues>
-		<maml:relatedLinks>
-			<maml:navigationLink>
-				<maml:uri>https://github.com/IT-Service/ITG.DomainUtils.Printers#Test-LocalGroup</maml:uri>
-			</maml:navigationLink>
-		</maml:relatedLinks>
-	</command>
-	<command xmlns:msh="http://msh" xmlns="http://schemas.microsoft.com/maml/dev/command/2004/10">
-		<details>
 			<name>Test-PrintQueue</name>
 			<verb>Test</verb>
 			<noun>PrintQueue</noun>
@@ -2315,7 +2012,7 @@
 			<maml:copyright>
 				<maml:para>(c) 2013 Sergey S. Betke. All rights reserved.</maml:para>
 			</maml:copyright>
-			<dev:version>0.2.0</dev:version>
+			<dev:version>0.3.0</dev:version>
 		</details>
 		<maml:description>
 			<maml:para>Get-PrintQueue возвращает объект PrintQueue или выполняет поиск для выявления множества объектов PrintQueue на локальном сервере печати.</maml:para>
@@ -2407,7 +2104,7 @@
 			<maml:copyright>
 				<maml:para>(c) 2013 Sergey S. Betke. All rights reserved.</maml:para>
 			</maml:copyright>
-			<dev:version>0.2.0</dev:version>
+			<dev:version>0.3.0</dev:version>
 		</details>
 		<maml:description>
 			<maml:para>Создаёт (при отсутствии) группы безопасности и объект GPO для указанной через InputObject очереди печати.</maml:para>
