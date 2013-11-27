@@ -79,7 +79,7 @@ Function Get-LocalGroup {
 	Get-LocalGroup возвращает локальную группу (или группы) безопасности с указанными параметрами.
 .Outputs
 	System.DirectoryServices.DirectoryEntry
-	Группа безопасности.
+	ADSI объект, представляющий группу безопасности.
 .Link
 	https://github.com/IT-Service/ITG.DomainUtils.Printers#Get-LocalGroup
 .Example
@@ -121,7 +121,7 @@ Function Get-LocalGroup {
 		try {
 			switch ( $PsCmdlet.ParameterSetName ) {
 				'Identity' {
-					$Group = [System.DirectoryServices.DirectoryEntry] $Group = [ADSI]"WinNT://$Env:COMPUTERNAME/$Name,Group";
+					[System.DirectoryServices.DirectoryEntry] $Group = $Computer.Children.Find( $Name, 'Group' );
 					if ( $Group.Path ) {
 						return $Group;
 					} else {
@@ -230,6 +230,95 @@ Function Remove-LocalGroup {
 		try {
 			if ( $PSCmdlet.ShouldProcess( "$Name" ) ) {
 				$Computer.Delete( 'Group', $Name );
+			};
+		} catch {
+			Write-Error `
+				-ErrorRecord $_ `
+			;
+		};
+	}
+}
+
+Function Get-LocalGroupMember {
+<#
+.Synopsis
+	Возвращает членов локальной группы безопасности. 
+.Description
+	Get-LocalGroupMember возвращает членов указанной локальной группы безопасности.
+	В том числе - и с учётом транзитивности при указании флага `-Recursive`
+.Inputs
+	System.DirectoryServices.DirectoryEntry
+	Группа безопасности.
+.Outputs
+	System.DirectoryServices.DirectoryEntry
+	Члены указанной группы безопасности.
+.Outputs
+	PSObject
+	Для групп типа `NT AUTHORITY/ИНТЕРАКТИВНЫЕ` возвращён будет объект,
+	содержащий свойства `Path`, `Name`, `objectSid`, `groupType`.
+	`SchemaClassName` будет установлен в `Group`, `AuthenticationType` в `Secure`.
+	Дополнительно будет установлен аттрибут `NtAuthority` в `$true`.
+.Link
+	https://github.com/IT-Service/ITG.DomainUtils.Printers#Get-LocalGroupMember
+.Example
+	Get-LocalGroup -Name Пользователи | Get-LocalGroupMember -Recursive;
+	Возвращает всех членов группы Пользователи с учётом транзитивности.
+#>
+	[CmdletBinding(
+		HelpUri = 'https://github.com/IT-Service/ITG.DomainUtils.Printers#Get-LocalGroupMember'
+	)]
+
+	param (
+		# Группа безопасности
+		[Parameter(
+			Mandatory = $true
+			, Position = 1
+			, ValueFromPipeline = $true
+		)]
+		[System.DirectoryServices.DirectoryEntry]
+		[Alias( 'Group' )]
+		$Identity
+	,
+		# Запросить членов группы с учётом транзитивности
+		[Switch]
+		$Recursive
+	)
+
+	process {
+		try {
+			$Members = (
+				$Identity.PSBase.Invoke( 'Members' ) `
+				| % { 
+					$Member = [ADSI]( $_.GetType().InvokeMember( 'ADsPath', 'GetProperty', $null, $_, $null ) );
+					if ( $Member.Path ) { # объект не типа NT AUTHORITY/ИНТЕРАКТИВНЫЕ
+						$Member;
+					} else {
+						New-Object PSObject -Property @{
+							Path = ( $_.GetType().InvokeMember( 'ADsPath', 'GetProperty', $null, $_, $null ) );
+							Name =  ( $_.GetType().InvokeMember( 'Name', 'GetProperty', $null, $_, $null ) );
+							objectSid =  ( $_.GetType().InvokeMember( 'objectSid', 'GetProperty', $null, $_, $null ) );
+							groupType = ( $_.GetType().InvokeMember( 'groupType', 'GetProperty', $null, $_, $null ) );
+							SchemaClassName = 'Group';
+							AuthenticationType = [System.DirectoryServices.AuthenticationTypes]::Secure;
+							NtAuthority = $true;
+						};
+					};
+				} `
+			);
+			if ( -not $Recursive ) {
+				return $Members;
+			} else {
+				$Members `
+				| % {
+					$_;
+					if ( ( $_.SchemaClassName -eq 'Group' ) -and -not ( $_.NtAuthority -eq $true ) ) {
+						$_ | Get-LocalGroupMember -Recursive;
+					};
+				} `
+				| Sort-Object `
+					-Property 'Path' `
+					-Unique `
+				;
 			};
 		} catch {
 			Write-Error `

@@ -73,6 +73,8 @@ Export-ModuleMember -Function Get-LocalGroup;
 Export-ModuleMember -Function Test-LocalGroup;
 Export-ModuleMember -Function Remove-LocalGroup;
 
+Export-ModuleMember -Function Get-LocalGroupMember;
+
 . (	Join-Path -Path $CurrentDir -ChildPath 'ITG.DomainUtils.Printers.Configuration.ps1' );
 . (	Join-Path -Path $CurrentDir -ChildPath 'ITG.DomainUtils.Printers.ps1' );
 . (	Join-Path -Path $CurrentDir -ChildPath 'ITG.DomainUtils.LocalPrinters.ps1' );
