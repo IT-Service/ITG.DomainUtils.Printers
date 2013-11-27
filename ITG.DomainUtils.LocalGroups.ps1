@@ -90,7 +90,7 @@ Function Get-LocalGroup {
 	Возвращает группу безопасности Пользователи.
 #>
 	[CmdletBinding(
-		DefaultParametersetName = 'Filter'
+		DefaultParameterSetName = 'Filter'
 		, HelpUri = 'https://github.com/IT-Service/ITG.DomainUtils.Printers#Get-LocalGroup'
 	)]
 
@@ -324,6 +324,79 @@ Function Get-LocalGroupMember {
 			Write-Error `
 				-ErrorRecord $_ `
 			;
+		};
+	}
+}
+
+Function Test-LocalGroupMember {
+<#
+.Synopsis
+	Проверяет наличие учётных записей в указанной локальной группе безопасности. 
+.Description
+	Get-LocalGroupMember проверяет наличие учётных записей в указанной
+	локальной группе безопасности.
+	В том числе - и с учётом транзитивности при указании флага `-Recursive`
+.Inputs
+	System.DirectoryServices.DirectoryEntry
+	Учётные записи и группы, членство которых необходимо проверить в локальной группе безопасности.
+.Inputs
+	Microsoft.ActiveDirectory.Management.ADUser
+	Учётные записи AD, членство которых необходимо проверить в локальной группе безопасности.
+.Inputs
+	Microsoft.ActiveDirectory.Management.ADGroup
+	Группы AD, членство которых необходимо проверить в локальной группе безопасности.
+.Outputs
+	Bool
+	Наличие ( `$true` ) или отсутствие ( `$false` ) указанных объектов в указанной группе
+.Link
+	https://github.com/IT-Service/ITG.DomainUtils.Printers#Test-LocalGroupMember
+.Example
+	Test-LocalGroupMember -Group ( Get-LocalGroup -Name Пользователи ) -Member ( Get-ADUser 'admin-sergey.s.betke' ) -Recursive;
+	Проверяем, является ли пользователь `username` членом локальной группы безопасности
+	Пользователи с учётом транзитивности.
+#>
+	[CmdletBinding(
+		HelpUri = 'https://github.com/IT-Service/ITG.DomainUtils.Printers#Test-LocalGroupMember'
+	)]
+
+	param (
+		# Группа безопасности
+		[Parameter(
+			Mandatory = $true
+			, Position = 1
+			, ValueFromPipeline = $false
+		)]
+		[System.DirectoryServices.DirectoryEntry]
+		$Group
+	,
+		# Объект безопасности для проверки членства в указанной группе
+		[Parameter(
+			Mandatory = $true
+			, Position = 2
+			, ValueFromPipeline = $true
+		)]
+		[Alias( 'Member' )]
+		[Alias( 'User' )]
+		$Identity
+	,
+		# Запросить членов группы с учётом транзитивности
+		[Switch]
+		$Recursive
+	)
+
+	begin {
+		$Members = @(
+			Get-LocalGroupMember `
+				-Identity $Group `
+				-Recursive:$Recursive `
+			| Select-Object -ExpandProperty Path `
+		);
+	}
+	process {
+		$Identity `
+		| ConvertTo-ADSIPath `
+		| % {
+			$Members -contains $_;
 		};
 	}
 }
