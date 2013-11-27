@@ -25,6 +25,4 @@ PrintQueueGPOName = itg-Принтер {0}
 PrintQueueGPOComment = Данный объект групповой политики предназначен для подключения очереди печати {0} с сервера {1} членам группы Пользователи данной очереди печати. \r\n\r\nСоздан и используется сценариями ITG.DomainUtils \r\n(см. https://github.com/IT-Service/ITG.DomainUtils).
 PrintQueueGPPComment = Подключения очереди печати {0} с сервера {1}.
 PrintQueueGPPStatus = Принтер {0} на сервере {1}.
-
-LocalGroupNotFound = Локальная группа '{0}' не обнаружена.
 '@
