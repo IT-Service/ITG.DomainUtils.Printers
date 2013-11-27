@@ -77,6 +77,7 @@ Export-ModuleMember -Function Remove-LocalGroup;
 Export-ModuleMember -Function Get-LocalGroupMember;
 Export-ModuleMember -Function Test-LocalGroupMember;
 Export-ModuleMember -Function Add-LocalGroupMember;
+Export-ModuleMember -Function Remove-LocalGroupMember;
 
 Export-ModuleMember -Function ConvertTo-ADSIPath;
 

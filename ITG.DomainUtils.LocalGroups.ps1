@@ -398,10 +398,16 @@ Function Test-LocalGroupMember {
 		);
 	}
 	process {
-		$Identity `
-		| ConvertTo-ADSIPath `
-		| % {
-			$Members -contains $_;
+		try {
+			$Identity `
+			| ConvertTo-ADSIPath `
+			| % {
+				$Members -contains $_;
+			};
+		} catch {
+			Write-Error `
+				-ErrorRecord $_ `
+			;
 		};
 	}
 }
@@ -447,7 +453,7 @@ Function Add-LocalGroupMember {
 		[System.DirectoryServices.DirectoryEntry]
 		$Group
 	,
-		# Объект безопасности для проверки членства в указанной группе
+		# Объект безопасности для добавления в группу
 		[Parameter(
 			Mandatory = $true
 			, Position = 2
@@ -463,13 +469,92 @@ Function Add-LocalGroupMember {
 	)
 
 	process {
-		$Identity `
-		| ConvertTo-ADSIPath `
-		| % {
-			if ( $PSCmdlet.ShouldProcess( "$_ => $( $Group.Path )" ) ) {
-				$Group.PSBase.Invoke( 'Add', $_ );
+		try {
+			$Identity `
+			| ConvertTo-ADSIPath `
+			| % {
+				if ( $PSCmdlet.ShouldProcess( "$_ => $( $Group.Path )" ) ) {
+					$Group.PSBase.Invoke( 'Add', $_ );
+				};
 			};
+			if ( $PassThru ) { return $Identity; };
+		} catch {
+			Write-Error `
+				-ErrorRecord $_ `
+			;
 		};
-		if ( $PassThru ) { return $Identity; };
+	}
+}
+
+Function Remove-LocalGroupMember {
+<#
+.Synopsis
+	Удаляет учётные записи и/или группы из указанной локальной группы безопасности. 
+.Description
+	Удаляет учётные записи и/или группы из указанной локальной группы безопасности. 
+	В качестве удаляемых членов могут быть использованы как локальные
+	учётные записи / группы, так и доменные учётные записи / группы (`Get-ADUser`,
+	`Get-ADGroup`).
+.Inputs
+	System.DirectoryServices.DirectoryEntry
+	Учётные записи и группы, которые необходимо удалить из указанной группы.
+.Inputs
+	Microsoft.ActiveDirectory.Management.ADUser
+	Учётные записи AD, которые необходимо удалить из указанной группы.
+.Inputs
+	Microsoft.ActiveDirectory.Management.ADGroup
+	Группы AD, которые необходимо удалить из указанной группы.
+.Link
+	https://github.com/IT-Service/ITG.DomainUtils.Printers#Remove-LocalGroupMember
+.Example
+	Get-ADUser 'admin-sergey.s.betke' | Remove-LocalGroupMember -Group ( Get-LocalGroup -Name Пользователи );
+	Удаляем указанного пользователя домена из локальной группы безопасности	"Пользователи".
+#>
+	[CmdletBinding(
+		SupportsShouldProcess = $true
+		, ConfirmImpact = 'High'
+		, HelpUri = 'https://github.com/IT-Service/ITG.DomainUtils.Printers#Remove-LocalGroupMember'
+	)]
+
+	param (
+		# Группа безопасности
+		[Parameter(
+			Mandatory = $true
+			, Position = 1
+			, ValueFromPipeline = $false
+		)]
+		[System.DirectoryServices.DirectoryEntry]
+		$Group
+	,
+		# Объект безопасности для удаления из группы
+		[Parameter(
+			Mandatory = $true
+			, Position = 2
+			, ValueFromPipeline = $true
+		)]
+		[Alias( 'Member' )]
+		[Alias( 'User' )]
+		$Identity
+	,
+		# Передавать ли учётную запись далее по конвейеру
+		[Switch]
+		$PassThru
+	)
+
+	process {
+		try {
+			$Identity `
+			| ConvertTo-ADSIPath `
+			| % {
+				if ( $PSCmdlet.ShouldProcess( "$_ => $( $Group.Path )" ) ) {
+					$Group.PSBase.Invoke( 'Remove', $_ );
+				};
+			};
+			if ( $PassThru ) { return $Identity; };
+		} catch {
+			Write-Error `
+				-ErrorRecord $_ `
+			;
+		};
 	}
 }
