@@ -66,6 +66,7 @@ Function Import-LocalizedData {
 
 $loc = Import-LocalizedData;
 
+. (	Join-Path -Path $CurrentDir -ChildPath 'ITG.DomainUtils.NameConvertors.ps1' );
 . (	Join-Path -Path $CurrentDir -ChildPath 'ITG.DomainUtils.LocalGroups.ps1' );
 
 Export-ModuleMember -Function New-LocalGroup;
@@ -74,6 +75,9 @@ Export-ModuleMember -Function Test-LocalGroup;
 Export-ModuleMember -Function Remove-LocalGroup;
 
 Export-ModuleMember -Function Get-LocalGroupMember;
+Export-ModuleMember -Function Test-LocalGroupMember;
+
+Export-ModuleMember -Function ConvertTo-ADSIPath;
 
 . (	Join-Path -Path $CurrentDir -ChildPath 'ITG.DomainUtils.Printers.Configuration.ps1' );
 . (	Join-Path -Path $CurrentDir -ChildPath 'ITG.DomainUtils.Printers.ps1' );
