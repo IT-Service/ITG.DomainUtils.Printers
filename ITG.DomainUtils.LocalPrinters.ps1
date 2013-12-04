@@ -171,7 +171,7 @@ Function New-PrintQueueGroup {
 	System.Printing.PrintQueue
 	ADObject класса printQueue, возвращаемый Get-PrintQueue.
 .Outputs
-	System.DirectoryServices.DirectoryEntry[]
+	System.DirectoryServices.AccountManagement.GroupPrincipal
 	Возвращает созданные группы безопасности при выполнении с ключом PassThru.
 .Link
 	https://github.com/IT-Service/ITG.DomainUtils.Printers#New-PrintQueueGroup
@@ -223,14 +223,14 @@ Function New-PrintQueueGroup {
 			$Config = Get-DomainUtilsPrintersConfiguration;
 			foreach ( $SingleGroupType in $GroupType ) {
 				try {
-					New-LocalGroup `
+					New-Group `
 						-Name ( [String]::Format( $Config."printQueue$( $SingleGroupType )Group", $InputObject.Name ) ) `
 						-Description ( [String]::Format(
 							$loc."printQueue$( $SingleGroupType )GroupDescription"
 							, $InputObject.Name
 							, $InputObject.ShareName
 						) ) `
-						@Params `
+						-WhatIf:$WhatIfPreference `
 						-Verbose:$VerbosePreference `
 						-PassThru:$PassThru `
 					;
@@ -262,7 +262,7 @@ Function Get-PrintQueueGroup {
 	System.Printing.PrintQueue
 	Объект очереди печати, возвращаемый Get-PrintQueue.
 .Outputs
-	System.DirectoryServices.DirectoryEntry[]
+	System.DirectoryServices.AccountManagement.GroupPrincipal
 	Возвращает затребованные группы безопасности.
 .Link
 	https://github.com/IT-Service/ITG.DomainUtils.Printers#Get-PrintQueueGroup
@@ -305,7 +305,7 @@ Function Get-PrintQueueGroup {
 			$Config = Get-DomainUtilsPrintersConfiguration;
 			foreach ( $SingleGroupType in $GroupType ) {
 				try {
-					Get-LocalGroup `
+					Get-Group `
 						-Name ( [String]::Format( $Config."printQueue$( $SingleGroupType )Group", $InputObject.Name ) ) `
 					;
 				} catch {
