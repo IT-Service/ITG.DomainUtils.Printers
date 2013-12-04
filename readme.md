@@ -10,7 +10,7 @@
 Для модульных тестов использую проект [pester](https://github.com/pester/pester).
 
 
-Версия модуля: **0.3.0**
+Версия модуля: **0.4**
 
 ПОДДЕРЖИВАЮТСЯ КОМАНДЛЕТЫ
 -------------------------
@@ -1469,7 +1469,7 @@ Get-PrinterGroup
 
 ##### ВЫХОДНЫЕ ДАННЫЕ
 
-- System.DirectoryServices.DirectoryEntry[]
+- System.DirectoryServices.AccountManagement.GroupPrincipal
 Возвращает затребованные группы безопасности.
 
 ##### ПАРАМЕТРЫ
@@ -1534,7 +1534,7 @@ ADObject класса printQueue, возвращаемый [Get-PrintQueue][].
 
 ##### ВЫХОДНЫЕ ДАННЫЕ
 
-- System.DirectoryServices.DirectoryEntry[]
+- System.DirectoryServices.AccountManagement.GroupPrincipal
 Возвращает созданные группы безопасности при выполнении с ключом PassThru.
 
 ##### ПАРАМЕТРЫ

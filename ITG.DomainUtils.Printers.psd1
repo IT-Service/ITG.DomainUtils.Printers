@@ -14,7 +14,7 @@
 RootModule = 'ITG.DomainUtils.Printers.psm1'
 
 # Номер версии данного модуля.
-ModuleVersion = '0.3.0'
+ModuleVersion = '0.4'
 
 # Уникальный идентификатор данного модуля
 GUID = 'D8CF9F68-3B96-498A-BD04-33EA2B072BD0'
@@ -103,6 +103,8 @@ FileList = `
 ,   'ITG.DomainUtils.Printers.psd1' `
 ,	'ITG.DomainUtils.Printers.Configuration.psm1' `
 ,	'ITG.DomainUtils.Printers.ps1' `
+,	'ITG.DomainUtils.LocalPrinters.ps1' `
+,	'ITG.DomainUtils.LocalPrintersGroups.ps1' `
 ;
 
 # Личные данные, передаваемые в модуль, указанный в параметре ModuleToProcess

@@ -69,6 +69,7 @@ $loc = Import-LocalizedData;
 . (	Join-Path -Path $CurrentDir -ChildPath 'ITG.DomainUtils.Printers.Configuration.ps1' );
 . (	Join-Path -Path $CurrentDir -ChildPath 'ITG.DomainUtils.Printers.ps1' );
 . (	Join-Path -Path $CurrentDir -ChildPath 'ITG.DomainUtils.LocalPrinters.ps1' );
+. (	Join-Path -Path $CurrentDir -ChildPath 'ITG.DomainUtils.LocalPrintersGroups.ps1' );
 
 Export-ModuleMember -Function Initialize-DomainUtilsPrintersConfiguration;
 Export-ModuleMember -Function Test-DomainUtilsPrintersConfiguration;
