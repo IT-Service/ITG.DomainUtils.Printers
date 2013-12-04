@@ -62,7 +62,7 @@ ProcessorArchitecture = ''
 RequiredModules = @(
 	@{ ModuleName = 'ActiveDirectory'; ModuleVersion = '1.0'; } `
 	, @{ ModuleName = 'GroupPolicy'; ModuleVersion = '1.0'; } `
-	, @{ ModuleName = 'ITG.DomainUtils.LocalGroups'; ModuleVersion = '1.0'; } `
+	, @{ ModuleName = 'ITG.DomainUtils.LocalGroups'; ModuleVersion = '2.1'; } `
 )
 
 # Сборки, которые должны быть загружены перед импортированием данного модуля
