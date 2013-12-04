@@ -87,7 +87,7 @@ Export-ModuleMember -Function Test-ADPrintQueueGPO -Alias Test-ADPrinterGPO;
 Export-ModuleMember -Function Update-ADPrintQueueEnvironment -Alias Update-ADPrinterEnvironment;
 Export-ModuleMember -Function Remove-ADPrintQueueEnvironment -Alias Remove-ADPrinterEnvironment;
 
-Export-ModuleMember -Function Test-PrintQueue -Alias Test-Printer;
+Export-ModuleMember -Function Test-Printer -Alias Test-PrintQueue;
 
 Export-ModuleMember -Function New-PrintQueueGroup -Alias New-PrinterGroup;
 Export-ModuleMember -Function Get-PrintQueueGroup -Alias Get-PrinterGroup;

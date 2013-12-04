@@ -113,21 +113,13 @@
 
 	Test-DomainUtilsPrintersConfiguration [[-Domain] <String>] [[-Server] <String>] <CommonParameters>
 
-### PrintQueue
+### Printer
 
-#### КРАТКОЕ ОПИСАНИЕ [Get-PrintQueue][]
-
-Возвращает одну или несколько локальных очередей печати.
-
-	Get-PrintQueue [-PrintQueueTypes <EnumeratedPrintQueueTypes[]>] [-Properties <PrintQueueIndexedProperty[]>] <CommonParameters>
-
-	Get-PrintQueue [-Name] <String> [-PrintQueueTypes <EnumeratedPrintQueueTypes[]>] [-Properties <PrintQueueIndexedProperty[]>] <CommonParameters>
-
-#### КРАТКОЕ ОПИСАНИЕ [Test-PrintQueue][]
+#### КРАТКОЕ ОПИСАНИЕ [Test-Printer][]
 
 Проверяет наличие одной или нескольких локальных очередей печати.
 
-	Test-PrintQueue [-Name] <String> <CommonParameters>
+	Test-Printer [-Name] <String> <CommonParameters>
 
 ### PrintQueueGroup
 
@@ -135,13 +127,13 @@
 
 Возвращает затребованные группы безопасности для указанной локальной очереди печати.
 
-	Get-PrintQueueGroup [-InputObject] <PrintQueue> [-GroupType <String[]>] <CommonParameters>
+	Get-PrintQueueGroup [-Name] <String> [-GroupType <String[]>] <CommonParameters>
 
 #### КРАТКОЕ ОПИСАНИЕ [New-PrintQueueGroup][]
 
 Создаёт локальные группы безопасности для указанного объекта printQueue.
 
-	New-PrintQueueGroup [-InputObject] <PrintQueue> [-GroupType <String[]>] [-PassThru] [-WhatIf] [-Confirm] <CommonParameters>
+	New-PrintQueueGroup [-Name] <String> [-GroupType <String[]>] [-PassThru] [-WhatIf] [-Confirm] <CommonParameters>
 
 ОПИСАНИЕ
 --------
@@ -1310,109 +1302,24 @@ ADObject класса printQueue, возвращаемый [Get-ADPrintQueue][].
 
 - [Интернет версия](https://github.com/IT-Service/ITG.DomainUtils.Printers#Test-DomainUtilsPrintersConfiguration)
 
-#### Get-PrintQueue
+#### Test-Printer
 
-[Get-PrintQueue][] возвращает объект PrintQueue или выполняет поиск для выявления множества
-объектов PrintQueue на локальном сервере печати.
+Проверяет наличие одной или нескольких локальных очередей печати.
 
 ##### ПСЕВДОНИМЫ
 
-Get-Printer
+Test-PrintQueue
 
 ##### СИНТАКСИС
 
-	Get-PrintQueue [-PrintQueueTypes <EnumeratedPrintQueueTypes[]>] [-Properties <PrintQueueIndexedProperty[]>] <CommonParameters>
-
-	Get-PrintQueue [-Name] <String> [-PrintQueueTypes <EnumeratedPrintQueueTypes[]>] [-Properties <PrintQueueIndexedProperty[]>] <CommonParameters>
+	Test-Printer [-Name] <String> <CommonParameters>
 
 ##### ВХОДНЫЕ ДАННЫЕ
 
 - System.Printing.PrintQueue
 Очередь печати.
-- [System.String][]
-Имя (Name) очереди печати.
-
-##### ВЫХОДНЫЕ ДАННЫЕ
-
-- System.Printing.PrintQueue
-Возвращает один или несколько объектов "принтеров" PrintQueue.
-
-##### ПАРАМЕТРЫ
-
-- `[String] Name`
-	идентификация объекта PrintQueue - имя "принтера"
-	* Тип: [System.String][]
-	* Псевдонимы: Identity
-	* Требуется? да
-	* Позиция? 2
-	* Принимать входные данные конвейера? true (ByValue, ByPropertyName)
-	* Принимать подстановочные знаки? нет
-
-- `[EnumeratedPrintQueueTypes[]] PrintQueueTypes`
-	типы запрашиваемых очередей печати
-	* Тип: System.Printing.EnumeratedPrintQueueTypes[]
-	* Псевдонимы: Types
-	* Требуется? нет
-	* Позиция? named
-	* Значение по умолчанию `@(
-	[System.Printing.EnumeratedPrintQueueTypes]::Local `
-	)`
-	* Принимать входные данные конвейера? false
-	* Принимать подстановочные знаки? нет
-
-- `[PrintQueueIndexedProperty[]] Properties`
-	Перечень свойств объекта printQueue, значения которых необходимо запросить
-	* Тип: System.Printing.PrintQueueIndexedProperty[]
-	* Требуется? нет
-	* Позиция? named
-	* Значение по умолчанию `@(
-	[System.Printing.PrintQueueIndexedProperty]::Name `
-	, [System.Printing.PrintQueueIndexedProperty]::Comment `
-	, [System.Printing.PrintQueueIndexedProperty]::Description `
-	, [System.Printing.PrintQueueIndexedProperty]::Location `
-	, [System.Printing.PrintQueueIndexedProperty]::HostingPrintServer `
-	, [System.Printing.PrintQueueIndexedProperty]::ShareName `
-	)`
-	* Принимать входные данные конвейера? false
-	* Принимать подстановочные знаки? нет
-
-- `<CommonParameters>`
-	Этот командлет поддерживает общие параметры: Verbose, Debug,
-	ErrorAction, ErrorVariable, WarningAction, WarningVariable,
-	OutBuffer и OutVariable. Для получения дополнительных сведений см. раздел
-	[about_CommonParameters][].
-
-
-##### ПРИМЕРЫ
-
-1. Возвращает все **локальные** очереди печати.
-
-		Get-PrintQueue -PrintQueueTypes Local
-
-##### ССЫЛКИ ПО ТЕМЕ
-
-- [Интернет версия](https://github.com/IT-Service/ITG.DomainUtils.Printers#Get-PrintQueue)
-- System.Printing.LocalPrintServer
-
-#### Test-PrintQueue
-
-[Get-PrintQueue][] возвращает объект PrintQueue или выполняет поиск для выявления множества
-объектов PrintQueue на локальном сервере печати.
-
-##### ПСЕВДОНИМЫ
-
-Test-Printer
-
-##### СИНТАКСИС
-
-	Test-PrintQueue [-Name] <String> <CommonParameters>
-
-##### ВХОДНЫЕ ДАННЫЕ
-
-- System.Printing.PrintQueue
-Очередь печати.
-- [System.String][]
-Имя (Name) очереди печати.
+- Microsoft.Management.Infrastructure.CimInstance
+Объект очереди печати, возвращаемый [Get-Printer][].
 
 ##### ВЫХОДНЫЕ ДАННЫЕ
 
@@ -1424,10 +1331,9 @@ Test-Printer
 - `[String] Name`
 	идентификация объекта PrintQueue - имя "принтера"
 	* Тип: [System.String][]
-	* Псевдонимы: Identity
 	* Требуется? да
 	* Позиция? 2
-	* Принимать входные данные конвейера? true (ByValue, ByPropertyName)
+	* Принимать входные данные конвейера? true (ByPropertyName)
 	* Принимать подстановочные знаки? нет
 
 - `<CommonParameters>`
@@ -1441,12 +1347,11 @@ Test-Printer
 
 1. Проверяет наличие на локальном сервере печати очереди печати с именем P00001.
 
-		Test-PrintQueue -Name 'P00001'
+		Test-Printer -Name 'P00001'
 
 ##### ССЫЛКИ ПО ТЕМЕ
 
-- [Интернет версия](https://github.com/IT-Service/ITG.DomainUtils.Printers#Test-PrintQueue)
-- System.Printing.LocalPrintServer
+- [Интернет версия](https://github.com/IT-Service/ITG.DomainUtils.Printers#Test-Printer)
 
 #### Get-PrintQueueGroup
 
@@ -1460,12 +1365,14 @@ Get-PrinterGroup
 
 ##### СИНТАКСИС
 
-	Get-PrintQueueGroup [-InputObject] <PrintQueue> [-GroupType <String[]>] <CommonParameters>
+	Get-PrintQueueGroup [-Name] <String> [-GroupType <String[]>] <CommonParameters>
 
 ##### ВХОДНЫЕ ДАННЫЕ
 
 - System.Printing.PrintQueue
-Объект очереди печати, возвращаемый [Get-PrintQueue][].
+Объект очереди печати.
+- Microsoft.Management.Infrastructure.CimInstance
+Объект очереди печати, возвращаемый [Get-Printer][].
 
 ##### ВЫХОДНЫЕ ДАННЫЕ
 
@@ -1474,13 +1381,12 @@ Get-PrinterGroup
 
 ##### ПАРАМЕТРЫ
 
-- `[PrintQueue] InputObject`
-	Объект очереди печати
-	* Тип: System.Printing.PrintQueue
-	* Псевдонимы: Printer, PrintQueue
+- `[String] Name`
+	Имя локальной очереди печати
+	* Тип: [System.String][]
 	* Требуется? да
 	* Позиция? 1
-	* Принимать входные данные конвейера? true (ByValue)
+	* Принимать входные данные конвейера? true (ByPropertyName)
 	* Принимать подстановочные знаки? нет
 
 - `[String[]] GroupType`
@@ -1511,7 +1417,7 @@ Get-PrinterGroup
 ##### ССЫЛКИ ПО ТЕМЕ
 
 - [Интернет версия](https://github.com/IT-Service/ITG.DomainUtils.Printers#Get-PrintQueueGroup)
-- [Get-PrintQueue][]
+- Get-PrintQueue
 
 #### New-PrintQueueGroup
 
@@ -1525,12 +1431,14 @@ New-PrinterGroup
 
 ##### СИНТАКСИС
 
-	New-PrintQueueGroup [-InputObject] <PrintQueue> [-GroupType <String[]>] [-PassThru] [-WhatIf] [-Confirm] <CommonParameters>
+	New-PrintQueueGroup [-Name] <String> [-GroupType <String[]>] [-PassThru] [-WhatIf] [-Confirm] <CommonParameters>
 
 ##### ВХОДНЫЕ ДАННЫЕ
 
 - System.Printing.PrintQueue
-ADObject класса printQueue, возвращаемый [Get-PrintQueue][].
+Объект очереди печати.
+- Microsoft.Management.Infrastructure.CimInstance
+Объект очереди печати, возвращаемый [Get-Printer][].
 
 ##### ВЫХОДНЫЕ ДАННЫЕ
 
@@ -1539,13 +1447,12 @@ ADObject класса printQueue, возвращаемый [Get-PrintQueue][].
 
 ##### ПАРАМЕТРЫ
 
-- `[PrintQueue] InputObject`
-	Объект очереди печати
-	* Тип: System.Printing.PrintQueue
-	* Псевдонимы: Printer, PrintQueue
+- `[String] Name`
+	Имя локальной очереди печати
+	* Тип: [System.String][]
 	* Требуется? да
 	* Позиция? 1
-	* Принимать входные данные конвейера? true (ByValue)
+	* Принимать входные данные конвейера? true (ByPropertyName)
 	* Принимать подстановочные знаки? нет
 
 - `[String[]] GroupType`
@@ -1595,7 +1502,7 @@ ADObject класса printQueue, возвращаемый [Get-PrintQueue][].
 ##### ССЫЛКИ ПО ТЕМЕ
 
 - [Интернет версия](https://github.com/IT-Service/ITG.DomainUtils.Printers#New-PrintQueueGroup)
-- [Get-PrintQueue][]
+- Get-PrintQueue
 
 
 [about_ActiveDirectory_Filter]: <http://technet.microsoft.com/library/hh531527.aspx> 
@@ -1607,7 +1514,7 @@ ADObject класса printQueue, возвращаемый [Get-PrintQueue][].
 [Get-ADPrintQueueGPO]: <#get-adprintqueuegpo> "Возвращает объект групповой политики, применяемой к пользователям указанного объекта printQueue."
 [Get-ADPrintQueueGroup]: <#get-adprintqueuegroup> "Возвращает затребованные группы безопасности для указанного объекта printQueue."
 [Get-DomainUtilsPrintersConfiguration]: <#get-domainutilsprintersconfiguration> "Получаем объект, содержащий конфигурацию модуля для указанного домена."
-[Get-PrintQueue]: <#get-printqueue> "Возвращает одну или несколько локальных очередей печати."
+[Get-Printer]: <> "Retrieves a list of printers installed on a computer."
 [Get-PrintQueueGroup]: <#get-printqueuegroup> "Возвращает затребованные группы безопасности для указанной локальной очереди печати."
 [Initialize-ADPrintQueuesEnvironment]: <#initialize-adprintqueuesenvironment> "Создаёт корневой контейнер для контейнеров объектов printQueue."
 [Initialize-DomainUtilsPrintersConfiguration]: <#initialize-domainutilsprintersconfiguration> "Инициализация конфигурации модуля."
@@ -1626,7 +1533,7 @@ ADObject класса printQueue, возвращаемый [Get-PrintQueue][].
 [Test-ADPrintQueue]: <#test-adprintqueue> "Определяет существует ли объект AD с классом printQueue с указанными фильтрами."
 [Test-ADPrintQueueGPO]: <#test-adprintqueuegpo> "Проверяет наличие объекта групповой политики, применяемой к пользователям указанного объекта printQueue."
 [Test-DomainUtilsPrintersConfiguration]: <#test-domainutilsprintersconfiguration> "Проверяем наличие конфигурации модуля для указанного домена."
-[Test-PrintQueue]: <#test-printqueue> "Проверяет наличие одной или нескольких локальных очередей печати."
+[Test-Printer]: <#test-printer> "Проверяет наличие одной или нескольких локальных очередей печати."
 [Update-ADPrintQueueEnvironment]: <#update-adprintqueueenvironment> "Создаёт (при отсутствии) группы безопасности и объект GPO."
 
 ---------------------------------------

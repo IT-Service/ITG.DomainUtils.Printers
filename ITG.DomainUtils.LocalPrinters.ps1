@@ -1,29 +1,24 @@
-Function Test-PrintQueue {
+Function Test-Printer {
 <#
 .Synopsis
 	Проверяет наличие одной или нескольких локальных очередей печати. 
-.Description
-	Get-PrintQueue возвращает объект PrintQueue или выполняет поиск для выявления множества
-	объектов PrintQueue на локальном сервере печати.
 .Inputs
 	System.Printing.PrintQueue
 	Очередь печати.
 .Inputs
-	System.String
-	Имя (Name) очереди печати.
+	Microsoft.Management.Infrastructure.CimInstance
+	Объект очереди печати, возвращаемый Get-Printer.
 .Outputs
 	System.Bool
 	Подтверждает наличие либо отсутствие указанной очереди печати на локальном сервере печати.
 .Link
-	https://github.com/IT-Service/ITG.DomainUtils.Printers#Test-PrintQueue
-.Link
-	System.Printing.LocalPrintServer
+	https://github.com/IT-Service/ITG.DomainUtils.Printers#Test-Printer
 .Example
-	Test-PrintQueue -Name 'P00001'
+	Test-Printer -Name 'P00001'
 	Проверяет наличие на локальном сервере печати очереди печати с именем P00001.
 #>
 	[CmdletBinding(
-		HelpUri = 'https://github.com/IT-Service/ITG.DomainUtils.Printers#Test-PrintQueue'
+		HelpUri = 'https://github.com/IT-Service/ITG.DomainUtils.Printers#Test-Printer'
 	)]
 
 	param (
@@ -31,20 +26,16 @@ Function Test-PrintQueue {
 		[Parameter(
 			Mandatory = $true
 			, Position = 1
-			, ValueFromPipeline = $true
 			, ValueFromPipelineByPropertyName = $true
 		)]
 		[String]
-		[Alias( 'Identity' )]
 		$Name
 	)
 
 	process {
 		try {
-			return [bool] ( Get-PrintQueue `
+			return [bool] ( Get-Printer `
 				-Name $Name `
-				-PrintQueueTypes Local, Connections `
-				-Properties Name `
 				-ErrorAction SilentlyContinue `
 			);
 		} catch {
@@ -55,4 +46,4 @@ Function Test-PrintQueue {
 	}
 }
 
-New-Alias -Name Test-Printer -Value Test-PrintQueue -Force;
+New-Alias -Name Test-PrintQueue -Value Test-Printer -Force;
