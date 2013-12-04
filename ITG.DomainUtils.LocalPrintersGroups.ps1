@@ -11,7 +11,10 @@ Function New-PrintQueueGroup {
 	Следует избегать использовать его для подключенных сетевых принтеров.
 .Inputs
 	System.Printing.PrintQueue
-	ADObject класса printQueue, возвращаемый Get-PrintQueue.
+	Объект очереди печати.
+.Inputs
+	Microsoft.Management.Infrastructure.CimInstance
+	Объект очереди печати, возвращаемый Get-Printer.
 .Outputs
 	System.DirectoryServices.AccountManagement.GroupPrincipal
 	Возвращает созданные группы безопасности при выполнении с ключом PassThru.
@@ -34,16 +37,14 @@ Function New-PrintQueueGroup {
 	)]
 
 	param (
-		# Объект очереди печати
+		# Имя локальной очереди печати
 		[Parameter(
 			Mandatory = $true
 			, Position = 0
-			, ValueFromPipeline = $true
+			, ValueFromPipelineByPropertyName = $true
 		)]
-		[System.Printing.PrintQueue]
-		[Alias( 'PrintQueue' )]
-		[Alias( 'Printer' )]
-		$InputObject
+		[String]
+		$Name
 	,
 		# тип группы: Users (группа пользователей), Administrators (группа администраторов).
 		# Группа пользователей получит только права печати и управления собственными документами.
@@ -66,7 +67,7 @@ Function New-PrintQueueGroup {
 			foreach ( $SingleGroupType in $GroupType ) {
 				try {
 					New-Group `
-						-Name ( [String]::Format( $Config."printQueue$( $SingleGroupType )Group", $InputObject.Name ) ) `
+						-Name ( [String]::Format( $Config."printQueue$( $SingleGroupType )Group", $Name ) ) `
 						-Description ( [String]::Format(
 							$loc."printQueue$( $SingleGroupType )GroupDescription"
 							, $InputObject.Name
@@ -102,7 +103,10 @@ Function Get-PrintQueueGroup {
 	(по конвейеру) объекта локальной очереди печати.
 .Inputs
 	System.Printing.PrintQueue
-	Объект очереди печати, возвращаемый Get-PrintQueue.
+	Объект очереди печати.
+.Inputs
+	Microsoft.Management.Infrastructure.CimInstance
+	Объект очереди печати, возвращаемый Get-Printer.
 .Outputs
 	System.DirectoryServices.AccountManagement.GroupPrincipal
 	Возвращает затребованные группы безопасности.
@@ -119,16 +123,14 @@ Function Get-PrintQueueGroup {
 	)]
 
 	param (
-		# Объект очереди печати
+		# Имя локальной очереди печати
 		[Parameter(
 			Mandatory = $true
 			, Position = 0
-			, ValueFromPipeline = $true
+			, ValueFromPipelineByPropertyName = $true
 		)]
-		[System.Printing.PrintQueue]
-		[Alias( 'PrintQueue' )]
-		[Alias( 'Printer' )]
-		$InputObject
+		[String]
+		$Name
 	,
 		# тип группы: Users (группа пользователей), Administrators (группа администраторов).
 		# Группа пользователей получит право применения групповой политики для этой очереди печати, и право печати.
@@ -148,7 +150,7 @@ Function Get-PrintQueueGroup {
 			foreach ( $SingleGroupType in $GroupType ) {
 				try {
 					Get-Group `
-						-Name ( [String]::Format( $Config."printQueue$( $SingleGroupType )Group", $InputObject.Name ) ) `
+						-Name ( [String]::Format( $Config."printQueue$( $SingleGroupType )Group", $Name ) ) `
 					;
 				} catch {
 					Write-Error `
