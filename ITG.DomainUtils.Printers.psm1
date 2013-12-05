@@ -89,6 +89,6 @@ Export-ModuleMember -Function Remove-ADPrintQueueEnvironment -Alias Remove-ADPri
 
 Export-ModuleMember -Function Test-Printer -Alias Test-PrintQueue;
 
-Export-ModuleMember -Function New-PrintQueueGroup -Alias New-PrinterGroup;
-Export-ModuleMember -Function Get-PrintQueueGroup -Alias Get-PrinterGroup;
-Export-ModuleMember -Function Test-PrintQueueGroup -Alias Test-PrinterGroup;
+Export-ModuleMember -Function New-PrinterGroup -Alias New-PrintQueueGroup;
+Export-ModuleMember -Function Get-PrinterGroup -Alias Get-PrintQueueGroup;
+Export-ModuleMember -Function Test-PrinterGroup -Alias Test-PrintQueueGroup;

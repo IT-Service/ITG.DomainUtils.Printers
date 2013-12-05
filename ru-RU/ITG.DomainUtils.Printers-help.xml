@@ -592,9 +592,9 @@
 	</command>
 	<command xmlns:msh="http://msh" xmlns="http://schemas.microsoft.com/maml/dev/command/2004/10">
 		<details>
-			<name>Get-PrintQueueGroup</name>
+			<name>Get-PrinterGroup</name>
 			<verb>Get</verb>
-			<noun>PrintQueueGroup</noun>
+			<noun>PrinterGroup</noun>
 			<maml:description>
 				<maml:para>Возвращает затребованные группы безопасности для указанной локальной очереди печати.</maml:para>
 			</maml:description>
@@ -604,11 +604,11 @@
 			<dev:version>0.4</dev:version>
 		</details>
 		<maml:description>
-			<maml:para>Get-PrintQueueGroup возвращает группы безопасности (Пользователи принтера, Операторы принтера) для указанного (по конвейеру) объекта локальной очереди печати.</maml:para>
+			<maml:para>Get-PrinterGroup возвращает группы безопасности (Пользователи принтера, Операторы принтера) для указанного (по конвейеру) объекта локальной очереди печати.</maml:para>
 		</maml:description>
 		<syntax>
 			<syntaxItem>
-				<maml:name>Get-PrintQueueGroup</maml:name>
+				<maml:name>Get-PrinterGroup</maml:name>
 				<parameter required="true" position="1" pipelineInput="true (ByPropertyName)" globbing="false">
 					<maml:name>Name</maml:name>
 					<parameterValue required="true">String</parameterValue>
@@ -679,7 +679,7 @@
 				<maml:introduction>
 					<maml:paragraph>C:\PS&gt;</maml:paragraph>
 				</maml:introduction>
-				<dev:code>Get-PrintQueue -Name 'P00001' | Get-PrintQueueGroup -GroupType Users</dev:code>
+				<dev:code>Get-Printer -Name 'P00001' | Get-PrinterGroup -GroupType Users</dev:code>
 				<maml:remarks>
 					<maml:para>Возвращает группу безопасности Пользователи принтера для очереди печати 'P00001'.</maml:para>
 				</maml:remarks>
@@ -687,10 +687,10 @@
 		</examples>
 		<maml:relatedLinks>
 			<maml:navigationLink>
-				<maml:uri>https://github.com/IT-Service/ITG.DomainUtils.Printers#Get-PrintQueueGroup</maml:uri>
+				<maml:uri>https://github.com/IT-Service/ITG.DomainUtils.Printers#Get-PrinterGroup</maml:uri>
 			</maml:navigationLink>
 			<maml:navigationLink>
-				<maml:linkText>Get-PrintQueue</maml:linkText>
+				<maml:linkText>Get-Printer</maml:linkText>
 			</maml:navigationLink>
 		</maml:relatedLinks>
 	</command>
@@ -1275,9 +1275,9 @@
 	</command>
 	<command xmlns:msh="http://msh" xmlns="http://schemas.microsoft.com/maml/dev/command/2004/10">
 		<details>
-			<name>New-PrintQueueGroup</name>
+			<name>New-PrinterGroup</name>
 			<verb>New</verb>
-			<noun>PrintQueueGroup</noun>
+			<noun>PrinterGroup</noun>
 			<maml:description>
 				<maml:para>Создаёт локальные группы безопасности для указанного объекта printQueue.</maml:para>
 			</maml:description>
@@ -1287,11 +1287,11 @@
 			<dev:version>0.4</dev:version>
 		</details>
 		<maml:description>
-			<maml:para>New-PrintQueueGroup создаёт группы безопасности (Пользователи принтера, Операторы принтера) для указанного через InputObject объекта printQueue на локальном сервере печати.</maml:para>
+			<maml:para>New-PrinterGroup создаёт группы безопасности (Пользователи принтера, Операторы принтера) для указанного через InputObject объекта printQueue на локальном сервере печати.</maml:para>
 		</maml:description>
 		<syntax>
 			<syntaxItem>
-				<maml:name>New-PrintQueueGroup</maml:name>
+				<maml:name>New-PrinterGroup</maml:name>
 				<parameter required="true" position="1" pipelineInput="true (ByPropertyName)" globbing="false">
 					<maml:name>Name</maml:name>
 					<parameterValue required="true">String</parameterValue>
@@ -1392,7 +1392,7 @@
 				<maml:introduction>
 					<maml:paragraph>C:\PS&gt;</maml:paragraph>
 				</maml:introduction>
-				<dev:code>Get-PrintQueue 'P00001' | New-PrintQueueGroup</dev:code>
+				<dev:code>Get-Printer 'P00001' | New-PrinterGroup</dev:code>
 				<maml:remarks>
 					<maml:para>Создаёт группы безопасности для очереди печати 'p00001' на локальном сервере печати.</maml:para>
 				</maml:remarks>
@@ -1402,7 +1402,7 @@
 				<maml:introduction>
 					<maml:paragraph>C:\PS&gt;</maml:paragraph>
 				</maml:introduction>
-				<dev:code>Get-PrintQueue | New-PrintQueueGroup -GroupType Users</dev:code>
+				<dev:code>Get-Printer | New-PrinterGroup -GroupType Users</dev:code>
 				<maml:remarks>
 					<maml:para>Создаёт локальные группы безопасности "Пользователи принтера" для всех обнаруженных локальных принтеров.</maml:para>
 				</maml:remarks>
@@ -1410,10 +1410,10 @@
 		</examples>
 		<maml:relatedLinks>
 			<maml:navigationLink>
-				<maml:uri>https://github.com/IT-Service/ITG.DomainUtils.Printers#New-PrintQueueGroup</maml:uri>
+				<maml:uri>https://github.com/IT-Service/ITG.DomainUtils.Printers#New-PrinterGroup</maml:uri>
 			</maml:navigationLink>
 			<maml:navigationLink>
-				<maml:linkText>Get-PrintQueue</maml:linkText>
+				<maml:linkText>Get-Printer</maml:linkText>
 			</maml:navigationLink>
 		</maml:relatedLinks>
 	</command>
@@ -1975,9 +1975,9 @@
 	</command>
 	<command xmlns:msh="http://msh" xmlns="http://schemas.microsoft.com/maml/dev/command/2004/10">
 		<details>
-			<name>Test-PrintQueueGroup</name>
+			<name>Test-PrinterGroup</name>
 			<verb>Test</verb>
-			<noun>PrintQueueGroup</noun>
+			<noun>PrinterGroup</noun>
 			<maml:description>
 				<maml:para>Проверяет наличие затребованных групп безопасности для указанной локальной очереди печати.</maml:para>
 			</maml:description>
@@ -1988,7 +1988,7 @@
 		</details>
 		<syntax>
 			<syntaxItem>
-				<maml:name>Test-PrintQueueGroup</maml:name>
+				<maml:name>Test-PrinterGroup</maml:name>
 				<parameter required="true" position="1" pipelineInput="true (ByPropertyName)" globbing="false">
 					<maml:name>Name</maml:name>
 					<parameterValue required="true">String</parameterValue>
@@ -2067,7 +2067,7 @@
 		</examples>
 		<maml:relatedLinks>
 			<maml:navigationLink>
-				<maml:uri>https://github.com/IT-Service/ITG.DomainUtils.Printers#Test-PrintQueueGroup</maml:uri>
+				<maml:uri>https://github.com/IT-Service/ITG.DomainUtils.Printers#Test-PrinterGroup</maml:uri>
 			</maml:navigationLink>
 		</maml:relatedLinks>
 	</command>

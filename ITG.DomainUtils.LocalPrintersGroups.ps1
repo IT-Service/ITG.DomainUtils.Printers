@@ -1,9 +1,9 @@
-Function New-PrintQueueGroup {
+Function New-PrinterGroup {
 <#
 .Synopsis
 	Создаёт локальные группы безопасности для указанного объекта printQueue. 
 .Description
-	New-PrintQueueGroup создаёт группы безопасности
+	New-PrinterGroup создаёт группы безопасности
 	(Пользователи принтера, Операторы принтера) для указанного
 	через InputObject объекта printQueue на локальном сервере печати.
 .Notes
@@ -19,21 +19,21 @@ Function New-PrintQueueGroup {
 	System.DirectoryServices.AccountManagement.GroupPrincipal
 	Возвращает созданные группы безопасности при выполнении с ключом PassThru.
 .Link
-	https://github.com/IT-Service/ITG.DomainUtils.Printers#New-PrintQueueGroup
+	https://github.com/IT-Service/ITG.DomainUtils.Printers#New-PrinterGroup
 .Link
-	Get-PrintQueue
+	Get-Printer
 .Example
-	Get-PrintQueue 'P00001' | New-PrintQueueGroup
+	Get-Printer 'P00001' | New-PrinterGroup
 	Создаёт группы безопасности для очереди печати 'p00001' на локальном сервере печати.
 .Example
-	Get-PrintQueue | New-PrintQueueGroup -GroupType Users
+	Get-Printer | New-PrinterGroup -GroupType Users
 	Создаёт локальные группы безопасности "Пользователи принтера" для всех обнаруженных
 	локальных принтеров.
 #>
 	[CmdletBinding(
 		SupportsShouldProcess = $true
 		, ConfirmImpact = 'Medium'
-		, HelpUri = 'https://github.com/IT-Service/ITG.DomainUtils.Printers#New-PrintQueueGroup'
+		, HelpUri = 'https://github.com/IT-Service/ITG.DomainUtils.Printers#New-PrinterGroup'
 	)]
 
 	param (
@@ -91,14 +91,14 @@ Function New-PrintQueueGroup {
 	}
 }
 
-New-Alias -Name New-PrinterGroup -Value New-PrintQueueGroup -Force;
+New-Alias -Name New-PrintQueueGroup -Value New-PrinterGroup -Force;
 
-Function Get-PrintQueueGroup {
+Function Get-PrinterGroup {
 <#
 .Synopsis
 	Возвращает затребованные группы безопасности для указанной локальной очереди печати. 
 .Description
-	Get-PrintQueueGroup возвращает группы безопасности
+	Get-PrinterGroup возвращает группы безопасности
 	(Пользователи принтера, Операторы принтера) для указанного
 	(по конвейеру) объекта локальной очереди печати.
 .Inputs
@@ -111,15 +111,15 @@ Function Get-PrintQueueGroup {
 	System.DirectoryServices.AccountManagement.GroupPrincipal
 	Возвращает затребованные группы безопасности.
 .Link
-	https://github.com/IT-Service/ITG.DomainUtils.Printers#Get-PrintQueueGroup
+	https://github.com/IT-Service/ITG.DomainUtils.Printers#Get-PrinterGroup
 .Link
-	Get-PrintQueue
+	Get-Printer
 .Example
-	Get-PrintQueue -Name 'P00001' | Get-PrintQueueGroup -GroupType Users
+	Get-Printer -Name 'P00001' | Get-PrinterGroup -GroupType Users
 	Возвращает группу безопасности Пользователи принтера для очереди печати 'P00001'.
 #>
 	[CmdletBinding(
-		HelpUri = 'https://github.com/IT-Service/ITG.DomainUtils.Printers#Get-PrintQueueGroup'
+		HelpUri = 'https://github.com/IT-Service/ITG.DomainUtils.Printers#Get-PrinterGroup'
 	)]
 
 	param (
@@ -166,9 +166,9 @@ Function Get-PrintQueueGroup {
 	}
 }
 
-New-Alias -Name Get-PrinterGroup -Value Get-PrintQueueGroup -Force;
+New-Alias -Name Get-PrintQueueGroup -Value Get-PrinterGroup -Force;
 
-Function Test-PrintQueueGroup {
+Function Test-PrinterGroup {
 <#
 .Synopsis
 	Проверяет наличие затребованных групп безопасности для указанной локальной очереди печати. 
@@ -182,13 +182,13 @@ Function Test-PrintQueueGroup {
 	System.Bool
 	`$true` если группа существует, `$false` - если не существует.
 .Link
-	https://github.com/IT-Service/ITG.DomainUtils.Printers#Test-PrintQueueGroup
+	https://github.com/IT-Service/ITG.DomainUtils.Printers#Test-PrinterGroup
 .Example
 	Get-Printer 'P00001' | Test-PrinterGroup -GroupType Users
 	Проверяем наличие группы безопасности Пользователи принтера для очереди печати 'P00001'.
 #>
 	[CmdletBinding(
-		HelpUri = 'https://github.com/IT-Service/ITG.DomainUtils.Printers#Test-PrintQueueGroup'
+		HelpUri = 'https://github.com/IT-Service/ITG.DomainUtils.Printers#Test-PrinterGroup'
 	)]
 
 	param (
@@ -232,4 +232,4 @@ Function Test-PrintQueueGroup {
 	}
 }
 
-New-Alias -Name Test-PrinterGroup -Value Test-PrintQueueGroup -Force;
+New-Alias -Name Test-PrintQueueGroup -Value Test-PrinterGroup -Force;

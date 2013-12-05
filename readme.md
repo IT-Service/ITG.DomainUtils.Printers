@@ -121,25 +121,25 @@
 
 	Test-Printer [-Name] <String> <CommonParameters>
 
-### PrintQueueGroup
+### PrinterGroup
 
-#### КРАТКОЕ ОПИСАНИЕ [Get-PrintQueueGroup][]
+#### КРАТКОЕ ОПИСАНИЕ [Get-PrinterGroup][]
 
 Возвращает затребованные группы безопасности для указанной локальной очереди печати.
 
-	Get-PrintQueueGroup [-Name] <String> [-GroupType <String[]>] <CommonParameters>
+	Get-PrinterGroup [-Name] <String> [-GroupType <String[]>] <CommonParameters>
 
-#### КРАТКОЕ ОПИСАНИЕ [New-PrintQueueGroup][]
+#### КРАТКОЕ ОПИСАНИЕ [New-PrinterGroup][]
 
 Создаёт локальные группы безопасности для указанного объекта printQueue.
 
-	New-PrintQueueGroup [-Name] <String> [-GroupType <String[]>] [-PassThru] [-WhatIf] [-Confirm] <CommonParameters>
+	New-PrinterGroup [-Name] <String> [-GroupType <String[]>] [-PassThru] [-WhatIf] [-Confirm] <CommonParameters>
 
-#### КРАТКОЕ ОПИСАНИЕ [Test-PrintQueueGroup][]
+#### КРАТКОЕ ОПИСАНИЕ [Test-PrinterGroup][]
 
 Проверяет наличие затребованных групп безопасности для указанной локальной очереди печати.
 
-	Test-PrintQueueGroup [-Name] <String> [-GroupType <String[]>] <CommonParameters>
+	Test-PrinterGroup [-Name] <String> [-GroupType <String[]>] <CommonParameters>
 
 ОПИСАНИЕ
 --------
@@ -1359,19 +1359,19 @@ Test-PrintQueue
 
 - [Интернет версия](https://github.com/IT-Service/ITG.DomainUtils.Printers#Test-Printer)
 
-#### Get-PrintQueueGroup
+#### Get-PrinterGroup
 
-[Get-PrintQueueGroup][] возвращает группы безопасности
+[Get-PrinterGroup][] возвращает группы безопасности
 (Пользователи принтера, Операторы принтера) для указанного
 (по конвейеру) объекта локальной очереди печати.
 
 ##### ПСЕВДОНИМЫ
 
-Get-PrinterGroup
+Get-PrintQueueGroup
 
 ##### СИНТАКСИС
 
-	Get-PrintQueueGroup [-Name] <String> [-GroupType <String[]>] <CommonParameters>
+	Get-PrinterGroup [-Name] <String> [-GroupType <String[]>] <CommonParameters>
 
 ##### ВХОДНЫЕ ДАННЫЕ
 
@@ -1418,26 +1418,26 @@ Get-PrinterGroup
 
 1. Возвращает группу безопасности Пользователи принтера для очереди печати 'P00001'.
 
-		Get-PrintQueue -Name 'P00001' | Get-PrintQueueGroup -GroupType Users
+		Get-Printer -Name 'P00001' | Get-PrinterGroup -GroupType Users
 
 ##### ССЫЛКИ ПО ТЕМЕ
 
-- [Интернет версия](https://github.com/IT-Service/ITG.DomainUtils.Printers#Get-PrintQueueGroup)
-- Get-PrintQueue
+- [Интернет версия](https://github.com/IT-Service/ITG.DomainUtils.Printers#Get-PrinterGroup)
+- [Get-Printer][]
 
-#### New-PrintQueueGroup
+#### New-PrinterGroup
 
-[New-PrintQueueGroup][] создаёт группы безопасности
+[New-PrinterGroup][] создаёт группы безопасности
 (Пользователи принтера, Операторы принтера) для указанного
 через InputObject объекта printQueue на локальном сервере печати.
 
 ##### ПСЕВДОНИМЫ
 
-New-PrinterGroup
+New-PrintQueueGroup
 
 ##### СИНТАКСИС
 
-	New-PrintQueueGroup [-Name] <String> [-GroupType <String[]>] [-PassThru] [-WhatIf] [-Confirm] <CommonParameters>
+	New-PrinterGroup [-Name] <String> [-GroupType <String[]>] [-PassThru] [-WhatIf] [-Confirm] <CommonParameters>
 
 ##### ВХОДНЫЕ ДАННЫЕ
 
@@ -1493,12 +1493,12 @@ New-PrinterGroup
 
 1. Создаёт группы безопасности для очереди печати 'p00001' на локальном сервере печати.
 
-		Get-PrintQueue 'P00001' | New-PrintQueueGroup
+		Get-Printer 'P00001' | New-PrinterGroup
 
 2. Создаёт локальные группы безопасности "Пользователи принтера" для всех обнаруженных
 локальных принтеров.
 
-		Get-PrintQueue | New-PrintQueueGroup -GroupType Users
+		Get-Printer | New-PrinterGroup -GroupType Users
 
 ##### ПРИМЕЧАНИЯ
 
@@ -1507,20 +1507,20 @@ New-PrinterGroup
 
 ##### ССЫЛКИ ПО ТЕМЕ
 
-- [Интернет версия](https://github.com/IT-Service/ITG.DomainUtils.Printers#New-PrintQueueGroup)
-- Get-PrintQueue
+- [Интернет версия](https://github.com/IT-Service/ITG.DomainUtils.Printers#New-PrinterGroup)
+- [Get-Printer][]
 
-#### Test-PrintQueueGroup
+#### Test-PrinterGroup
 
 Проверяет наличие затребованных групп безопасности для указанной локальной очереди печати.
 
 ##### ПСЕВДОНИМЫ
 
-Test-PrinterGroup
+Test-PrintQueueGroup
 
 ##### СИНТАКСИС
 
-	Test-PrintQueueGroup [-Name] <String> [-GroupType <String[]>] <CommonParameters>
+	Test-PrinterGroup [-Name] <String> [-GroupType <String[]>] <CommonParameters>
 
 ##### ВХОДНЫЕ ДАННЫЕ
 
@@ -1568,7 +1568,7 @@ Test-PrinterGroup
 
 ##### ССЫЛКИ ПО ТЕМЕ
 
-- [Интернет версия](https://github.com/IT-Service/ITG.DomainUtils.Printers#Test-PrintQueueGroup)
+- [Интернет версия](https://github.com/IT-Service/ITG.DomainUtils.Printers#Test-PrinterGroup)
 
 
 [about_ActiveDirectory_Filter]: <http://technet.microsoft.com/library/hh531527.aspx> 
@@ -1581,7 +1581,7 @@ Test-PrinterGroup
 [Get-ADPrintQueueGroup]: <#get-adprintqueuegroup> "Возвращает затребованные группы безопасности для указанного объекта printQueue."
 [Get-DomainUtilsPrintersConfiguration]: <#get-domainutilsprintersconfiguration> "Получаем объект, содержащий конфигурацию модуля для указанного домена."
 [Get-Printer]: <> "Retrieves a list of printers installed on a computer."
-[Get-PrintQueueGroup]: <#get-printqueuegroup> "Возвращает затребованные группы безопасности для указанной локальной очереди печати."
+[Get-PrinterGroup]: <#get-printergroup> "Возвращает затребованные группы безопасности для указанной локальной очереди печати."
 [Initialize-ADPrintQueuesEnvironment]: <#initialize-adprintqueuesenvironment> "Создаёт корневой контейнер для контейнеров объектов printQueue."
 [Initialize-DomainUtilsPrintersConfiguration]: <#initialize-domainutilsprintersconfiguration> "Инициализация конфигурации модуля."
 [Microsoft.ActiveDirectory.Management.ADGroup]: <http://msdn.microsoft.com/ru-ru/library/microsoft.activedirectory.management.adgroup.aspx> "ADGroup Class (Microsoft.ActiveDirectory.Management)"
@@ -1592,7 +1592,7 @@ Test-PrinterGroup
 [New-ADPrintQueueGPO]: <#new-adprintqueuegpo> "Создаёт групповую политику, применяемую к пользователям указанного объекта printQueue."
 [New-ADPrintQueueGroup]: <#new-adprintqueuegroup> "Создаёт группы безопасности для указанного объекта printQueue."
 [New-GPO]: <http://go.microsoft.com/fwlink/?linkid=216711> "Creates a new GPO."
-[New-PrintQueueGroup]: <#new-printqueuegroup> "Создаёт локальные группы безопасности для указанного объекта printQueue."
+[New-PrinterGroup]: <#new-printergroup> "Создаёт локальные группы безопасности для указанного объекта printQueue."
 [Remove-ADPrintQueueEnvironment]: <#remove-adprintqueueenvironment> "Удаляет группы безопасности и объект GPO для указанной очереди печати."
 [System.Int32]: <http://msdn.microsoft.com/ru-ru/library/system.int32.aspx> "Int32 Class (System)"
 [System.String]: <http://msdn.microsoft.com/ru-ru/library/system.string.aspx> "String Class (System)"
@@ -1600,7 +1600,7 @@ Test-PrinterGroup
 [Test-ADPrintQueueGPO]: <#test-adprintqueuegpo> "Проверяет наличие объекта групповой политики, применяемой к пользователям указанного объекта printQueue."
 [Test-DomainUtilsPrintersConfiguration]: <#test-domainutilsprintersconfiguration> "Проверяем наличие конфигурации модуля для указанного домена."
 [Test-Printer]: <#test-printer> "Проверяет наличие одной или нескольких локальных очередей печати."
-[Test-PrintQueueGroup]: <#test-printqueuegroup> "Проверяет наличие затребованных групп безопасности для указанной локальной очереди печати."
+[Test-PrinterGroup]: <#test-printergroup> "Проверяет наличие затребованных групп безопасности для указанной локальной очереди печати."
 [Update-ADPrintQueueEnvironment]: <#update-adprintqueueenvironment> "Создаёт (при отсутствии) группы безопасности и объект GPO."
 
 ---------------------------------------
