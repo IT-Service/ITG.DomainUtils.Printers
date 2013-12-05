@@ -135,6 +135,12 @@
 
 	New-PrintQueueGroup [-Name] <String> [-GroupType <String[]>] [-PassThru] [-WhatIf] [-Confirm] <CommonParameters>
 
+#### КРАТКОЕ ОПИСАНИЕ [Test-PrintQueueGroup][]
+
+Проверяет наличие затребованных групп безопасности для указанной локальной очереди печати.
+
+	Test-PrintQueueGroup [-Name] <String> [-GroupType <String[]>] <CommonParameters>
+
 ОПИСАНИЕ
 --------
 
@@ -1504,6 +1510,66 @@ New-PrinterGroup
 - [Интернет версия](https://github.com/IT-Service/ITG.DomainUtils.Printers#New-PrintQueueGroup)
 - Get-PrintQueue
 
+#### Test-PrintQueueGroup
+
+Проверяет наличие затребованных групп безопасности для указанной локальной очереди печати.
+
+##### ПСЕВДОНИМЫ
+
+Test-PrinterGroup
+
+##### СИНТАКСИС
+
+	Test-PrintQueueGroup [-Name] <String> [-GroupType <String[]>] <CommonParameters>
+
+##### ВХОДНЫЕ ДАННЫЕ
+
+- System.Printing.PrintQueue
+Объект очереди печати.
+- Microsoft.Management.Infrastructure.CimInstance
+Объект очереди печати, возвращаемый [Get-Printer][].
+
+##### ВЫХОДНЫЕ ДАННЫЕ
+
+- System.Bool
+`$true` если группа существует, `$false` - если не существует.
+
+##### ПАРАМЕТРЫ
+
+- `[String] Name`
+	Имя локальной очереди печати
+	* Тип: [System.String][]
+	* Требуется? да
+	* Позиция? 1
+	* Принимать входные данные конвейера? true (ByPropertyName)
+	* Принимать подстановочные знаки? нет
+
+- `[String[]] GroupType`
+	тип группы: Users (группа пользователей), Administrators (группа администраторов).
+	* Тип: [System.String][][]
+	* Требуется? нет
+	* Позиция? named
+	* Значение по умолчанию `Users`
+	* Принимать входные данные конвейера? false
+	* Принимать подстановочные знаки? нет
+
+- `<CommonParameters>`
+	Этот командлет поддерживает общие параметры: Verbose, Debug,
+	ErrorAction, ErrorVariable, WarningAction, WarningVariable,
+	OutBuffer и OutVariable. Для получения дополнительных сведений см. раздел
+	[about_CommonParameters][].
+
+
+##### ПРИМЕРЫ
+
+1. Проверяем наличие группы безопасности Пользователи принтера для очереди печати 'P00001'.
+
+		Get-Printer 'P00001' | Test-PrinterGroup -GroupType Users
+
+##### ССЫЛКИ ПО ТЕМЕ
+
+- [Интернет версия](https://github.com/IT-Service/ITG.DomainUtils.Printers#Test-PrintQueueGroup)
+
 
 [about_ActiveDirectory_Filter]: <http://technet.microsoft.com/library/hh531527.aspx> 
 [about_ActiveDirectory_Identity]: <http://technet.microsoft.com/library/hh531526.aspx> 
@@ -1534,6 +1600,7 @@ New-PrinterGroup
 [Test-ADPrintQueueGPO]: <#test-adprintqueuegpo> "Проверяет наличие объекта групповой политики, применяемой к пользователям указанного объекта printQueue."
 [Test-DomainUtilsPrintersConfiguration]: <#test-domainutilsprintersconfiguration> "Проверяем наличие конфигурации модуля для указанного домена."
 [Test-Printer]: <#test-printer> "Проверяет наличие одной или нескольких локальных очередей печати."
+[Test-PrintQueueGroup]: <#test-printqueuegroup> "Проверяет наличие затребованных групп безопасности для указанной локальной очереди печати."
 [Update-ADPrintQueueEnvironment]: <#update-adprintqueueenvironment> "Создаёт (при отсутствии) группы безопасности и объект GPO."
 
 ---------------------------------------

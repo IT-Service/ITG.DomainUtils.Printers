@@ -1975,6 +1975,104 @@
 	</command>
 	<command xmlns:msh="http://msh" xmlns="http://schemas.microsoft.com/maml/dev/command/2004/10">
 		<details>
+			<name>Test-PrintQueueGroup</name>
+			<verb>Test</verb>
+			<noun>PrintQueueGroup</noun>
+			<maml:description>
+				<maml:para>Проверяет наличие затребованных групп безопасности для указанной локальной очереди печати.</maml:para>
+			</maml:description>
+			<maml:copyright>
+				<maml:para>(c) 2013 Sergey S. Betke. All rights reserved.</maml:para>
+			</maml:copyright>
+			<dev:version>0.4</dev:version>
+		</details>
+		<syntax>
+			<syntaxItem>
+				<maml:name>Test-PrintQueueGroup</maml:name>
+				<parameter required="true" position="1" pipelineInput="true (ByPropertyName)" globbing="false">
+					<maml:name>Name</maml:name>
+					<parameterValue required="true">String</parameterValue>
+				</parameter>
+				<parameter required="false" position="named" pipelineInput="false" globbing="false">
+					<maml:name>GroupType</maml:name>
+					<parameterValue required="false">String[]</parameterValue>
+				</parameter>
+			</syntaxItem>
+		</syntax>
+		<parameters>
+			<parameter required="true" position="1" pipelineInput="true (ByPropertyName)" globbing="false">
+				<maml:name>Name</maml:name>
+				<maml:description>
+					<maml:para>Имя локальной очереди печати</maml:para>
+				</maml:description>
+				<parameterValue required="True">String</parameterValue>
+			</parameter>
+			<parameter required="false" position="named" pipelineInput="false" globbing="false">
+				<maml:name>GroupType</maml:name>
+				<maml:description>
+					<maml:para>тип группы: Users (группа пользователей), Administrators (группа администраторов).</maml:para>
+				</maml:description>
+				<parameterValue required="True">String[]</parameterValue>
+				<defaultValue>Users</defaultValue>
+			</parameter>
+		</parameters>
+		<inputTypes>
+			<inputType>
+				<dev:type>
+					<maml:name>System.Printing.PrintQueue</maml:name>
+					<maml:description>
+						<maml:para>Объект очереди печати.</maml:para>
+					</maml:description>
+				</dev:type>
+				<maml:description>
+					<maml:para>Объект очереди печати.</maml:para>
+				</maml:description>
+			</inputType>
+			<inputType>
+				<dev:type>
+					<maml:name>Microsoft.Management.Infrastructure.CimInstance</maml:name>
+					<maml:description>
+						<maml:para>Объект очереди печати, возвращаемый Get-Printer.</maml:para>
+					</maml:description>
+				</dev:type>
+				<maml:description>
+					<maml:para>Объект очереди печати, возвращаемый Get-Printer.</maml:para>
+				</maml:description>
+			</inputType>
+		</inputTypes>
+		<returnValues>
+			<returnValue>
+				<dev:type>
+					<maml:name>System.Bool</maml:name>
+					<maml:description>
+						<maml:para>`$true` если группа существует, `$false` - если не существует.</maml:para>
+					</maml:description>
+				</dev:type>
+				<maml:description>
+					<maml:para>`$true` если группа существует, `$false` - если не существует.</maml:para>
+				</maml:description>
+			</returnValue>
+		</returnValues>
+		<examples>
+			<example>
+				<maml:title>-------------------------- ПРИМЕР 1 --------------------------</maml:title>
+				<maml:introduction>
+					<maml:paragraph>C:\PS&gt;</maml:paragraph>
+				</maml:introduction>
+				<dev:code>Get-Printer 'P00001' | Test-PrinterGroup -GroupType Users</dev:code>
+				<maml:remarks>
+					<maml:para>Проверяем наличие группы безопасности Пользователи принтера для очереди печати 'P00001'.</maml:para>
+				</maml:remarks>
+			</example>
+		</examples>
+		<maml:relatedLinks>
+			<maml:navigationLink>
+				<maml:uri>https://github.com/IT-Service/ITG.DomainUtils.Printers#Test-PrintQueueGroup</maml:uri>
+			</maml:navigationLink>
+		</maml:relatedLinks>
+	</command>
+	<command xmlns:msh="http://msh" xmlns="http://schemas.microsoft.com/maml/dev/command/2004/10">
+		<details>
 			<name>Update-ADPrintQueueEnvironment</name>
 			<verb>Update</verb>
 			<noun>ADPrintQueueEnvironment</noun>

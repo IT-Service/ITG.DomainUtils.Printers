@@ -167,3 +167,69 @@ Function Get-PrintQueueGroup {
 }
 
 New-Alias -Name Get-PrinterGroup -Value Get-PrintQueueGroup -Force;
+
+Function Test-PrintQueueGroup {
+<#
+.Synopsis
+	Проверяет наличие затребованных групп безопасности для указанной локальной очереди печати. 
+.Inputs
+	System.Printing.PrintQueue
+	Объект очереди печати.
+.Inputs
+	Microsoft.Management.Infrastructure.CimInstance
+	Объект очереди печати, возвращаемый Get-Printer.
+.Outputs
+	System.Bool
+	`$true` если группа существует, `$false` - если не существует.
+.Link
+	https://github.com/IT-Service/ITG.DomainUtils.Printers#Test-PrintQueueGroup
+.Example
+	Get-Printer 'P00001' | Test-PrinterGroup -GroupType Users
+	Проверяем наличие группы безопасности Пользователи принтера для очереди печати 'P00001'.
+#>
+	[CmdletBinding(
+		HelpUri = 'https://github.com/IT-Service/ITG.DomainUtils.Printers#Test-PrintQueueGroup'
+	)]
+
+	param (
+		# Имя локальной очереди печати
+		[Parameter(
+			Mandatory = $true
+			, Position = 0
+			, ValueFromPipelineByPropertyName = $true
+		)]
+		[String]
+		$Name
+	,
+		# тип группы: Users (группа пользователей), Administrators (группа администраторов).
+		[Parameter(
+			Mandatory = $false
+		)]
+		[String[]]
+		[ValidateSet( 'Users', 'Administrators' )]
+		$GroupType = 'Users'
+	)
+
+	process {
+		try {
+			$Config = Get-DomainUtilsPrintersConfiguration;
+			foreach ( $SingleGroupType in $GroupType ) {
+				try {
+					Test-Group `
+						-Name ( [String]::Format( $Config."printQueue$( $SingleGroupType )Group", $Name ) ) `
+					;
+				} catch {
+					Write-Error `
+						-ErrorRecord $_ `
+					;
+				};
+			};
+		} catch {
+			Write-Error `
+				-ErrorRecord $_ `
+			;
+		};
+	}
+}
+
+New-Alias -Name Test-PrinterGroup -Value Test-PrintQueueGroup -Force;

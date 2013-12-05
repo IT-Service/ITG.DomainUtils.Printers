@@ -135,6 +135,12 @@
 
 	New-PrintQueueGroup [-Name] <String> [-GroupType <String[]>] [-PassThru] [-WhatIf] [-Confirm] <CommonParameters>
 
+#### КРАТКОЕ ОПИСАНИЕ [Test-PrintQueueGroup][]
+
+Проверяет наличие затребованных групп безопасности для указанной локальной очереди печати.
+
+	Test-PrintQueueGroup [-Name] <String> [-GroupType <String[]>] <CommonParameters>
+
 
 [Get-ADPrintQueue]: <#get-adprintqueue> "Возвращает один или несколько объектов AD с классом printQueue."
 [Get-ADPrintQueueGPO]: <#get-adprintqueuegpo> "Возвращает объект групповой политики, применяемой к пользователям указанного объекта printQueue."
@@ -151,6 +157,7 @@
 [Test-ADPrintQueueGPO]: <#test-adprintqueuegpo> "Проверяет наличие объекта групповой политики, применяемой к пользователям указанного объекта printQueue."
 [Test-DomainUtilsPrintersConfiguration]: <#test-domainutilsprintersconfiguration> "Проверяем наличие конфигурации модуля для указанного домена."
 [Test-Printer]: <#test-printer> "Проверяет наличие одной или нескольких локальных очередей печати."
+[Test-PrintQueueGroup]: <#test-printqueuegroup> "Проверяет наличие затребованных групп безопасности для указанной локальной очереди печати."
 [Update-ADPrintQueueEnvironment]: <#update-adprintqueueenvironment> "Создаёт (при отсутствии) группы безопасности и объект GPO."
 
 ---------------------------------------

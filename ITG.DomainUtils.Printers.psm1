@@ -91,3 +91,4 @@ Export-ModuleMember -Function Test-Printer -Alias Test-PrintQueue;
 
 Export-ModuleMember -Function New-PrintQueueGroup -Alias New-PrinterGroup;
 Export-ModuleMember -Function Get-PrintQueueGroup -Alias Get-PrinterGroup;
+Export-ModuleMember -Function Test-PrintQueueGroup -Alias Test-PrinterGroup;
