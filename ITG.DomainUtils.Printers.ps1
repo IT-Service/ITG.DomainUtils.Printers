@@ -142,7 +142,12 @@ Function Get-ADPrintQueue {
 
 	begin {
 		try {
-			foreach ( $param in 'Properties' ) {
+			if ( -not  $Server ) {
+				$Server = ( Get-ADDomainController `
+					-Discover `
+				).HostName;
+			};
+			foreach ( $param in 'Properties', 'Server' ) {
 				$null = $PSBoundParameters.Remove( $param );
 			};
 			switch ( $PsCmdlet.ParameterSetName ) {
@@ -168,6 +173,7 @@ Function Get-ADPrintQueue {
 				, [System.Management.Automation.CommandTypes]::Cmdlet
 			);
 			$scriptCmd = { & $wrappedCmd `
+				-Server $Server `
 				-Properties $Properties `
 				@PSBoundParameters `
 			};
@@ -343,15 +349,17 @@ Function Initialize-ADPrintQueuesEnvironment {
 	)
 
 	try {
-		$Params = @{};
-		foreach ( $param in 'Server') {
-			if ( $PSBoundParameters.ContainsKey( $param ) ) {
-				$Params.Add( $param,  $PSBoundParameters.$param );
-			};
+		if ( -not  $Server ) {
+			$Server = ( Get-ADDomainController `
+				-Discover `
+				-DomainName $Domain `
+				-Writable `
+				-Service PrimaryDC `
+			).HostName;
 		};
 		$Config = Get-DomainUtilsPrintersConfiguration `
 			-Domain $Domain `
-			@Params `
+			-Server $Server `
 		;
 		New-ADObject `
 			-Type ( $Config.ContainerClass ) `
@@ -359,9 +367,9 @@ Function Initialize-ADPrintQueuesEnvironment {
 			-Name ( $Config.PrintQueuesContainerName ) `
 			-Description ( $loc.PrintQueuesContainerDescription ) `
 			-ProtectedFromAccidentalDeletion $true `
+			-Server $Server `
 			-PassThru:$PassThru `
 			-Verbose:$VerbosePreference `
-			@Params `
 		;
 	} catch {
 		Write-Error `
@@ -454,15 +462,17 @@ Function New-ADPrintQueueGroup {
 
 	process {
 		try {
-			$Params = @{};
-			foreach ( $param in 'Server') {
-				if ( $PSBoundParameters.ContainsKey( $param ) ) {
-					$Params.Add( $param,  $PSBoundParameters.$param );
-				};
+			if ( -not  $Server ) {
+				$Server = ( Get-ADDomainController `
+					-Discover `
+					-DomainName $Domain `
+					-Writable `
+					-Service PrimaryDC `
+				).HostName;
 			};
 			$Config = Get-DomainUtilsPrintersConfiguration `
 				-Domain $Domain `
-				@Params `
+				-Server $Server `
 			;
 			foreach ( $SingleGroupType in $GroupType ) {
 				try {
@@ -493,7 +503,7 @@ Function New-ADPrintQueueGroup {
 								, $InputObject.PrintShareName
 							) );
 						} `
-						@Params `
+						-Server $Server `
 						-Verbose:$VerbosePreference `
 						-PassThru:$PassThru `
 					;
@@ -587,21 +597,21 @@ Function Get-ADPrintQueueGroup {
 
 	process {
 		try {
-			$Params = @{};
-			foreach ( $param in 'Server') {
-				if ( $PSBoundParameters.ContainsKey( $param ) ) {
-					$Params.Add( $param,  $PSBoundParameters.$param );
-				};
+			if ( -not  $Server ) {
+				$Server = ( Get-ADDomainController `
+					-Discover `
+					-DomainName $Domain `
+				).HostName;
 			};
 			$Config = Get-DomainUtilsPrintersConfiguration `
 				-Domain $Domain `
-				@Params `
+	   			-Server $Server `
 			;
 			foreach ( $SingleGroupType in $GroupType ) {
 				try {
 					Get-ADGroup `
 						-Identity "CN=$( [String]::Format( $Config."printQueue$( $SingleGroupType )Group", $InputObject.PrinterName ) ),$( $Config.PrintQueuesContainer )" `
- 						@Params `
+						-Server $Server `
 					;
 				} catch {
 					Write-Error `
@@ -721,7 +731,12 @@ Function New-ADPrintQueueGPO {
 	process {
 		try {
 			if ( -not  $Server ) {
-				$Server = ( Get-ADDomainController -Discover -DomainName $Domain -Writable ).HostName;
+				$Server = ( Get-ADDomainController `
+					-Discover `
+					-DomainName $Domain `
+					-Writable `
+					-Service PrimaryDC `
+				).HostName;
 			};
 			$ADDomain = Get-ADDomain `
 				-Identity $Domain `
@@ -773,22 +788,28 @@ Function New-ADPrintQueueGPO {
 				try { 
 					$GPO `
 					| Set-GPPermission `
-						-PermissionLevel GpoApply `
 						-Replace `
+						-PermissionLevel GpoApply `
 						-TargetType Group `
-						-TargetName ( $PrintQueueUsersGroup.SamAccountName ) `
+						-TargetName ( "$Domain\$( $PrintQueueUsersGroup.SamAccountName )" ) `
+						-Domain $Domain `
 						-Server $Server `
+						-Verbose:$VerbosePreference `
 					| Set-GPPermission `
 						-PermissionLevel GpoRead `
 						-TargetType Group `
-						-TargetName ( $PrintQueueUsersGroup.SamAccountName ) `
+						-TargetName ( "$Domain\$( $PrintQueueUsersGroup.SamAccountName )" ) `
+						-Domain $Domain `
 						-Server $Server `
+						-Verbose:$VerbosePreference `
 					| Set-GPPermission `
 						-PermissionLevel GpoRead `
 						-Replace `
 						-TargetType Group `
 						-TargetName ( ( [System.Security.Principal.SecurityIdentifier] 'S-1-5-11' ).Translate( [System.Security.Principal.NTAccount] ).Value ) `
+						-Domain $Domain `
 						-Server $Server `
+						-Verbose:$VerbosePreference `
 					| Out-Null `
 					;
 					$GPOFilePartPath = (
@@ -874,6 +895,7 @@ Function New-ADPrintQueueGPO {
 						-Guid ( $GPO.Id ) `
 						-Server $Server `
 						-ErrorAction Continue `
+						-Verbose:$VerbosePreference `
 					;
 					throw;
 				};
@@ -958,7 +980,10 @@ Function Get-ADPrintQueueGPO {
 	process {
 		try {
 			if ( -not  $Server ) {
-				$Server = ( Get-ADDomainController -Discover -DomainName $Domain -Writable ).HostName;
+				$Server = ( Get-ADDomainController `
+					-Discover `
+					-DomainName $Domain `
+				).HostName;
 			};
 			$ADDomain = Get-ADDomain `
 				-Identity $Domain `
@@ -1160,7 +1185,12 @@ Function Update-ADPrintQueueEnvironment {
 	process {
 		try {
 			if ( -not  $Server ) {
-				$Server = ( Get-ADDomainController -Discover -DomainName $Domain -Writable ).HostName;
+				$Server = ( Get-ADDomainController `
+					-Discover `
+					-DomainName $Domain `
+					-Writable `
+					-Service PrimaryDC `
+				).HostName;
 			};
 			$ADDomain = Get-ADDomain `
 				-Identity $Domain `
@@ -1290,7 +1320,12 @@ Function Remove-ADPrintQueueEnvironment {
 	process {
 		try {
 			if ( -not  $Server ) {
-				$Server = ( Get-ADDomainController -Discover -DomainName $Domain -Writable ).HostName;
+				$Server = ( Get-ADDomainController `
+					-Discover `
+					-DomainName $Domain `
+					-Writable `
+					-Service PrimaryDC `
+				).HostName;
 			};
 			$ADDomain = Get-ADDomain `
 				-Identity $Domain `
