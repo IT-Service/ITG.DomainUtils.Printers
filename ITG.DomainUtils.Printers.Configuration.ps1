@@ -70,7 +70,7 @@ Function Initialize-DomainUtilsPrintersConfiguration {
 			Mandatory = $false
 		)]
 		[String]
-		$Server = ''
+		$Server
 	,
 		# Перезаписывать ли конфигурацию в случае её наличия
 		[Switch]
@@ -79,7 +79,12 @@ Function Initialize-DomainUtilsPrintersConfiguration {
 
 	try {
 		if ( -not  $Server ) {
-			$Server = ( Get-ADDomainController -Discover -DomainName $Domain -Writable ).HostName;
+			$Server = ( Get-ADDomainController `
+				-Discover `
+				-DomainName $Domain `
+				-Writable `
+				-Service PrimaryDC `
+			).HostName;
 		};
 		$ADDomain = Get-ADDomain `
 			-Identity $Domain `
@@ -200,19 +205,19 @@ Function Test-DomainUtilsPrintersConfiguration {
 			Mandatory = $false
 		)]
 		[String]
-		$Server = ''
+		$Server
 	)
 
 	try {
-		$Params = @{};
-		foreach ( $param in 'Server') {
-			if ( $PSBoundParameters.ContainsKey( $param ) ) {
-				$Params.Add( $param,  $PSBoundParameters.$param );
-			};
+		if ( -not  $Server ) {
+			$Server = ( Get-ADDomainController `
+				-Discover `
+				-DomainName $Domain `
+			).HostName;
 		};
 		$ADDomain = Get-ADDomain `
 			-Identity $Domain `
-			@Params `
+			-Server $Server `
 		;
 		if ( $ConfigCache.ContainsKey( $ADDomain.DNSRoot ) ) { return $true; };
 		return ( Test-Path -Path "AD:$( ( $ConfigObjectDN, $ADDomain.DistinguishedName | ? { $_ } ) -join ',' )" );
@@ -254,7 +259,7 @@ Function Get-DomainUtilsPrintersConfiguration {
 			Mandatory = $false
 		)]
 		[String]
-		$Server = ''
+		$Server
 	,
 		# Игнорировать кеш и принудительно перечитать конфигурацию из AD
 		[Switch]
@@ -263,7 +268,12 @@ Function Get-DomainUtilsPrintersConfiguration {
 
 	try {
 		if ( -not  $Server ) {
-			$Server = ( Get-ADDomainController -Discover -DomainName $Domain -Writable ).HostName;
+			$Server = ( Get-ADDomainController `
+				-Discover `
+				-DomainName $Domain `
+				-Writable `
+				-Service PrimaryDC `
+			).HostName;
 		};
 		$ADDomain = Get-ADDomain `
 			-Identity $Domain `
