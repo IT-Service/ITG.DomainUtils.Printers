@@ -2221,4 +2221,151 @@
 			</maml:navigationLink>
 		</maml:relatedLinks>
 	</command>
+	<command xmlns:msh="http://msh" xmlns="http://schemas.microsoft.com/maml/dev/command/2004/10">
+		<details>
+			<name>Update-PrinterEnvironment</name>
+			<verb>Update</verb>
+			<noun>PrinterEnvironment</noun>
+			<maml:description>
+				<maml:para>Проверяет, создаёт / обновляет необходимое окружение для локальных очередей печати.</maml:para>
+			</maml:description>
+			<maml:copyright>
+				<maml:para>(c) 2013 Sergey S. Betke. All rights reserved.</maml:para>
+			</maml:copyright>
+			<dev:version>0.4</dev:version>
+		</details>
+		<maml:description>
+			<maml:para>Update-PrinterEnvironment проверяет и создаёт (при отсутствии) локальные группы безопасности для указанного принтера, изменяет права доступа к принтеру (предоставляет права печати на данном принтере только локальным группам Пользователи принтера и Администраторы принтера, предоставляет право управления всеми документами в очереди группе Администраторы принтера и локальной группе Администраторы).</maml:para>
+			<maml:para>Далее, обеспечивает общий доступ к принтеру, публикует его в AD, обновляет для него окружение в AD, и включает доменные группы Пользователей и Администраторов этого принтера в его локальные группы.</maml:para>
+		</maml:description>
+		<syntax>
+			<syntaxItem>
+				<maml:name>Update-PrinterEnvironment</maml:name>
+				<parameter required="true" position="1" pipelineInput="true (ByPropertyName)" globbing="false">
+					<maml:name>Name</maml:name>
+					<parameterValue required="true">String</parameterValue>
+				</parameter>
+				<parameter required="false" position="named" pipelineInput="false" globbing="false">
+					<maml:name>PassThru</maml:name>
+				</parameter>
+				<parameter required="false" position="named" pipelineInput="false" globbing="false">
+					<maml:name>WhatIf</maml:name>
+				</parameter>
+				<parameter required="false" position="named" pipelineInput="false" globbing="false">
+					<maml:name>Confirm</maml:name>
+				</parameter>
+			</syntaxItem>
+		</syntax>
+		<parameters>
+			<parameter required="true" position="1" pipelineInput="true (ByPropertyName)" globbing="false">
+				<maml:name>Name</maml:name>
+				<maml:description>
+					<maml:para>Имя локальной очереди печати</maml:para>
+				</maml:description>
+				<parameterValue required="True">String</parameterValue>
+			</parameter>
+			<parameter required="false" position="named" pipelineInput="false" globbing="false">
+				<maml:name>PassThru</maml:name>
+				<maml:description>
+					<maml:para>Передавать ли объект принтера далее по конвейеру</maml:para>
+				</maml:description>
+				<parameterValue required="True">SwitchParameter</parameterValue>
+				<defaultValue>False</defaultValue>
+			</parameter>
+			<parameter required="false" position="named" pipelineInput="false" globbing="false">
+				<maml:name>WhatIf</maml:name>
+				<parameterValue required="True">SwitchParameter</parameterValue>
+			</parameter>
+			<parameter required="false" position="named" pipelineInput="false" globbing="false">
+				<maml:name>Confirm</maml:name>
+				<parameterValue required="True">SwitchParameter</parameterValue>
+			</parameter>
+		</parameters>
+		<inputTypes>
+			<inputType>
+				<dev:type>
+					<maml:name>System.Printing.PrintQueue</maml:name>
+					<maml:description>
+						<maml:para>Объект очереди печати.</maml:para>
+					</maml:description>
+				</dev:type>
+				<maml:description>
+					<maml:para>Объект очереди печати.</maml:para>
+				</maml:description>
+			</inputType>
+			<inputType>
+				<dev:type>
+					<maml:name>Microsoft.Management.Infrastructure.CimInstance</maml:name>
+					<maml:description>
+						<maml:para>Объект очереди печати, возвращаемый Get-Printer.</maml:para>
+					</maml:description>
+				</dev:type>
+				<maml:description>
+					<maml:para>Объект очереди печати, возвращаемый Get-Printer.</maml:para>
+				</maml:description>
+			</inputType>
+		</inputTypes>
+		<returnValues>
+			<returnValue>
+				<dev:type>
+					<maml:name>System.Printing.PrintQueue</maml:name>
+					<maml:description>
+						<maml:para>Исходный объект принтера при выполнении с ключом PassThru.</maml:para>
+					</maml:description>
+				</dev:type>
+				<maml:description>
+					<maml:para>Исходный объект принтера при выполнении с ключом PassThru.</maml:para>
+				</maml:description>
+			</returnValue>
+			<returnValue>
+				<dev:type>
+					<maml:name>Microsoft.Management.Infrastructure.CimInstance</maml:name>
+					<maml:description>
+						<maml:para>Исходный объект принтера при выполнении с ключом PassThru.</maml:para>
+					</maml:description>
+				</dev:type>
+				<maml:description>
+					<maml:para>Исходный объект принтера при выполнении с ключом PassThru.</maml:para>
+				</maml:description>
+			</returnValue>
+		</returnValues>
+		<maml:alertSet>
+			<maml:alert>
+				<maml:para>Командлет разработан исключительно для работы с локальными очередями печати. Его не следует использовать для подключенных сетевых принтеров.</maml:para>
+			</maml:alert>
+		</maml:alertSet>
+		<examples>
+			<example>
+				<maml:title>-------------------------- ПРИМЕР 1 --------------------------</maml:title>
+				<maml:introduction>
+					<maml:paragraph>C:\PS&gt;</maml:paragraph>
+				</maml:introduction>
+				<dev:code>Get-Printer 'P00001' | Update-PrinterEnvironment</dev:code>
+				<maml:remarks>
+					<maml:para>Создаём / обновляем окружение для локальной очереди печати 'P00001'.</maml:para>
+				</maml:remarks>
+			</example>
+			<example>
+				<maml:title>-------------------------- ПРИМЕР 2 --------------------------</maml:title>
+				<maml:introduction>
+					<maml:paragraph>C:\PS&gt;</maml:paragraph>
+				</maml:introduction>
+				<dev:code>Get-Printer | Update-PrinterEnvironment</dev:code>
+				<maml:remarks>
+					<maml:para>Создаём / обновляем окружение для всех локальных принтеров.</maml:para>
+				</maml:remarks>
+			</example>
+		</examples>
+		<maml:relatedLinks>
+			<maml:navigationLink>
+				<maml:uri>https://github.com/IT-Service/ITG.DomainUtils.Printers#Update-PrinterEnvironment</maml:uri>
+			</maml:navigationLink>
+			<maml:navigationLink>
+				<maml:linkText>Get-Printer</maml:linkText>
+			</maml:navigationLink>
+			<maml:navigationLink>
+				<maml:linkText>New-PrinterGroup</maml:linkText>
+			</maml:navigationLink>
+		</maml:relatedLinks>
+	</command>
 </helpItems>
